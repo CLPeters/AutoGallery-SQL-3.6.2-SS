@@ -1,0 +1,105 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Partner Account Requests</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+Starting in version 3.1.0 of AutoGallery SQL, the software now includes a feature that will allow webmasters to request
+a partner account at your TGP.   Webmasters will be able to provide you with information through a web-based form, such as
+their name, some example gallery URLs, and who hosts their site.  Through the software's control panel you will be able to
+decide who you want to be a partner, and quickly create partner accounts for those who have requested them.
+
+<br />
+<br />
+
+<b>Requesting a Partner Account</b>
+
+<br />
+<br />
+
+To request a partner account webmasters will need to visit the partner.cgi script that is included with the software.  By default
+the submit form templates do not include a link to the partner account request form, since not everyone will use this feature.  If
+you want to add a link to the partner account request form, simply link directly to the partner.cgi script.  When they visit this
+script they will be presented with a form that they will need to fill in.  Each of the form fields is described below.
+
+<ul>
+<li> <b>E-mail Address</b> - This is the e-mail address that the webmaster would like to be contacted at<br />
+<li> <b>Your Name</b> - This is the webmaster's name or nickname<br />
+<li> <b>Requested Username</b> - This is the username that the webmaster would like to use for their partner account<br />
+<li> <b>Requested Password</b> - This is the password that the webmaster would like to use for their partner account<br />
+<li> <b>Sample URL 1</b> - This is the full URL to an example of one of their galleries that they would submit<br />
+<li> <b>Sample URL 2</b> - This is the full URL to an example of one of their galleries that they would submit<br />
+<li> <b>Sample URL 3</b> - This is the full URL to an example of one of their galleries that they would submit<br />
+<li> <b>Hosting Company</b> - This is the webhosting company where their galleries are hosted<br />
+<li> <b>Main Content Provider</b> -  This is the company that is the main provider of their gallery images and/or movies
+</ul>
+
+Once they have filled in the information, they can press the Submit Request button.  A confirmation page will be displayed to
+let them know that their information will be reviewed and they will be contacted when that has been done.
+
+<br />
+<br />
+
+<b>Moderating Partner Account Requests</b>
+
+<br />
+<br />
+
+As the TGP administrator it will be your job to moderate the partner account requests and decide who gets a partner account
+and who does not.  This is handled through the software's control panel by clicking on the Account Requests link in the
+Partner Accounts section of the menu.  When the page loads you will see a listing of all of the new partner account requests.
+
+<br />
+<br />
+
+Each partner account request starts with a gray bar that shows the approve and reject checkboxes.  Below that is all of the
+information about the partner account request.  Each item is described below.
+
+<ul>
+<li> <b>Username</b> - This is the username that the webmaster requested; this item can be edited<br />
+<li> <b>Password</b> - This is the password that the webmaster requested; this item can be edited<br />
+<li> <b>E-mail</b> - This is the e-mail address that the webmaster submitted<br />
+<li> <b>Galleries</b> - These are the 3 example galleries that the webmaster submitted<br />
+<li> <b>Host</b> - This is the webhosting company where the webmaster's galleries are hosted<br />
+<li> <b>Content</b> -  This is the company that is the main provider of the webmaster's gallery images and/or movies<br />
+<li> <b>IP</b> -  This is the IP address of the webmaster who submitted the request
+<li> <b>Weight</b> -  If you approve this request, this is the weight that will be assigned to all galleries submitted by this partner<br />
+<li> <b>Per Day</b> -  If you approve this request, this is the number of galleries that the webmaster can submit each day<br />
+<li> <b>Options</b> -  If you approve this request, these are several options that you can select from for the partner account<br />
+  
+    <ul>
+    <li> <b>Auto-Approve</b> - If this is checked, this account's galleries will be automatically approved by AutoGallery SQL, otherwise
+                      you will have to review them before they are approved.
+    <li> <b>Recip Required</b> - If this is checked, any galleries submitted from this account must have a reciprocal link.
+                        This value overrides the global options setting.
+    <li> <b>Check Blacklist</b> - If this is checked, this partner's galleries will be checked against the blacklist.
+    <li> <b>Check Banned HTML</b> - If this is checked, this partner's galleries will be checked against the banned HTML list.
+    <li> <b>Confirm by E-mail</b> - If this is checked, this partner will have to confirm all gallery submissions by e-mail.
+    </ul>
+</ul>
+
+Once you have decided what you want to do with each partner account request, put a checkbox in either the Approve or Reject checkbox.  You
+can then press the Process Requests button to process the partner account requests that you have moderated.  If you have approved the request,
+a new partner account will be created with the supplied username and password and the partner will be sent the contents of the email_account.tpl
+e-mail template.  If you have rejected the request, it will be deleted from the database.  You can also select a custom rejection e-mail to be sent
+from the drop down list next to the Reject checkbox.  You can create and modify custom rejection e-mails with the Rejection E-mails function of
+the software.
+
+</div>
+
+</body>
+</html>

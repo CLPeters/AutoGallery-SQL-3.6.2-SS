@@ -1,0 +1,32 @@
+<style type="text/css">
+body { background-color: #ececec; font-family: Verdana; font-size: 11px; }
+select { font-family: Verdana; font-size: 11px; }
+input { font-family: Verdana; font-size: 11px; }
+textarea { font-family: Verdana; font-size: 11px; }
+td { font-family: Verdana; font-size: 11px; }
+form { padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; }
+a { text-decoration: none; color: #00008B; }
+a:hover { text-decoration: none; color: Red; border-bottom: 1px solid #000000; }
+.menubody { margin: 10px 5px 0px 5px; background-color: #ececec; font-family: Verdana; font-size: 11px; }
+.mainbody { margin: 10px 5px 0px 5px; background-color: #ececec; font-family: Verdana; font-size: 11px; }
+.nopad { padding: 2px 2px 2px 5px; }
+.nomargin { padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; }
+.normal {}
+.normalgreen { background-color: #eeffee; }
+.flat { border: 1px solid #999999; padding: 1px 1px 1px 1px; }
+.flatgreen { border: 1px solid #999999; padding: 1px 1px 1px 1px; background-color: #eeffee; }
+.flatleft { border: 1px solid #999999; border-left: 0px; padding: 1px 1px 1px 0px; }
+.flatright { border: 1px solid #999999; border-right: 0px; padding: 1px 0px 1px 1px; }
+.message { color: Blue; font-weight: bold; }
+.errormessage { color: Red; font-weight: bold; }
+.menubox { padding: 2px 0px 3px 5px; border: 1px solid Maroon; border-top-width: 0px; background-color: #ffffff; }
+.menuhead { padding: 2px 0px 3px 5px; border: 1px solid Maroon; background-color: Maroon; color: White; font-weight: bold; }
+.tablehead { background-color: Maroon; color: White; font-weight: bold; }
+.subhead { padding: 2px 0px 3px 5px; background-color: #ececec; color: Black; font-weight: bold; }
+.outlined { background-color: White; border: 1px solid Maroon; }
+.tiny { font-size: 9px; }
+.green { text-decoration: none; color: green; }
+.spacedbutton { margin-top: 5px; }
+.partner { color: Orange; font-weight: bold; }
+.dotted-left { border-left: 1px dotted #afafaf; }
+</style>

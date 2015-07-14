@@ -1,0 +1,278 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Using the WHERE Option</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+New in the 3.5.x version of the software is the ability to specify the exact WHERE clause that will be sent to MySQL when the software is selecting the 
+galleries from the database that will be displayed on your TGP pages.  This is an advanced feature that requires knowledge of how MySQL database queries
+work.  If you are not familiar with MySQL and SQL queries, it is not recommended that you use this feature.  Instead you can control what galleries
+are selected by configuring the available options of the GALLERIES directive.
+
+<br />
+<br />
+
+<b>WHERE vs REWHERE</b>
+
+<br />
+<br />
+
+In the GALLERIES directive there are two options for specifying the MySQL where clause to use: WHERE and REWHERE.  Which one of these two where clauses is
+used depends on the type of build you are doing.  When doing a "Build With New" the WHERE option will be used.  When doing just a "Build" the REWHERE option
+will be used.  This is important because it allows you to specify a different where clause depending on the type of build being done.  Normally the software
+automatically handles this for you when you are using the regular options of the GALLERIES directive, however when using the WHERE option it is your responsibility.
+More information on page building can be found in the <a href="buildpages.html" class="link">Page Building Overview</a>.
+
+<br />
+<br />
+
+<b>Database Fields and Query Syntax</b>
+
+<br />
+<br />
+
+To use the WHERE and REWHERE options you will need to know all of the available database fields and what they represent.  Below is a list of all the database
+fields that you can use in the WHERE and REWHERE options:
+
+<ul>
+<b>Gallery_ID</b> - The ID number assigned to the gallery when it is added to the database<br />
+<b>Gallery_URL</b> - The full URL to the gallery page<br />
+<b>Description</b> - The gallery's description<br />
+<b>Thumbnails</b> - The number of thumbnails on the gallery<br />
+<b>Category</b> - The category that this gallery has been assigned<br />
+<b>Sponsor</b> - The sponsor name that has been assigned to this gallery<br />
+<b>Has_Thumb</b> - A flag to indicate if this gallery has a preview thumbnail; 0 means it does not have a preview, 1 means it does have a preview<br />
+<b>Thumbnail_URL</b> - The full URL to the gallery's preview thumbnail, if any<br />
+<b>Thumb_Width</b> - The width, in pixels, of the preview thumbnail if one has been created<br />
+<b>Thumb_Height</b> - The height, in pixels, of the preview thumbnail if one has been created<br />
+<b>Weight</b> - The weight value that has been assigned to the gallery<br />
+<b>Nickname</b> - The nickname value assigned to the gallery<br />
+<b>Clicks</b> - The number of clicks that the gallery has received since it was last selected for display (must be using the go.php script)<br />
+<b>Type</b> - The gallery type, either Submitted or Permanent<br />
+<b>Format</b> - The gallery format, either Pictures or Movies<br />
+<b>Status</b> - The current gallery status; one of Approved, Used, or Holding<br />
+<b>Added_Date</b> - The date, in YYYY-MM-DD format, when the gallery was added to the database<br />
+<b>Added_Stamp</b> - The unix timestamp of when the gallery was added to the database<br />
+<b>Approve_Date</b> - The date, in YYYY-MM-DD format, when the gallery was approved by a moderator<br />
+<b>Approve_Stamp</b> - The unix timestamp of when the gallery was approved by a moderator<br />
+<b>Scheduled_Date</b> - A MySQL DATE field that can be assigned the date when the gallery becomes eligible for display; YYYY-MM-DD format or NULL for a random date<br />
+<b>Display_Date</b> - A MySQL DATE field that records the date when the gallery was selected for display from Approved status; YYYY-MM-DD format or NULL if the gallery is Approved<br />
+<b>Allow_Scan</b> - A flag to indicate if this gallery should be scanned; 0 means it will not be scanned, 1 means it will be scanned<br />
+<b>Allow_Thumb</b> - A flag to indicate if a preview thumbnail can be created for this gallery; 0 means a thumb cannot be created, 1 means a thumb can be created<br />
+<b>Times_Selected</b> - A counter that indicates the number of times the gallery has been selected for display from Approved status<br />
+<b>Account_ID</b> - The partner account username (if any) that the gallery was submitted by<br />
+<b>Used_Counter</b> - A counter that is incremented every time a gallery is used during a build<br />
+<b>Build_Counter</b> - A counter that is incremented for all Used and Holding galleries every time a build is done<br />
+<b>Keywords</b> - The keywords that have been assigned to this gallery<br />
+</ul>
+
+
+When you create your where clause, remember that the syntax must be in a format that MySQL can understand.  AutoGallery SQL will pass the where clause that you specify directly to MySQL
+without doing any extra processing.  Here is an example of the type of query that AutoGallery SQL might send to MySQL to grab galleries:
+
+<ul>
+SELECT * FROM ags_Galleries WHERE <span style="background-color: yellow;">Has_Thumb=1 AND Status='Used'</span> ORDER BY (Clicks/Build_Counter) DESC LIMIT 10
+</ul>
+
+The portion with the yellow background is the where clause, and that is the type of value you will be specifying in the WHERE and REWHERE options of the GALLERIES directive.  Keep
+in mind that you have complete control of the where clause, which means you can use any of the built in MySQL functions to modify your query as you need.
+
+<br />
+<br />
+
+<b>Overriding Other Directive Options</b>
+
+<br />
+<br />
+
+When you use the WHERE and REWHERE options they will override many of the other options of the GALLERIES directive.  This means that you do not have to specify those options unless
+you are using filler galleries.  In that case you need to specify the options so that the software knows what restrictions to place on the filler galleries that are selected.  Here is
+a list of the options that the WHERE and REWHERE options override:
+
+<br />
+<br />
+
+TYPE<br />
+CATEGORY<br />
+SPONSOR<br />
+DESCREQ<br />
+HASTHUMB<br />
+FORMAT<br />
+HEIGHT<br />
+WIDTH<br />
+WEIGHT<br />
+GETNEW<br />
+KEYWORDS<br />
+AGE<br />
+MINAGE<br />
+MAXAGE
+
+<br />
+<br />
+
+<b>Special Values</b>
+
+<br />
+<br />
+
+Besides the standard MySQL syntax and database field names that you can reference in your WHERE and REWHERE clauses, there are also some special values that you may need to use
+from time-to-time.  Each of the available special values is listed below.
+
+<ul>
+$MYSQL_DATE - This is the current date (with your timezone figured in) in YYYY-MM-DD format<br />
+$HOLD_PERIOD - This is the holding period for submitted galleries value you have defined in the Edit Options interface<br />
+$PERM_HOLD_PERIOD - This is the holding period for permanent galleries value you have defined in the Edit Options interface
+</ul>
+
+<b>Using Quotes</b>
+
+<br />
+<br />
+
+In SQL queries it is necessary to quote string values.  By default MySQL allows you to use either single quotes (') or double quotes (") for quoting purposes, however because of how the
+templates are compiled by the software you should only use single quotes for most purposes.  If you do need to use a double quote, it must be escaped with a backslash character (\").
+Example:
+
+<ul>
+WHERE Status=\"Approved\"
+</ul>
+
+Additionally, if you need to use a single quote character inside an already single-quoted string, you will need to escape that with two backslashes as well.  Example:
+
+<ul>
+WHERE Sponsor='Jim\\'s Cash Payouts'
+</ul>
+
+
+<b>Examples</b>
+
+<br />
+<br />
+
+Below are a few examples of the WHERE and REWHERE options that you might use in your template.  First the GALLERIES directive is shown, followed by a description of how it all works.
+
+<br />
+<br />
+
+
+<div class="bggrey">
+<pre>
+&lt;%GALLERIES
+AMOUNT 20
+HTML &lt;a href="##Gallery_URL##" target="_blank"&gt;##Description##&lt;/a&gt;&lt;br /&gt;
+WHERE Type='Submitted' AND Has_Thumb=0 AND Status='Approved' AND Keywords LIKE '%bikini%' AND (Scheduled_Date IS NULL OR Scheduled_Date <= '$MYSQL_DATE')
+REWHERE Type='Submitted' AND Has_Thumb=0 AND Status='Used' AND Keywords LIKE '%bikini%'
+ORDER Times_Selected, RAND()
+REORDER (Clicks/Build_Counter) DESC
+%&gt;
+</pre>
+
+
+Right away you will see that the WHERE and REWHERE options can get lengthy, even with a fairly simple query.  Here is a breakdown of what each portion
+of the WHERE option does:
+
+<ul>
+Type='Submitted'<br />
+This tells MySQL to only pull galleries of type Submitted.
+
+<br />
+<br />
+
+Has_Thumb=0<br />
+This tells MySQL to only pull galleries that do not have a preview thumbnail.  It is important to note that this is different from leaving the
+Has_Thumb value out of the where clause completely.  If you leave the Has_Thumb value out completely, MySQL will select from all galleries no
+matter if they have a preview thumbnail or not.
+
+<br />
+<br />
+
+Status='Approved'<br />
+This tells MySQL to only pull galleries who's status is currently Approved
+
+<br />
+<br />
+
+Keywords LIKE '%bikini%'<br />
+This tells MySQL to only pull galleries that have the word 'bikini' in the keyword list
+
+<br />
+<br />
+
+(Scheduled_Date IS NULL OR Scheduled_Date <= '$MYSQL_DATE')<br />
+This tells MySQL to only pull galleries that have a random scheduled date or a scheduled date that is today or earlier
+</ul>
+
+This shows an important distinction between the WHERE and REWHERE options.  Since the WHERE option is used when doing a "Build With New", the Status='Approved' value is 
+used in the clause to tell MySQL that it can select new galleries from the database.  When you just do a normal "Build" you do not want new galleries to be selected, so
+that is why the REWHERE clause is needed and in that clause the Status='Used' value is used.  This is also why the Scheduled_Date is referenced only in the WHERE clause;
+we already know that galleries with Used status have met the Scheduled_Date requirement so it is not necessary to re-test that when doing the REWHERE.
+</div>
+
+
+<br />
+
+
+<div class="bggrey">
+<pre>
+&lt;%GALLERIES
+AMOUNT 20
+HTML &lt;td&gt;&lt;a href="##Gallery_URL##" target="_blank"&gt;&lt;img src="##Thumbnail_URL##" border="0"&gt;&lt;/a&gt;&lt;/td&gt;
+WHERE Type='Submitted' AND Has_Thumb=1 AND Status='Used' AND Display_Date <= ADDDATE('$MYSQL_DATE', INTERVAL 5 DAY)
+ORDER (Clicks/Build_Counter) DESC
+%&gt;
+</pre>
+
+
+This example does not include the REWHERE option because the WHERE option specifies to only select already used galleries.  You might use this
+type of query in a section of your page where you want to display older galleries instead of adding new galleries to this section each time a
+"Build With New" is done.  When the REWHERE option is not specified, the WHERE option will be used for both.
+
+<ul>
+Type='Submitted'<br />
+This tells MySQL to only pull galleries of type Submitted.
+
+<br />
+<br />
+
+Has_Thumb=1<br />
+This tells MySQL to only pull galleries that have a preview thumbnail.
+
+<br />
+<br />
+
+Status='Used'<br />
+This tells MySQL to only pull galleries who's status is currently Used
+
+<br />
+<br />
+
+Display_Date <= ADDDATE('$MYSQL_DATE', INTERVAL 5 DAY)<br />
+This tells MySQL to only pull galleries that have a display date within the past 5 days
+</ul>
+
+This shows an example of using a built-in MySQL function to modify the query.  In this case the ADDDATE function is used to calculate the date 5 days from
+today.  You can use any of the built-in MySQL functions that are available for use within a WHERE clause.  If you are not familiar with the built-in MySQL
+functions, visit the MySQL website and view the manual for additional information.
+</div>
+
+
+<br />
+
+</div>
+
+</body>
+</html>

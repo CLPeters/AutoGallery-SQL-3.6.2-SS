@@ -1,0 +1,160 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">ftpthumbs.cgi Utility Script</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+For very high traffic sites it may be useful to split the load between two servers, and have one that serves all of the preview thumbnail files separate
+from the one that serves the HTML files for your TGP pages.  With the ftpthumbs.cgi utility script, this can be done.
+
+<br />
+<br />
+
+<b>Requirements</b>
+
+<br />
+<br />
+
+This script makes use of the Net::FTP Perl module, which will need to be installed on your server before you can use this script.  If you need to provide
+your server administrator with the location of Net::FTP, it can be found at 
+<a href="../../../../external.html?link=http://search.cpan.org/~gbarr/libnet-1.19/" target="_blank" class="link">http://search.cpan.org/~gbarr/libnet-1.19/</a>
+
+<br />
+<br />
+
+<b>How It Works</b>
+
+<br />
+<br />
+
+This script uses an FTP connection to transfer your thumbnails from the server where AutoGallery SQL is installed to a remote server.  During this process
+the Thumbnail URL in the database will be updated to point to the remote server for every gallery that has it's thumbnail transferred there.  This function
+only works when you run this script, any new galleries that get added or thumbnails that are created through the control panel will have their thumbnails
+stored on the local server until you run this script again.  If you plan on hosting all of your thumbnails from the remote server, you will want to setup this
+script to run by cron once a day (or at whatever interval you like) so it can transfer any new thumbnails that have been created.
+
+<br />
+<br />
+
+If your remote thumbnail hosting server goes offline, the thumbnail images will not appear on your TGP pages, so you should take that into account when 
+deciding whether or not to use this feature.  You will want to make sure that you are using a very stable server so that your thumbs will always be available
+for surfers to view when they visit your TGP page.
+
+<br />
+<br />
+
+<b>Configuring the ftpthumbs.cgi Script</b>
+
+<br />
+<br />
+
+You will need to edit the ftpthumbs.cgi script before you can use it.  It is located in the utilities directory of the AutoGallery SQL software
+distribution and can be edited in your favorite text editor (we recommend <a href="../../../../external.html?link=http://www.editplus.com/" target="_blank" class="link">EditPlus</a>
+for Windows users).  Once you have that file opened in your text editor, you will find several variable settings near the top of that file.  
+Each of the variables that needs to be set is described below.
+
+<ul>
+$remote_url - The full URL on the remote server where the thumbnail files will be served from<br />
+$ftp_host - The FTP hostname of the remote server where the thumbnail files will be transferred<br />
+$ftp_user - The FTP username to login to the remote server<br />
+$ftp_pass - The FTP password to login to the remote server<br />
+$ftp_port - The port number that the remote FTP server is running on<br />
+$ftp_dir - The directory on the remote server that the program needs to change into after logging in
+</ul>
+
+Once you have those variables set, upload the ftpthumbs.cgi script to your server in ASCII mode.  It will need to be placed in the same directory
+where the ags.pl and common.pl files are located.  Set it's permissions to 700 once it has been uploaded.
+
+<br />
+<br />
+
+It is also highly recommended that you make a backup of your gallery database and preview thumbnails before you run this script.  You can backup your
+gallery database and thumbnails using the software's built in database export or database backup utilities.
+
+<br />
+<br />
+
+<b>Running the ftpthumbs.cgi Script</b>
+
+<br />
+<br />
+
+The ftpthumbs.cgi script must be run from the command line of your server, it cannot be accessed through a browser.  You will need SSH or telnet 
+access to your server in order to use this script, or you will need to run it through cron at specific intervals.
+
+<br />
+<br />
+
+You can now login to the server through telnet or SSH and change into the directory where the ftpthumbs.cgi script is located.  It is recommended
+that you run the ftpthumbs.cgi script during off-peak hours, since it will be using some of your available server bandwidth to transfer the thumbnail
+files to the remote server.  Execute the following command to begin the thumbnail transfer process:
+
+<br />
+<br />
+
+perl ftpthumbs.cgi
+
+<br />
+<br />
+
+On some servers you may need to specify the full path to perl, which might look like this (where /usr/local/bin is the directory where perl is located):
+
+<br />
+<br />
+
+/usr/local/bin/perl ftpthumbs.cgi
+
+<br />
+<br />
+
+When you execute this command, there will be no output from the script, but you will not be returned to the command prompt until it has finished executing.
+You should allow several minutes for the transfer process to be completed, depending on how many preview thumbnails you have.  When the script is done it simply
+return you to the command line of your server.  You can now login to the AutoGallery SQL control panel and use the Display Galleries interface to view the galleries
+and make sure the thumbs are showing up properly.
+
+<br />
+<br />
+
+<b>Running the ftpthumbs.cgi Script Through Cron</b>
+
+<br />
+<br />
+
+To automate the process of transferring the thumbnail files to your remote server, you can setup the ftpthumbs.cgi script to run as a cron job at whatever interval
+you specify.  For the basics of setting up a cron job, see the <a href="cron.html" class="link">Cron</a> section of the software manual.  Once you have figured out
+the interval you want to use, you can setup your crontab entry along with any other AutoGallery SQL entries you have.  For example:
+
+<br />
+<br />
+
+0 6,18 * * * /full/directory/path/to/ftpthumbs.cgi &amp;
+
+<br />
+<br />
+
+This example would run the ftpthumbs.cgi script twice per day; once at 6am and once at 6pm.  Note that the /full/directory/path/to/ portion would be replaced with the
+directory path on your server to the directory where the ftpthumbs.cgi script is located.  It is also important to have the &amp; character at the end.  This tells it
+to run in the background so that the server's cron system can go about it's business and not wait for the gallery scanner to finish it's task. 
+
+</div>
+
+<br />
+<br />
+<br />
+
+</body>
+</html>

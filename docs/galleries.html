@@ -1,0 +1,553 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Galleries</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+The gallery database is the heart of AutoGallery SQL, and it's main purpose is to accept, process, and display them.  The software supports different types of galleries
+and allows you to add galleries to the database in several different ways.  This document will cover various aspects of the gallery database, from adding galleries to
+managing and deleting them.
+
+<br />
+<br />
+
+<b>Permanent vs Submitted</b><a name="permvssubmitted"></a>
+
+<br />
+<br />
+
+AutoGallery SQL supports two different types of galleries in your database, Submitted and Permanent.  For the most part all of the galleries will have the same options
+and settings no matter what type they are, however there are some differences between the two types.
+
+<ul>
+<b>Submitted Galleries</b><br />
+A submitted gallery is generally considered one that was provided by an outside webmaster who added the gallery through AutoGallery SQL's submit.cgi gallery submission form.
+Although it is possible to add submitted galleries through the control panel, the majority of them will usually come from outside webmasters who have submitted them.  When
+a submitted gallery is scanned it is checked against the blacklist, banned HTML list, and checked if it has a reciprocal link if you are requiring one.
+
+<br />
+<br />
+
+When a submitted gallery is no longer being used on one of your TGP pages it will become eligible for deletion.  The software will place the gallery in a holding queue, and once
+the hold period has elapsed the gallery will be deleted from the database for good.  This is different from permanent galleries, which will be continuously rotated back into the
+queue of approved galleries instead of deleted.
+
+<br />
+<br />
+
+To display submitted galleries on your TGP pages you will need to use the GALLERIES directive and make sure that the TYPE option is set to Submitted.  The 
+<a href="templates.tgp.html" class="link">TGP Page Templates</a> section of the software manual has additional information on how the template system works.
+
+<br />
+<br />
+
+<b>Permanent Galleries</b><br />
+Permanent galleries can only be added to the database through the software's control panel.  Generally permanent galleries will be those that you have created and own yourself
+or galleries from your sponsors.  It is recommended that only galleries from trusted sources be used as permanent galleries because the gallery scanner will not check permanent 
+galleries against the blacklist, the banned HTML list, or for a reciprocal link.
+
+<br />
+<br />
+
+When a permanent gallery is no longer being used on one of your TGP pages it will become eligible for rotation back into the pool of approved galleries.  The software will place
+the gallery in a holding queue, and once the hold period has elapsed the gallery will be moved back to the pool of approved galleries so it can be used again.  
+This is different from submitted galleries, which will be deleted from the database once their holding period has elapsed.
+
+<br />
+<br />
+
+To display submitted galleries on your TGP pages you will need to use the GALLERIES directive and make sure that the TYPE option is set to Permanent.  The 
+<a href="templates.tgp.html" class="link">TGP Page Templates</a> section of the software manual has additional information on how the template system works.
+
+</ul>
+
+To recap, the main differences between submitted and permanent galleries are how they can be added to the database, how the gallery scanner processes them, how long
+they stay in the database, and how they can be displayed on your TGP pages.
+
+<br />
+<br />
+
+<b>Adding Galleries</b><a name="add"></a>
+
+<br />
+<br />
+
+There are three ways to add galleries to the database: through the submit.cgi script, through the control panel's manual submission form, and by
+importing galleries from text files.  This document will cover the first two.  If you need information on importing galleries, see the 
+<a href="importing.html" class="link">Importing Galleries</a> section of this manual.
+
+<br />
+
+<ul>
+<b>submit.cgi</b><br />
+The submit.cgi script is where all webmasters will submit their galleries.  It can be used by anyone, including those who have a partner account
+at your TGP.  Submitting galleries through the submit.cgi script is very straightforward.  All you need to do is fill in each of the form fields and
+then press the Submit Gallery button.  Each of the form fields is described below.
+
+<br />
+<br />
+
+<ul>
+<b>Username</b> - if the submitter has a partner account, they should enter their username<br /> 
+<b>Password</b> - if the submitter has a partner account, they should enter their password<br /> 
+<b>E-mail</b> - this is the submitter's e-mail address where they can be reached<br />    
+<b>Name</b> - this is the submitter's name or nickname, and is optional unless you specify otherwise<br />
+<b>Gallery URL</b> - this is the full URL to the gallery they are submitting<br />    
+<b>Description</b> - this is the description of the gallery they are submitting<br />    
+<b>Category</b> - this is the category that best describes the gallery content<br />  
+<b>Number of Thumbs</b> - this is the number of thumbnails on the gallery<br />    
+<b>Preview Thumb</b> - this allows the submitter to upload a preview thumbnail<br />
+<b>Submit Code</b> - the submitter will need to copy the numbers from the image into this text box
+</ul>
+
+<br />
+
+Once the submit button has been pressed, a number of things will happen.  First all of the form input fields will be checked to make sure that
+they are properly formatted.  The gallery will be scanned to make sure it is working and meets all of your rules, and finally it will be placed
+in the database.  The outcome of the submission will depend on how you have AutoGallery SQL configured.
+
+<br />
+<br />
+
+<ul>
+<b>Thumbnail Cropping</b><br />
+If you have the thumbnail cropping feature enabled, the submitter will now be able to crop a thumbnail from the images on their
+gallery or the image that they uploaded.  Once they have cropped their thumbnail, AutoGallery SQL will do one of the other items listed below,
+depending on how you have the software configured.
+
+<br />
+<br />
+
+<b>Confirmation E-mail</b><br />
+If you have the confirmation e-mail option enabled, an e-mail will be sent to the submitter.  They will need to visit a URL contained in that
+e-mail and enter the confirmation ID they were provided in order to confirm their submission.  Once the gallery is confirmed, AutoGallery SQL will do
+one of the other items listed below, depending on how you have the software configured.
+
+<br />
+<br />
+
+<b>Auto-Approve</b><br />
+If you have the auto-approve feature enabled or the gallery was submitted by a partner account that has auto-approve enabled, the gallery will
+automatically be approved and placed in the database with Approved status.  The gallery will be immediately eligible for display on your TGP page
+and could be selected for display the next time you run the rebuild function.
+
+<br />
+<br />
+
+<b>Pending</b><br />
+If you do not have the auto-approve feature enabled, the gallery will be placed in the database and it's status will be set to pending.  All pending
+galleries must be a approved through the control panel before they can be displayed.  You will need to login to the control panel to approve pending
+galleries on a regular basis.
+
+</ul>
+
+<br />
+
+<b>Control Panel</b><br />
+Submitting galleries through the control panel is very similar to the submit form, however you will have some different options.  To submit a gallery
+through the control panel, locate and click on the Submit a Gallery link in the Manage Galleries section of the control panel menu.  The additional
+fields are described below:
+
+<br />
+<br />
+
+<ul>
+<b>Keywords</b> - a list of words that describe this gallery<br />
+<b>Weight</b> - this is the weight that you want assigned to the gallery<br />
+<b>Type</b> - select if you want this gallery to be a submitted or permanent gallery<br />
+<b>Format</b> - select the format of the gallery, either Pictures or Movies<br />
+<b>Status</b> - this is the status that you want assigned to the gallery<br />
+<b>Scheduled Date</b> - this is when the gallery will first be eligible for display (this field can be left blank)<br />
+<b>Delete Date</b> - this is the date when the gallery will be deleted from the database (this field can be left blank)<br />
+</ul>
+
+<br />
+
+Once you have filled in the form fields how you want them, press the Add Gallery button.   The manual submission form gives you greater control
+over what is submitted.  Galleries submitted here are not checked against the blacklist, so you can pretty much submit anything you want.
+</ul>
+
+<b>Managing Galleries</b><a name="manage"></a>
+
+<br />
+<br />
+
+To manage the galleries in your database, locate and click on the Display Galleries link in the Manage Galleries section of the control panel menu.
+AutoGallery SQL will load a page where you can view, search, and manage all of your galleries.  At the top of the page there will be a box which you can use to
+control what galleries will be displayed.
+
+<br />
+<br />
+
+<div align="center">
+<img src="images/display_galleries.gif" border="1">
+</div>
+
+<br />
+
+A description of each of the marked items follows.
+
+<br />
+
+<ol style="list-style-type: upper-alpha">
+<li> Display galleries which have the status that is checked.  You can check as many of these as you like.
+     <ul>
+     Unconfirmed - these are galleries that have been submitted but were never confirmed by the submitter<br />
+     Pending - these are galleries that have been submitted but not yet approved<br />
+     Approved - these are the galleries that have been approved<br />
+     Used - these are the galleries that are currently in use on one of your pages<br />
+     Holding - these are galleries that are no longer being used and are in the holding queue<br />
+     Disabled - these are galleries that have been temporarily disabled and are not eligible for display
+     </ul>
+
+<li> Display galleries that have a thumbnail preview or not.  You can check either or both of these.
+     <ul>
+     Has thumbnail preview - galleries with a thumbnail preview will be shown if this is checked<br />
+     No thumbnail preview - galleries that do not have a thumbnail preview will be shown if this is checked
+     </ul>
+
+<li> Display galleries of the format that is checked.  You can check either or both of these.
+     <ul>
+     Pictures - check this to display picture galleries<br />
+     Pending - check this to display movie galleries
+     </ul>
+
+<li> Display galleries of the type that is checked.  You can check either or both of these.
+     <ul>
+     Submitted - check this to display submitted galleries<br />
+     Permanent - check this to display permanent galleries
+     </ul>
+
+<li> These are your search options.
+     <ul>
+     Search In - this determines what database field is searched<br />
+     Search Term - this determines what is searched for.  Leave this blank to display all galleries or use [EMPTY] to search for empty fields<br />
+     <ul>
+     Contains - This will search for the search term anywhere in the field you are searching<br />
+     Matches - This will search for an exact match on the term you enter<br />
+     </ul>
+     Sort 1st - this determines how the galleries are sorted when they are displayed<br />
+     Sort 2nd - this determines how the galleries are sub-sorted when they are displayed<br />
+     Per Page - this determines how many galleries are displayed per page
+     </ul>
+
+<li> Click this link to open the quick tasks window.  This is discussed further on in this document.
+<li> These are your category options.  You can select one or more categories from the list to restrict which category's galleries are shown.
+<li> Click this link to quickly select all categories.
+<li> Any time you change your search options, press this button to execute a new search
+<li> Any time you make changes to any of the gallery information, press this button to update the database
+<li> Select the page you want to go to and press this button to quickly access pages of search results
+</ol>
+
+Once you have selected the options to determine what galleries you want do display, press the Display Galleries button.  AutoGallery SQL will
+search the database using your criteria, and display a list of the galleries it finds. Each gallery will be displayed in it's own section,
+as you see below.
+
+<br />
+<br />
+
+<div align="center">
+<img src="images/galleries.gif" border="1">
+</div>
+
+<br />
+
+A description of each of the marked items follows.
+
+<br />
+
+<ol style="list-style-type: upper-alpha">
+<li> This is the ID number that has been assigned to the gallery along with a checkbox that you can use to delete multiple galleries at once
+<li> This is where you can view and manage the gallery's preview thumbnail.  If the gallery does not have a preview
+     thumbnail it will say [No Thumb].  You can click on the [No Thumb] link to create or upload one.  To delete the
+     thumbnail click on the [Delete] link.  To create or upload a new thumbnail, click on the [Edit] link.
+<li> These links can be clicked to perform different actions<br />
+     If the gallery was submitted by a partner, the username will appear in orange text here<br />
+     [Visit] - Click this link to visit the gallery.  It will open in a new window.<br />
+     [E-mail] - Click on this link to use your normal e-mail client to send an e-mail to this submitter.<br />
+     [Scan] - Click this link to have AutoGallery SQL scan the gallery.  A pop-up window will appear with the scan results.<br />
+     [Icons] - Click this link to assign one or more icons to a gallery. Use the All button to assign the same icons to all of the galleries on the page.<br />
+     [Delete] - Click on this link to delete the gallery completely.  A pop-up window will appear to confirm the deletion.<br />
+     [Blacklist] - Click on this link to blacklist one or more items from the gallery.  A pop-up window will appear where you can
+     select what you want blacklisted.
+
+<li> These fields allow you to edit the gallery data<br />
+     URL - The full gallery URL.  This field will be colored green if the gallery scanner found a reciprocal link on the gallery<br />
+     Description - A text description of the gallery<br />
+     Keywords - A list of words that describe the gallery<br />
+     Name - The name of the person who added the gallery<br />
+     Sponsor - The name of the sponsor that owns the gallery<br />
+     Format - The gallery format, either Pictures or Movies<br />
+     Display - The display date that has been assigned to the gallery (YYYY-MM-DD format)<br />
+     Category - The category that the gallery is in<br />
+     Status - The current status of the gallery<br />
+     Thumbs - The number of thumbnails on the gallery<br />
+     Scheduled - The date that the gallery will become eligible for display (YYYY-MM-DD format)<br />
+     Delete - The date that the gallery will be deleted from the database (YYYY-MM-DD format)<br />
+     Weight - The weight assigned to the gallery<br />
+     Type - The gallery type, either Submitted or Permanent<br />
+     Clicks - The number of clicks the gallery has received (must be using the <a href="clicktracking.html" class="link">go.php script</a>)<br />
+     Scan - Check this box if you want the gallery scanner to scan the gallery when it runs<br />
+     Thumb - Check this box if you want the gallery scanner to be able to automatically create a thumbnail for this gallery when it runs<br />
+     Notes - This field will show why a Disabled gallery has been disabled when done by the gallery scanner or partner request
+
+<li> The top IP address is the IP address of the gallery.  If there is no top IP address, it means the gallery has not yet been scanned.
+     The bottom IP address is the IP address of the gallery submitter
+</ol>
+
+
+<b>Manually Assigning Display Dates and Setting Used Status</b>
+
+<br />
+<br />
+
+In general it is not recommended that you manually set the gallery status to Used or assign the Display setting, however in some situations you may want to do this.
+Note that the Display setting can only be configured for galleries with Used status.  If you set the Display setting for a gallery with Approved status, it will be
+overwritten when the gallery is selected for display.  
+
+<br />
+<br />
+
+One of the main reasons you may need to manually set a gallery status to Used and configure it's Display setting is if you need to force galleries to appear in a 
+specific GALLERIES section of your page.  For example, if you are using the AGE option of the GALLERIES directive and have it set to 2, that section will only
+display used galleries from 2 days ago.  If you do not have any used galleries that were selected for display 2 days ago, you can force some galleries to have
+those settings.  So, if today was 2005-05-15 (May 15th, 2005) you could set some of your galleries Status to Used and set their Display setting to 2005-05-13 to 
+have them appear in that GALLERIES section.
+
+<br />
+<br />
+
+<b>Using the Gallery Weight Value</b>
+
+<br />
+<br />
+
+By default the weight setting has no affect on your galleries, it only comes into play when you have set the WEIGHT option of the GALLERIES directive or are using
+the Weight sorting string in the ORDER and/or REORDER options of the GALLERIES directive (these are all configured through your TGP page template).  The weight value
+can be any number up to approximately 2 billion (depending on your server) and it is up to you to decide if lower numbers are better or higher numbers are better. 
+When you use Weight in the ORDER or REORDER options, you can control which is better by using the DESC attribute or not. If you use Weight DESC, then larger weight
+numbers will appear at the top of the list. If you just use Weight by itself, smaller weight numbers will appear at the top of the list.
+
+<br />
+<br />
+
+<b>Approving New Galleries</b><a name="approve"></a>
+
+<br />
+<br />
+
+<i>Galleries can also be approved using the <a href="reviewtool.html" class="link">Framed Gallery Reviewer</a></i>
+
+<br />
+<br />
+
+To approve new galleries you will first want to bring up all of the Pending galleries in your database.  From the Display Galleries box at
+the top of the page make sure that the Pending box is checked.  You can then decide if you want to display galleries with thumbs or without,
+and which categories you want to see.  Once you have the form filled in for the galleries you want to see, press the Display Galleries button.
+AutoGallery SQL will load your pending galleries for you to view.  You can then go through and examine each gallery to see if you want to keep it for
+your TGP.
+
+<br />
+<br />
+
+For galleries that you want to keep, edit the Status field and select the Approved option.  For galleries that you want to reject, select the
+Rejected option.  For rejected galleries you can select to send an e-mail to the submitter with information on why it was rejected.  That can
+be selcted from the Reject field (this field only appears for Pending or Unconfirmed galleries).  Once you have set the status for all of the
+galleries that you want to process, press the Process Changes button.
+
+<br />
+<br />
+
+For the galleries that you have approved, their status will change to Approved and this will put them in the pool of available galleries which the
+software can select from when building your pages.  Depending on how your templates are configured, the gallery could be displayed the next time
+the pages are rebuilt.  For more information on how the gallery selection process works, see the <a href="buildpages.html" class="link">Page Building
+Overview</a> section of the software manual.
+
+<br />
+<br />
+
+<b>Updating</b><a name="update"></a>
+
+<br />
+<br />
+
+All of the text input fields you see on the Display Galleries page can be edited at any time to make changes to the gallery data that is stored in
+the database.  After you have made changes to one or more galleries, you will need to press the Process Changes button located at the top of the
+page.  If you do not press the Process Changes button, the updates you have made will not take effect.
+
+<br />
+<br />
+
+Clicking on any of the green colored links will apply that value to every gallery on the current page.  For example, if you want all of the galleries to
+be in the same category, click on the green Category link for a gallery that has the category you want to use.  Each of the category fields on the page
+will be changed to that category, and you can then press the Process Changes button to save the changes to the database.
+
+<br />
+<br />
+
+<b>Deleting</b><a name="delete"></a>
+
+<br />
+<br />
+
+To delete a gallery all you need to do is click on the [Delete] link for that gallery.  A pop-up window will appear confirming the deletion.  If you
+are deleting a Used gallery, you will also want to run the rebuild function so that the gallery is removed from your TGP pages.
+
+<br />
+<br />
+
+To delete multiple galleries at once, put a check in the checkbox next to the gallery's ID number.  Once you have checked all the galleries that you
+want to delete, press the Delete Selected button at the bottom of the page.
+
+<br />
+<br />
+
+<b>Viewing Source and HTTP Headers</b>
+
+<br />
+<br />
+
+It is often times useful to see the source code of the page and the HTTP headers from the server as AutoGallery SQL sees them.  You can 
+use this feature to determine if your server is resolving the gallery hostname to the correct IP address and to find out if the gallery
+uses the same HTML code when accessed from your server as it does when accessed from your local internet connection.  To view the source
+and HTTP headers click on the [Scan] link.  The gallery will be scanned and there will be a pop-up window with a link labeled
+'Display HTML Source and HTTP Headers' that you can click on.  Click on this link, which will open a new pop-up window and display
+the IP address of the gallery, the HTTP headers, and the source code of the gallery page.
+
+<br />
+<br />
+
+<b>Quick Tasks</b><a name="tasks"></a>
+
+<br />
+<br />
+
+When you click on the [Quick Tasks] link a window will pop up and display several functions that you can perform on the submitted
+galleries.  Each of the available tasks will be described below.
+
+<ul>
+<b>Search and Replace</b><br />
+If you need to quickly search for and replace an item in your entire database of submitted galleries, you can use this function.
+For example, if you have decided that you no longer want to allow the phrase 'young girl' in the gallery description you can use
+this function to replace all occurances of that phrase with 'legal teen'.  To do this you would enter 'young girl' in the Find
+box and select Description from the drop down selection field.  In the Replace With box enter 'legal teen'.  You can now press the
+replace button and AutoGallery SQL will automatically go through the entire submitted gallery database replacing each occurance
+of 'young girl' with 'legal teen'.  If you want to search for an empty value, use the special string [EMPTY] in the Find field.
+
+<br />
+<br />
+
+You do need to be somewhat cautious when using this feature because it will locate the text you enter in the Find box anywhere within
+the field it is searching.  For example, if you wanted to replace the word 'tit' in the gallery description with 'boob' you could run
+into some problems.  If a gallery description has the word 'title' it will end up changing that to 'booble'.  To prevent this from 
+happening you can use a space before or after the word to affect how the searching is done.  If you enter ' tit ' it will look for
+the word 'tit' with a space before and after it.
+
+<br />
+<br />
+
+<b>Search and Delete</b><br />
+This works very similarly to the search and replace feature, but the gallery will be deleted from the database if the text is found.  For
+example, if you know that a cheater is using the IP address 192.168.15.45 to submit galleries and you want to make sure there are no galleries
+in your database with that IP you can use the search and delete feature.  Simply enter 192.168.15.45 in the Find box and select Submit IP from
+the drop down selection field.  Press the Delete button and all galleries that were submitted from the IP address 192.168.15.45 will be removed
+from the database.
+
+<br />
+<br />
+
+You do need to be somewhat cautious when using this feature because it will locate the text you enter in the Find box anywhere within
+the field it is searching.  For example, if you wanted to delete all galleries with the word 'tit' in the gallery description, you could run
+into some problems.  If a gallery description has the word 'title' it will end up deleting that gallery as well.  To prevent this from 
+happening you can use a space before or after the word to affect how the searching is done.  If you enter ' tit ' it will look for
+the word 'tit' with a space before and after it.
+
+<br />
+<br />
+
+<b>Search and Set</b><br />
+To do a search and set, enter the text you would like to search for and select which field should be searched.  You will then need to enter the field that
+should be updated and what it should be set to.  For example, if you wanted to locate all galleries with fetish in the URL and set the Category value
+to Fetish, you would enter fetish in the Find field, select Gallery URL for the in field, select Category for the Set field, and enter
+Fetish in the to field.  Note that this does not do replacements, but instead sets the field to the value you enter.  If you want to search for an empty
+value, use the special string [EMPTY] in the Find field.
+
+<br />
+<br />
+
+<b>Other Functions</b><br />
+Reset the click count for all submitted galleries back to zero<br />
+Click on this link to reset the click counts for all submitted galleries back to zero.  This will not affect permanent galleries.
+
+<br />
+<br />
+
+Reset the click count for all permanent galleries back to zero<br />
+Click on this link to reset the click counts for all permanent galleries back to zero.  This will not affect submitted galleries.
+
+<br />
+<br />
+
+Remove unconfirmed galleries that are more than 48 hours old<br />
+This function is pretty much self explanatory.  When you click this link all unconfirmed galleries that are more than 48 hours old will be
+deleted from the database.
+
+
+<br />
+<br />
+
+Display duplicate galleries<br />
+Click this link to check if there are any duplicate galleries in the database.  This will also give you the option to remove the duplicates
+if any are found.
+
+<br />
+<br />
+
+Display thumbnail management interface<br />
+This will display an interface where you will be able to bulk-delete thumbnails and also run a thumbnail cleanup routine.
+
+</ul>
+
+<b>Thumbnail Management Interface</b>
+
+<br />
+<br />
+
+This interface, accessed from Quick Tasks, will allow you to bulk-delete thumbnails from your database.  In some situations you may want to delete
+the preview thumbnails for a specific category or sponsor, and this function will allow you to do that.  In the Delete Thumbnails section of this
+interface you can select various options to control which galleries have their thumbnails deleted.  For example, to delete thumbnails for all permanent
+galleries with disabled status, you would put a check in the box next to Permanent and in the box next to Disabled.  You would not need to fill in
+anything in the search box, just press the Delete Matching Thumbnails button.
+
+<br />
+<br />
+
+To remove all of the thumbnails for galleries in a specific category, you can select the gallery statuses and types that you want, select Category from 
+the first drop down selection list, Equals from the second drop down selection list, and then enter the category name in the text input field.
+
+<br />
+<br />
+
+The thumbnail cleanup function will simply go through the database and look for galleries that have a flag set indicating that they have a thumbnail, but
+somehow their thumbnail file has been deleted.  This could have been the result of someone accidentally deleting some of the files from your thumbnail
+directory, for example.  This function will update that flag in the database so there are no galleries that point to broken thumbnails.  Note that this
+will only work for thumbnails that are stored on your server; if the thumbnail is on a remote server it cannot check to see if the thumbnail is still there.
+
+</div>
+
+</body>
+</html>

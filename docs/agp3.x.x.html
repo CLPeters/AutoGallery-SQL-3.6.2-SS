@@ -1,0 +1,132 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Upgrading From AutoGallery Pro 3.0.x or 3.1.x</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+This document will descibe the steps necessary to upgrade from AutoGallery Pro 3.0.x or 3.1.x to AutoGallery SQL 3.6.x.  This upgrade process will work
+only for AutoGallery Pro 3.0.x or 3.1.x.  If you are using an older version of AutoGallery Pro, you will first need to upgrade it to 3.0.x or follow the
+upgrade instructions for the version you are using .  The upgrade process will allow you to keep your current galleries, partners, blacklist and
+a few other settings.  Your templates, however, cannot be imported, so you should allow time to customize the new templates once your upgrade is
+complete.
+
+<br />
+<br />
+
+<b>Make a Backup</b>
+
+<br />
+<br />
+
+The first thing you should do is a database backup from the control panel of your AutoGallery Pro 3.x.x installation.   This is covered in the
+AutoGallery Pro 3.x.x software manual, so follow those steps to make a backup.
+
+<br />
+<br />
+
+<b>Export Your Data</b>
+
+<br />
+<br />
+
+Now you need to export your AutoGallery Pro 3.0.x data into a format that AutoGallery SQL 3.6.x can understand.  This is simple to do with the export utility included
+with AutoGallery SQL.  In the utilities directory of the AutoGallery SQL distribution you will find a file named agp3.x.x.cgi.  Upload that file to your
+server in ASCII mode to the same directory where your AutoGallery Pro 3.x.x agp.pl file is located.  Set it's permissions to 755 and then bring it up in your browser.
+It may take a few minutes for the data export to complete.
+
+<br />
+<br />
+
+The export script has created a file in the data directory of your AutoGallery Pro 3.x.x installation that contains the information that will be imported into
+your AutoGallery SQL installation.  FTP into your server and download the file named upgrade.dat.  <span class="important">It is very important that you download
+the upgrade.dat file in binary mode or it will be corrupted and will not be readable by AutoGallery SQL</span>.
+
+<br />
+<br />
+
+<b>Decision Time</b>
+
+<br />
+<br />
+
+At this point you need to decide if you want to install AutoGallery SQL 3.6.x in a new directory or keep the same directory name.  The benefit of installing 
+in a new directory is that you can keep AutoGallery Pro running while you work with the new AutoGallery SQL installation.  The benefit of keeping the
+same directory name is that you will not have to change any links or bookmarks to the script.
+
+<br />
+
+
+<ul>
+<b>Installing in a New Directory</b>
+
+<br />
+<br />
+
+If you have decided to install AutoGallery SQL in a new directory, go ahead and create that directory and do a normal installation of AutoGallery SQL as
+described in the <a href="install.html" class="link">Installation</a> section of the software manual.  Do not copy any of the files from your 
+AutoGallery Pro 3.x.x installation into the new directory.  Once you have completed the installation, skip ahead to the Importing Your Data section of this page.
+
+<br />
+<br />
+
+<b>Keeping the Same Directory</b>
+
+<br />
+<br />
+
+If you want to keep the same directory name you will need to rename the current directory.  For example, if AutoGallery Pro 3.x.x is installed in a directory
+named tgp, change the name to tgp_old.  Once the directory has been renamed, create a new empty directory with the name of the original directory.  Do a normal
+installation of AutoGallery SQL as described in the <a href="install.html" class="link">Installation</a> section of the software manual.  Do not copy any of the
+files from your AutoGallery Pro 3.x.x installation into the new directory.  Once you have completed the installation, skip ahead to the Importing Your Data 
+section of this page.
+</ul>
+
+<b>Importing Your Data</b>
+
+<br />
+<br />
+
+Once you have your AutoGallery SQL 3.6.x installation up and working properly, you can import the AutoGallery Pro 3.0.x data.  FTP into your server and upload
+the upgrade.dat file to the data directory of your AutoGallery SQL 3.6.x installation.  <span class="important">It is very important that you upload the 
+upgrade.dat file in binary mode or it will be corrupted and will not be readable by the AutoGallery SQL 3.6.x installation</span>.
+
+<br />
+<br />
+
+Next you will need to login to your AutoGallery SQL 3.6.x control panel.  Locate and click on the Database Tools link in the Setup section of the control panel menu.
+AutoGallery SQL will then display a page where you will find a box at the top titled "Database Backup/Restore".  In the "Backup Filename" field enter upgrade.dat.
+Once the field is filled in, click on the Restore button.  AutoGallery SQL will read the data file and import the data from your AutoGallery Pro 3.0.x installation.
+This may take a few minutes, so allow enough time for it to complete.  After enough time has elapsed, you can continue using the software as usual.
+
+<br />
+<br />
+
+<b>Removing AutoGallery Pro 3.x.x</b>
+
+<br />
+<br />
+
+Once your data has been imported and you are sure that you no longer need the AutoGallery Pro 3.0.x installation you can delete it from your server.  Simply 
+delete all of the AutoGallery Pro 3.x.x files and folders.  Once they have been deleted, the removal is finished.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

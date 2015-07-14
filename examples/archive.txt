@@ -1,0 +1,77 @@
+Overview
+--------
+This template will display only text links and can be used as an archive page.
+The most important difference is that the GLOBALDUPES option needs to be set to
+False on archive pages.  This will prevent it from displaying the same galleries
+that are on your main page.
+
+The GALLERIES section on this page is where older galleries will be displayed.
+The MINAGE option has been configured to only allow galleries that are at least
+one day old.  Once a gallery is no longer shown on one of your main pages it will
+have the opportunity to appear here.  If you use this template for one of your
+archive pages, be sure that the build order is set properly so that this page
+gets built after your main page(s).
+
+
+
+Template Code
+-------------
+<%DEFINE
+GLOBALDUPES False
+PAGEDUPES False
+%>
+
+<%TEMPLATE
+NAME Text
+HTML ##Date## <a href="##Gallery_URL##" target="_blank">##Thumbnails## ##Category##</a><br />
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>TGP</title>
+<style type="text/css">
+body { font-size: 12px; font-family: Verdana; }
+td { font-size: 12px; font-family: Verdana; }
+.jmbfoot { font-size: 11px; font-family: Verdana; }
+.jmblink { font-size: 11px; font-family: Verdana; }
+</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+
+<div align="center">
+<span style="font-size: 20pt; font-weight: bold;">TGP</span><br />
+Links to ##Thumbnails## free pictures and movies!<br />
+Updated ##Updated_Date##
+</div>
+
+<br />
+
+
+<table align="center">
+<tr>
+<td valign="top">
+<%GALLERIES
+AMOUNT 100
+MINAGE 1
+GETNEW False
+CATEGORY Mixed
+ORDER Build_Counter
+HTML Text
+%>
+</td>
+</tr>
+</table>
+
+
+<br />
+
+<div align="center">
+<b><a href="##Script_URL##/submit.cgi">Submit A Gallery</a></b>
+</div>
+
+<br />
+
+</body>
+</html>
+

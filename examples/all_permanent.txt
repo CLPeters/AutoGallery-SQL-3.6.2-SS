@@ -1,0 +1,107 @@
+Overview
+--------
+This is the default template that ships with the software, however it has been modified
+to display only permanent galleries.  It will show a top section of 20 thumbnail links 
+and a bottom section of 100 text links.  This is designed for a site that will be doing
+only one "Build With New" per day.  Each of the defined GALLERIES sections is configured
+to pull new galleries from the database each time a "Build With New" is done.
+
+The only change from the default template is the TYPE option which has been set to Permanent.
+
+
+Template Code
+-------------
+<%DEFINE
+GLOBALDUPES True
+PAGEDUPES False
+%>
+
+<%TEMPLATE
+NAME Text
+HTML ##Date## <a href="##Gallery_URL##" target="_blank">##Thumbnails## ##Category##</a><br />
+%>
+
+<%TEMPLATE
+NAME Thumb
+HTML <td><a href="##Gallery_URL##" target="_blank"><img src="##Thumbnail_URL##" border="0" alt="Thumb"></a></td>
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>TGP</title>
+<style type="text/css">
+body { font-size: 12px; font-family: Verdana; }
+td { font-size: 12px; font-family: Verdana; }
+.jmbfoot { font-size: 11px; font-family: Verdana; }
+.jmblink { font-size: 11px; font-family: Verdana; }
+</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+
+<div align="center">
+<span style="font-size: 20pt; font-weight: bold;">TGP</span><br />
+Links to ##Thumbnails## free pictures and movies!<br />
+Updated ##Updated_Date##
+</div>
+
+
+<br />
+
+<table align="center" cellpadding="5" border="0">
+<tr>
+<%GALLERIES
+HASTHUMB 1
+TYPE Permanent
+CATEGORY Mixed
+AMOUNT 20
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Thumb
+
+INSERT
+{
+    LOCATION +5
+    HTML </tr><tr>
+}
+%>
+</tr>
+</table>
+
+<br />
+
+<table align="center">
+<tr>
+<td valign="top">
+<%GALLERIES
+TYPE Permanent
+CATEGORY Mixed
+AMOUNT 100
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+
+INSERT
+{
+    LOCATION 50
+    HTML </td><td width="100"></td><td valign="top">
+}
+%>
+</td>
+</tr>
+</table>
+
+
+<br />
+
+<div align="center">
+<b><a href="##Script_URL##/submit.cgi">Submit A Gallery</a></b>
+</div>
+
+<br />
+
+</body>
+</html>
+

@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Referrers and Agents</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+New in version 3.5.x is the ability to configure the user agents and referring URLs that AutoGallery SQL uses when it scans galleries.  Each time that the gallery scanner
+makes an HTTP request for a gallery, it will select a random referring URL and a random user agent to use for that request.  This should help you catch cheaters who are trying
+to detect which requests are made from the gallery scanner and which requests are made by real surfers.  With a random rotation of user agents and referring URLs, this will be
+more difficult for them to determine which are real surfers and which are gallery scanner requests.
+
+<br />
+<br />
+
+<b>What is a User Agent?</b>
+
+<br />
+<br />
+
+Every time you request a web page using your normal browser, it sends a special string as part of the request which allows the server and any scripts running on the server to determine
+which browser you are using.  All modern browsers have a unique user agent string that they send during every HTTP request that they make.  With versions of AutoGallery SQL prior to
+3.5.x, it sent a user agent string identical to that of Internet Explorer 6.0 so that cheaters would not be able to tell the difference between it and an actual Internet Explorer browser.
+You now have the option to specify any user agent string you want, however we recommend only using user agent strings used by the common web browsers.  If you use something that is
+too unique, cheaters will pick up on that and filter out requests coming from that user agent.
+
+<br />
+<br />
+
+<b>What is a Referrer?</b>
+
+<br />
+<br />
+
+In addition to sending the user agent each time a webpage is requested, your browser will also send along the URL that you were viewing before you accessed the current page.  So, 
+for example, if you did a search at Google and clicked on one of the search result links, the server that is hosting that site can determine that you came from a Google URL.  With
+versions of AutoGallery SQL prior to 3.5.x, it would send your website's base URL as the referring URL.  You now have the option to specify any referring URL that you want, which should
+make it harder for cheaters to determine if they need to filter the request.
+
+<br />
+<br />
+
+<b>Editing Referrers and Agents</b>
+
+<br />
+<br />
+
+AutoGallery SQL comes with a list of referring URLs and user agents that it will use by default.  If you want to modify or add to them, you can click on the Referrers and Agents link
+in the Setup section of the control panel menu.  This will bring you to a page with two text input boxes where you can see the current referrers and user agents and edit them as you
+wish.  When editing either of those, make sure there is only one item per line.  So, if you are editing the user agents, there should be one user agent string per line.
+
+</div>
+
+</body>
+</html>

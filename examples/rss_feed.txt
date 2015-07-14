@@ -1,0 +1,46 @@
+Overview
+--------
+This is an example template that shows how to setup an RSS feed using the standard
+AutoGallery SQL template system.  This example will display 25 galleries in the RSS feed.
+The filename for your RSS feed should have a .xml, .rdf, or .rss file extension.
+
+The DATEFORMAT option should be updated to match your timezone setting in the Edit Options
+interface.  The default value of -0600 is the GMT -6 timezone.
+
+
+Template Code
+-------------
+<%DEFINE
+GLOBALDUPES True
+PAGEDUPES False
+DATEFORMAT %a, %d %b %Y %H:%i:%s -0600
+TIMEFORMAT %H:%i:%s -0600
+%>
+
+<%TEMPLATE
+NAME Xml
+HTML <item><title>##Thumbnails## ##Category## ##Format##</title><pubDate>##Date##</pubDate><description>##Rss_Description##</description><link>##Rss_URL##</link></item>
+%>
+
+<?xml  version="1.0" ?>
+<rss version="2.0">
+
+<channel>
+
+<title>Your Site Title</title>
+<description>Your site description</description>
+<link>http://www.yoursite.com</link>
+
+<%GALLERIES
+TYPE Submitted
+CATEGORY Mixed
+AMOUNT 25
+GETNEW True
+ALLOWUSED True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Xml
+%>
+
+</channel>
+</rss>

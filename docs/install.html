@@ -1,0 +1,378 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Software Installation</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<span class="important">
+If you are moving your installation to a new server, please follow the instructions in the <a href="servermove.html" class="link">Moving AutoGallery SQL to a New Server</a> portion of this manual.
+
+<br />
+<br />
+
+Unless otherwise noted, you are licensed to use the software on a single domain. If you would like to use the software on more than
+one domain, you will need to purchase additional licenses. Additional licenses may be purchased though the My Account interface in
+the owners lounge at a discounted rate.
+</span>
+
+<br />
+<br />
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+At this point it is assumed you have extracted the archive containing AutoGallery SQL.
+If you have not yet done so, you should do that now.
+
+<br />
+<br />
+
+You should also have the following information on hand:
+
+<br />
+<br />
+
+- The name of the MySQL database which you will be using to store the data*<br />
+- The username which you use to access the MySQL database<br />
+- The password which you use to access the MySQL database
+
+<br />
+<br />
+
+If you do not have this information, contact your server administrator to get it.
+
+<br />
+<br />
+
+* This name is not something you can just make up. The database must be created by your
+server administrator in order for you to use it. If you don't know the name of a database
+which you are allowed to use, contact your server administrator to get that information
+or to have them create a database for you.  Some servers offer control panels where you
+can create your own MySQL database.  In that case you will need to have created the MySQL
+database before you continue.
+
+<br />
+<br />
+
+<b>Locating Perl</b>
+
+<br />
+<br />
+
+On most servers, this step is not necessary.  If your server has Perl located at /usr/bin/perl, you can skip this step.
+
+<br />
+<br />
+
+You will need to locate Perl 5 on your server if it is not located at /usr/bin/perl. If you are not sure where to find it,
+contact your server administrator and ask them. Generally it can be found at /usr/local/bin/perl if it is not at /usr/bin/perl
+
+Now you will need to open each of the .cgi files in a text editor.  We recommend <a href="../../../../external.html?link=http://www.editplus.com/" class="link" target="_blank">EditPlus</a>
+for Windows users.  Change the first line of each file to point to Perl 5 on your server. For example, if Perl 5 is at /usr/local/bin/perl,
+then the first line will be #!/usr/local/bin/perl
+
+<br />
+<br />
+
+<b>Creating Directories</b>
+
+<br />
+<br />
+
+The next step is to login to your server and create the necessary directories for AutoGallery SQL.  First off, decide where you want the .cgi
+files installed. Generally it is a good idea to keep them in the cgi-bin (or equivalent) directory. Once you have decided where you want the .cgi
+files, change into that directory. Inside that directory you will need to create 3 subdirectories; name them templates, data, and admin. 
+<span class="important">Note:</span> The only files you should place in these directories are those indicated in this documentation. 
+Uploading other files to these directories will cause problems.
+
+<br />
+<br />
+
+You will also need to create a directory to store the thumbnail preview images, even if you do not plan on using that feature of the
+software.  This will need to be outside of the cgi-bin, and should be an empty directory dedicated to storing the thumbnails.  Do not 
+upload your own thumbnails or other images to this directory, it is strictly for use by AutoGallery SQL and the software will delete any
+files in that directory which do not belong.
+
+<br />
+<br />
+
+<ul>
+<b>Example Directory Structure:</b>
+
+<br />
+
+<table width="100%" cellspacing="1" cellpadding="1" border="0">
+<tr>
+<td>/home/username/cgi-bin/tgp</td>    
+<td>location of ags.pl and submit.cgi files</td>
+</tr>
+<tr>
+<td>/home/username/cgi-bin/tgp/admin</td>          
+<td>location of admin.cgi and main.cgi files</td>
+</tr>
+<tr>
+<td>/home/username/cgi-bin/tgp/data</td>          
+<td>location of script data files</td>
+</tr>
+<tr>
+<td>/home/username/cgi-bin/tgp/templates</td>        
+<td>location of all template files</td>
+</tr>
+<tr>
+<td>/home/username/docs/tgp/thumbs</td>      
+<td>where the preview thumbnails will be stored</td>
+</tr>
+</table>
+</ul>
+
+<br />
+
+<b>Uploading Files</b>
+
+<br />
+<br />
+
+Now you are ready to begin uploading the files to your server.  <span class="important">VERY IMPORTANT:</span> All of the files included with
+the software must be uploaded to your server in ASCII mode.  If you are not sure how to do this, consult the documentation for your FTP client.
+
+<br />
+<br />
+
+Below is a table of where each file should be uploaded, using the example directory structure above:
+
+<br />
+<br />
+
+<ul>
+<b>/cgi-bin/tgp</b><br />
+ags.pl<br />
+code.cgi<br />
+common.pl<br />
+compiler.pl<br />
+confirm.cgi<br />
+cron.cgi<br />
+http.pl<br />
+image.pl<br />
+init.cgi<br />
+md5.pl<br />
+mysql.pl<br />
+partner.cgi<br />
+remind.cgi<br />
+report.cgi<br />
+scanner.cgi<br />
+size.pl<br />
+submit.cgi<br />
+thumb.cgi
+
+<br /><br />
+
+<b>/cgi-bin/tgp/admin</b><br />
+admin.cgi<br />
+main.cgi<br />
+menu.cgi<br />
+patch.cgi<br />
+review.cgi<br />
+xml.cgi
+
+<br /><br />
+
+<b>/cgi-bin/tgp/data</b><br />
+agents<br />
+default<br />
+language<br />
+referrers<br />
+tables<br />
+words
+
+<br /><br />
+
+<b>/cgi-bin/tgp/templates</b><br />
+All files from the templates directory of the AutoGallery SQL distribution
+</ul>
+
+<br />
+
+<b>Setting Permissions</b>
+
+<br />
+<br />
+
+Next, you will need to set permissions on the directories and files that AutoGallery SQL will be
+using. If you are not sure how to set permissions, consult the documentation for your FTP client 
+and/or contact your server administrator for more information. Below is a table containing the
+permissions you will need to set on each directory or file.
+
+<br />
+<br />
+
+<ul>
+<table width="400" cellspacing="0" cellpadding="3" border="0" style="border: 1px solid #aaaaaa;">
+<tr>
+<td bgcolor="#cccccc" align="center"><b>File or Directory</b></td>
+<td bgcolor="#cccccc" align="center"><b>Permissions</b></td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All .cgi files <span class="small">(unless otherwise noted)</span></td>
+<td align="center">755</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All .pl files</td>
+<td align="center">644</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>scanner.cgi</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>cron.cgi</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All files in the data directory</td>
+<td align="center">666</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All files in the templates directory</td>
+<td align="center">666</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>data directory</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>admin directory</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>templates directory</td>
+<td align="center">755</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>Directory where thumbnails will be stored</td>
+<td align="center">777</td>
+</tr>
+</table>
+
+</ul>
+
+<br />
+
+These are only the recommended file permissions, and may need to be altered depending on your server configuration.
+
+<br />
+<br />
+
+<span class="important">Important Note</span> Some servers do not allow CGI scripts to be located inside directories with 777 permissions.
+If you get a 500 server error message when you try to access the scripts through your browser, try changing the permissions on the directory
+that the scripts are located in.  For example, if you get that type of error when you access the admin.cgi script, change the permissions
+on the admin directory from 777 to 755.
+
+<br />
+<br />
+
+<b>Software Initialization</b>
+
+<br />
+<br />
+
+You are now ready to begin the web based portion of the setup. In your browser, type in the full URL to the init.cgi file on your server.
+The init.cgi script will run a few diagnostic tests to make sure your server has all of the required modules and that all of the permissions
+have been set correctly.  If there are any problems, a page will be displayed that details them.  Instructions for correcting the problems can
+also be found on that page.
+
+<br />
+<br />
+
+If all of the diagnostic tests pass, you will see a page where you will need to enter your MySQL database information.  Complete instructions
+are provided on that page. Once you have filled in all of the fields, press the Submit button.  The MySQL database information will be tested
+to make sure it is working.  If it is not, you will get an error message indicating the problem.
+
+<br />
+<br />
+
+If the MySQL information is entered correctly, you will be brought to a page that will have the URL and login information for the control panel.
+Now is also a good time to change the permissions on the scanner.cgi and cron.cgi files.  They can be changed to 755 for both files.
+
+<br />
+<br />
+
+<b>Accessing the Control Panel</b>
+
+<br />
+<br />
+
+On the final screen of the init.cgi script you will find a link to the control panel.  Click that link and enter the login information indicated
+on the final init.cgi screen.  This will log you into the control panel so you can setup the software's options.  The first time you login to the
+control panel you will automatically be taken to the Edit Options interface.  On this page you will be able to enter the options you want AutoGallery
+SQL to use.  Each of the options has a [?] after it, which you can click on to get more information about that field.  After you have set all of the
+options how you want them, you can click on the Save Options button located at the top or bottom of the page.
+
+<br />
+<br />
+
+<span class="important">Important Note</span> You will not be able to access the other functions of the software until you save your settings on
+the Edit Options page.  Until you do this, every link that you click on in the control panel menu will take you to the Edit Options interface.
+
+<br />
+<br />
+
+You are now ready to begin using the software.  From here you should read the <a href="firststeps.html" class="link">First Steps After Installation</a>
+portion of the manual.  That will instruct you on what to do before you begin accepting gallery submissions.  
+
+
+<br />
+<br />
+
+<span class="important">Help Prevent Software Piracy</span>
+
+<br />
+<br />
+
+If you have uploaded the AutoGallery SQL zip (or tar or tar.gz) file to your server, remove it now. Leaving it on
+your server provides a chance for other users to steal it from your web space. Make sure you never leave a copy of
+the software where other people can access it.
+
+<br />
+<br />
+
+Never share your software with anyone. The license you purchased is for your use only. You may not give or sell the software
+to anyone under any circumstances. If you are caught doing this, you will be prosecuted to the full extent of the law.
+
+<br />
+<br />
+
+Never share your owners lounge username or password with anyone. Again, that is for your use only. We will never
+ask for you to send your password to us, so if you ever get an e-mail requesting it you should not send it.
+
+<br />
+<br />
+
+Do not upload the software documentation to your server or share it with anyone. We keep the documentation in the
+owners lounge so only legitimate customers can access it. This makes it much more difficult for users of pirated
+software to figure out how to use it.
+
+<br />
+<br />
+
+If you ever find a site that is offering our software for download, please contact us immediately so we can have
+the site shut down. Every time our software is pirated instead of purchased, it means less resources for us to continue
+the development of this and future software.
+
+</div>
+
+<br />
+<br />
+
+</body>
+</html>

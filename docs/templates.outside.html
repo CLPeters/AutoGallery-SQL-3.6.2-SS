@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Editing TGP Page Templates Outside the Control Panel</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+Some users prefer to edit the TGP page templates in a standard text or HTML editor that they use on their local computer instead
+of using the built in control panel editing interface.  With AutoGallery SQL this is possible, but you will need to follow the steps
+outlined below.
+
+<br />
+<br />
+
+<b>Steps Required</b>
+
+<ol>
+<li> Your TGP page templates are stored in the data/html directory of your AutoGallery SQL installation.  They are stored by ID number, so if you
+want to know what ID number corresponds with which page, use the Manage Pages interface to get that information.  You can download and edit the
+numbered files that do not have a file extension (do not edit the .comp files).  The files should be transferred in ASCII mode when you move them
+between the server and your local computer.
+
+<br />
+<br />
+
+<li> Once you have the files on your local computer you can make any changes to them that you like.  After you are done making changes, upload them
+back to the server, replacing the old copies.  If you happen to delete one of the files on the server and have to upload a new copy, make sure it's permissions
+get set to 666.
+
+<br />
+<br />
+
+<li> The final step once the updated files have been uploaded back to the server is to run the 'Recompile TGP Templates' function from the AutoGallery SQL
+control panel menu.  This will update the .comp file and prepare the templates to be used during the page building process.  After this is done you can run
+one of the page building functions to update your pages with the changes that you have made.
+</ol>
+
+</div>
+
+</body>
+</html>

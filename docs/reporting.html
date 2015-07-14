@@ -1,0 +1,127 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Cheater/Broken Link Reporting</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+With AutoGallery SQL it is possible to place a link next to each of your galleries which your surfers can then use to
+report galleries that are no longer working or are breaking your rules.  This document will describe how and where to
+place that link, and how to process the cheat reports that you receive.
+
+<br />
+<br />
+
+<b>Placing The Link</b>
+
+<br />
+<br />
+
+To use the cheater reporting feature, there needs to be a link next to each gallery on your TGP that points to the report.cgi script.
+This can be done by placing the correct code in the HTML option of either a TEMPLATE or GALLERIES directive.  For example, say you have
+the following TEMPLATE section defined in your TGP page template:
+
+<br />
+<br />
+
+<span class="small">
+&lt;%TEMPLATE<br />
+NAME Text<br />
+HTML ##Date## &lt;a href="##Gallery_URL##"&gt;##Category## ##Thumbnails## Pics&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+</span>
+
+<br />
+<br />
+
+Now, you want to add a cheat reporting link that appears as an x inside parenthesis before the date.  To do that you would change the TEMPLATE
+directive to look like:
+
+<br />
+<br />
+
+<span class="small">
+&lt;%TEMPLATE<br />
+NAME Text<br />
+HTML &lt;a href="##Cheat_URL##"&gt;(X)&lt;/a&gt; ##Date## &lt;a href="##Gallery_URL##"&gt;##Category## ##Thumbnails## Pics&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+</span>
+
+<br />
+<br />
+
+Note that all we had to do to add the cheat reporting link was to add &lt;a href="##Cheat_URL##"&gt;(X)&lt;/a&gt; in the location where we wanted
+the link to appear.
+
+
+<br />
+<br />
+
+<b>Processing Cheat Reports</b>
+
+<br />
+<br />
+
+To process cheat reports click on the Cheat Reports link in the Gallery Control section of the control panel menu.  AutoGallery SQL will load a page
+where you will be able to see all of the current cheat reports that have been made.  Below is an image of what you will see, followed by a description
+of each of the marked items.
+
+<br />
+<br />
+
+<div align="center">
+<img src="images/report.gif" border="1">
+</div>
+
+<br />
+
+<ol style="list-style-type: upper-alpha">
+<li> This is the ID number assigned to the cheat report
+<li> This is the URL of the gallery that has been reported
+<li> This is the ID number of the gallery that has been reported
+<li> This is the message describing what is wrong with the gallery that has been reported
+<li> This is the e-mail address of the person who submitted the gallery that has been reported
+<li> This is the IP address of the person who submitted the gallery that has been reported
+<li> This is the IP address of the person who submitted the cheat report
+</ol>
+
+<br />
+
+Once you have examined the cheat report you will need to decide what you want to do with it.  There are three different options.
+
+<br />
+
+<ul>
+<b>Remove Report</b><br />
+This will remove the cheat report without doing anything to the gallery that was reported.  Use this option if
+you decide that the cheat report is incorrect.
+<br />
+<br />
+
+<b>Delete Gallery</b><br />
+This will remove the gallery that was reported and the corresponding cheat report.
+<br />
+<br />
+
+<b>Delete & Ban Gallery</b><br />
+This will remove the gallery that was reported and the corresponding cheat report.  It will also ban the e-mail address, partial gallery URL, and
+the IP address of the submitter for the gallery that was reported
+</ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">AutoGallery SQL Documentation</span>
+</div>
+
+<div style="width: 80%">
+
+<b>General Information</b>
+
+<br />
+<br />
+
+This documentation covers all aspects of AutoGallery SQL's operation, and tries to be as thorough as possible.  If there is something you cannot
+find in this manual, please check the <a href="../../../../external.html?link=http://www.jmbsoft.com/owners/kb/" class="link">knowledge base</a> first.  If you still cannot find
+an answer to your question, you may contact the tech support staff through the <a href="../../../../external.html?link=http://www.jmbsoft.com/owners/forum/" class="link">forums</a> or 
+<a href="../../../../external.html?link=http://www.jmbsoft.com/owners/tech.php" class="link">use the priority support request form</a>.  We have tried to make the information in this manual as
+accurate as possible, however there may be some errors.  If you find one, please let us know so we can correct it.
+
+<br />
+<br />
+
+If you have just had AutoGallery SQL installed for the first time, please see the <a href="firststeps.html" class="link">First Steps</a>
+section of this manual first.  It will help get you started using AutoGallery SQL and will guide you through the first things you need to do.
+
+<br />
+<br />
+
+<b>Table of Contents</b>
+
+<ol>
+<li> <a href="install.html" class="link">Installation</a>
+     <br /><br />
+
+
+<li> <a href="firststeps.html" class="link">First Steps After Installation</a>
+     <br /><br />
+
+
+<li> <a href="accesslist.html" class="link">Setting up an Access List</a>
+     <br /><br />
+
+
+<li> <a href="categories.html" class="link">Categories</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="categories.html#add" class="link">Adding</a>
+     <li> <a href="categories.html#update" class="link">Updating</a>
+     <li> <a href="categories.html#rename" class="link">Renaming</a>
+     <li> <a href="categories.html#delete" class="link">Deleting</a>     
+     </ol>
+     <br />
+
+
+<li> <a href="templates.html" class="link">Templates</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="templates.tgp.html" class="link">TGP Pages</a>
+     <li> <a href="templates.script.html" class="link">Script Pages</a>
+     <li> <a href="templates.email.html" class="link">E-mail Messages</a>
+     <li> <a href="templates.lang.html" class="link">Language Settings</a>
+     <li> <a href="templates.outside.html" class="link">Editing Outside the Control Panel</a>
+     </ol>
+     <br />
+
+
+<li> <a href="galleries.html" class="link">Galleries</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="galleries.html#permvssubmitted" class="link">Permanent vs Submitted</a>
+     <li> <a href="galleries.html#add" class="link">Adding</a>
+     <li> <a href="galleries.html#manage" class="link">Managing</a>
+     <li> <a href="galleries.html#approve" class="link">Approving</a>
+     <li> <a href="galleries.html#update" class="link">Updating</a>
+     <li> <a href="galleries.html#delete" class="link">Deleting</a>
+     <li> <a href="galleries.html#tasks" class="link">Quick Tasks</a>
+     </ol>
+     <br />
+
+
+<li> <a href="importing.html" class="link">Importing Galleries</a>
+     <br /><br />
+
+
+<li> <a href="reviewtool.html" class="link">Framed Gallery Reviewer</a>
+     <br /><br />
+
+
+<li> <a href="randomgalleries.html" class="link">Random Galleries From Text Files</a>
+     <br /><br />
+
+<li> <a href="managepages.html" class="link">Managing TGP Pages</a>
+     <br /><br />
+
+<li> <a href="moderators.html" class="link">Control Panel Accounts</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="moderators.html#add" class="link">Adding</a>
+     <li> <a href="moderators.html#manage" class="link">Managing</a>
+     <li> <a href="moderators.html#update" class="link">Updating</a>
+     <li> <a href="moderators.html#delete" class="link">Deleting</a>
+     </ol>
+     <br />
+
+
+<li> <a href="annotations.html" class="link">Annotations</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="annotations.html#add" class="link">Adding</a>
+     <li> <a href="annotations.html#update" class="link">Updating</a>
+     <li> <a href="annotations.html#delete" class="link">Deleting</a>
+     </ol>
+     <br />
+
+
+<li> <a href="blacklist.html" class="link">Blacklist/Whitelist</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="blacklist.html#types" class="link">Types</a>
+     <li> <a href="blacklist.html#wildcards" class="link">Wildcards</a>
+     <li> <a href="blacklist.html#add" class="link">Adding</a>
+     <li> <a href="blacklist.html#delete" class="link">Deleting</a>
+     </ol>
+     <br />
+
+
+<li> <a href="recips.html" class="link">Reciprocal Links</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="recips.html#add" class="link">Adding</a>
+     <li> <a href="recips.html#update" class="link">Updating</a>
+     <li> <a href="recips.html#delete" class="link">Deleting</a>
+     </ol>
+     <br />
+
+
+<li> <a href="rejects.html" class="link">Rejection E-mails</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="rejects.html#add" class="link">Adding</a>
+     <li> <a href="rejects.html#update" class="link">Updating</a>
+     <li> <a href="rejects.html#delete" class="link">Deleting</a>
+     </ol>
+     <br />
+
+
+<li> <a href="2257.html" class="link">2257 Code Checking</a>
+     <br /><br />
+
+<li> <a href="buildpages.html" class="link">Page Building Overview</a>
+     <br /><br />
+
+
+<li> Database Tools
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="backup.html" class="link">Backup and Restore Database</a>
+     <li> <a href="export.html" class="link">Export and Import Database</a>
+     <li> <a href="optimize.html" class="link">Optimize and Repair Database</a>
+     <li> <a href="rawsql.html" class="link">Running Raw SQL Queries</a>
+     </ol>
+     <br />
+
+
+<li> <a href="cropper.html" class="link">Thumbnail Cropping Utility</a>
+     <br /><br />
+
+
+<li> <a href="partneraccounts.html" class="link">Partner Accounts</a>
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="partneraccounts.html#add" class="link">Adding</a>
+     <li> <a href="partneraccounts.html#manage" class="link">Managing</a>
+     <li> <a href="partneraccounts.html#update" class="link">Updating</a>
+     <li> <a href="partneraccounts.html#delete" class="link">Deleting</a>
+     </ol>
+     <br />
+
+
+<li> <a href="requests.html" class="link">Partner Account Requests</a>
+     <br /><br />
+
+<li> <a href="confirm.html" class="link">Confirmation E-mail</a>
+     <br /><br />
+
+<li> <a href="datetime.html" class="link">Date and Time Formats</a>
+     <br /><br />
+
+<li> <a href="scanner.html" class="link">Gallery Scanner</a>
+     <br /><br />
+
+<li> <a href="breakdown.html" class="link">Gallery Breakdown</a>
+     <br /><br />
+
+<li> <a href="icons.html" class="link">Gallery Icons</a>
+     <br /><br />
+
+<li> <a href="submitcode.html" class="link">Submit Code</a>
+     <br /><br />
+
+<li> <a href="reporting.html" class="link">Cheater/Broken Link Reporting</a>
+     <br /><br />
+
+<li> <a href="clicktracking.html" class="link">Click Tracking</a>
+     <br /><br />
+
+<li> <a href="cron.html" class="link">Using Cron to Automate AutoGallery SQL Functions</a>
+     <br /><br />
+
+<li> <a href="referrersandagents.html" class="link">Referrers and Agents</a>
+     <br /><br />
+
+<li> <a href="editoptions.html" class="link">Edit Options Interface</a>
+     <br /><br />
+
+<li> <a href="servermove.html" class="link">Moving AutoGallery SQL to a New Server</a>
+     <br /><br />
+
+<li> <a href="patch.html" class="link">Patching AutoGallery SQL version 3.6.x to 3.6.y</a>
+     <br /><br />
+
+<li> Upgrading AutoGallery SQL
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="ags3.5.x.html" class="link">From Version 3.5.x</a>
+     <li> <a href="ags3.x.x.html" class="link">From Version 3.0.x or 3.1.x</a>
+     <li> <a href="ags2.1.x.html" class="link">From Version 2.1.x</a>
+     <li> <a href="ags2.0.x.html" class="link">From Version 2.0.x</a>
+     </ol>
+     <br />
+
+<li> Upgrading From AutoGallery Pro
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="agp3.x.x.html" class="link">From Version 3.0.x or 3.1.x</a>
+     <li> <a href="agp2.1.x.html" class="link">From Version 2.1.x</a>     
+     </ol>
+     <br />
+
+<li> Upgrading From AutoGallery (Freeware)
+     <ol style="list-style-type: upper-alpha">
+     <li> <a href="ag3.0.x.html" class="link">From Version 3.0.x</a>
+     <li> <a href="ag2.0.x.html" class="link">From Version 2.0.x</a>     
+     </ol>
+     <br />
+
+<li> <a href="shuffle.html" class="link">shuffle.cgi Utility Script</a>
+     <br /><br />
+
+<li> <a href="localsync.html" class="link">localsync.cgi Utility Script</a> (currently experimental)
+     <br /><br />
+
+<li> <a href="ftpthumbs.html" class="link">ftpthumbs.cgi Utility Script</a> (currently experimental)
+     <br /><br />
+
+<li> <a href="../../../../external.html?link=http://www.jmbsoft.com/owners/ags/manuals/nolink.php" class="link">"Powered By AutoGallery SQL" Link Removal</a>
+     <br /><br />
+
+<li> <a href="htaccess.html" class="link">.htaccess Error Message</a>
+     <br /><br />
+
+<li> <a href="../../../../external.html?link=http://www.jmbsoft.com/owners/kb/" class="link">Knowledge Base</a>
+</ol>
+
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+Overview
+--------
+This template will display only text links.  There will be three sections of
+text links, the first for new galleries, the second for galleries from yesterday,
+and the third for galleries from 2 days ago.  Each section will display 30 galleries.
+
+The first GALLERIES section is where the new galleries will be added.  Each time
+you run a "Build With New" 30 new galleries will appear in this section.  If you
+run a "Build" the same galleries will be displayed.
+
+The second section will display galleries from yesterday, with the most productive
+galleries at the top of the list. 
+
+The second section will display galleries from 2 days ago, with the most productive
+galleries at the top of the list.
+
+Make sure you configure the go.php click tracking script as described in the software
+manual and place it in the same directory as your TGP pages.
+
+
+Template Code
+-------------
+<%DEFINE
+GLOBALDUPES True
+PAGEDUPES False
+%>
+
+<%TEMPLATE
+NAME Text
+HTML ##Date## <a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##" target="_blank">##Thumbnails## ##Category##</a><br />
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>TGP</title>
+<style type="text/css">
+body { font-size: 12px; font-family: Verdana; }
+td { font-size: 12px; font-family: Verdana; }
+.jmbfoot { font-size: 11px; font-family: Verdana; }
+.jmblink { font-size: 11px; font-family: Verdana; }
+</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+
+<div align="center">
+<span style="font-size: 20pt; font-weight: bold;">TGP</span><br />
+Links to ##Thumbnails## free pictures and movies!<br />
+Updated ##Updated_Date##
+</div>
+
+<br />
+
+
+<table align="center">
+<tr>
+<td valign="top">
+<b>Galleries For ##Weekday##</b><br />
+<%GALLERIES
+AMOUNT 30
+AGE 0
+GETNEW True
+CATEGORY Mixed
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+%>
+
+<br />
+<br />
+
+<b>Galleries For ##Weekday-1##</b><br />
+<%GALLERIES
+AMOUNT 30
+AGE 1
+GETNEW False
+CATEGORY Mixed
+ORDER (Clicks/Build_Counter) DESC
+HTML Text
+%>
+
+<br />
+<br />
+
+<b>Galleries For ##Weekday-2##</b><br />
+<%GALLERIES
+AMOUNT 30
+AGE 2
+GETNEW False
+CATEGORY Mixed
+ORDER (Clicks/Build_Counter) DESC
+HTML Text
+%>
+
+</td>
+</tr>
+</table>
+
+
+<br />
+
+<div align="center">
+<b><a href="##Script_URL##/submit.cgi">Submit A Gallery</a></b>
+</div>
+
+<br />
+
+</body>
+</html>
+

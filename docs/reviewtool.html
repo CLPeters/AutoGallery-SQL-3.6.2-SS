@@ -1,0 +1,172 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Framed Gallery Reviewer</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL includes a gallery review tool which allows you to quickly view and process newly submitted galleries.  The review tool uses a frameset 
+so you can view the gallery in one frame, and process it in another.  Each time you process a gallery, the next one in line will be displayed.
+
+<br />
+<br />
+
+<b>Using The Gallery Review Tool</b>
+
+<br />
+<br />
+
+To access the framed gallery review tool, locate and click on the Review Galleries link in the Submitted Galleries section of the control panel
+menu.  AutoGallery SQL will open a new browser window for the gallery reviewer, and you will then be able to begin processing the newly submitted galleries.
+The image below shows you what you will see when you access the gallery review tool.
+
+<br />
+<br />
+
+<div align="center">
+<img src="images/review.jpg" border="1">
+</div>
+
+<br />
+<br />
+
+<ol style="list-style-type: upper-alpha">
+<li> The upper frame of the review tool will always display the current gallery you are working on.
+<li> This portion of the review tool allows you to modify or delete the preview thumbnail for the gallery.
+<li> Clicking on the Skip button will move you on to the next gallery in line without making any changes.
+<li> This portion of the review tool allows you to modify any of the gallery data that you want.
+<li> Clicking on the Approve button will approve the gallery and move you on to the next one in line.
+<li> Clicking on the Reject button will reject the gallery and move you on to the next one in line.
+<li> Clicking on the Blacklist button will blacklist the gallery and move you on to the next one in line.
+</ol>
+
+<b>Preview Thumbnail</b>
+
+<br />
+<br />
+
+If a preview thumbnail was submitted with the gallery, it will be visible on the left hand side of the lower frame (B).
+You can click on the [Delete] link to remove the gallery's preview thumbnail, or the [Edit] link to crop or upload
+a new thumbnail.
+
+<br />
+<br />
+
+If no preview thumbnail was provided with the gallery, you will see a [No Thumb] link.  You can click on this link to crop or upload a new
+preview thumbnail for the gallery if you wish.
+
+<br />
+<br />
+
+<b>Setting Options</b> (3.6.2 Snapshot and newer)
+
+<br />
+<br />
+
+If you want to change which galleries are shown you can click on the Options button which is directly to the left of the Skip button (C).  This will bring
+up an interface where you can configure the Type, Category, Format, and Sorting options.  After you have configured the options how you want them, press the
+Save button to begin reviewing the galleries that meet the criteria you have specified.  You will then be able to go through all of the galleries that meet
+that criteria until you have processed them all.  At that point you will be able to change the options, save the settings, and begin reviewing a different
+batch of galleries.
+
+<br />
+<br />
+
+<b>Skipping A Gallery</b>
+
+<br />
+<br />
+
+If you want to skip over a gallery without changing it, you will click on the Skip button (C).  This will immediately move you on to the next
+gallery in line.  When you have processed all of the other pending galleries, you will have the option to come back to the galleries you skipped.
+
+<br />
+<br />
+
+<b>Approving A Gallery</b>
+
+<br />
+<br />
+
+If you find the gallery to be acceptable and want to approve it for your TGP, you will click on the Approve button (E).  Before you do, you might
+want to make changes to some of the form fields (D).  If any of the submitted information is inaccurate or not to your liking, you can change it before
+you approve the gallery.  Each of the fields is described below.
+
+<ul>
+<b>URL</b> - This is the full gallery URL<br />
+<b>Format</b> - This is the gallery format, either Pictures or Movies<br />
+<b>S</b> - Check this box if you want the gallery scanner to be able to scan this gallery<br />
+<b>T</b> - Check this box if you want the gallery scanner to be able to automatically create a thumbnail for this gallery<br />
+<b>Desc</b> - This is the gallery description<br />
+<b>Keywords</b> - These are keywords (separated by spaces) that describe the gallery<br />
+<b>Name</b> - This is the name or nickname of the gallery submitter<br />
+<b>Sponsor</b> - This is the name of the sponsor who owns the gallery<br />
+<b>Thumbs</b> - This is the number of thumbnails on the gallery<br />
+<b>Weight</b> - This is the weight you want to assign to the gallery<br />
+<b>Type</b> - This is the type of gallery, either Submitted or Permanent<br />
+<b>Cat</b> - This is the category of the gallery<br />
+<b>Sched</b> - This is the date that the gallery will become eligible for display.  Leave blank if you do not want a specific date<br />
+<b>Del</b> - This is the date when the gallery will be deleted.  Leave blank if you do not want a specific date<br />
+<b>[Icons]</b> - Click on this link to assign icons to this gallery
+</ul>
+
+The date enclosed in [] is the date that the gallery was submitted.  If the gallery was submitted by a partner, their username will appear in orange
+text next to the approve button.  If the URL field has a green colored background, it means that the gallery scanner was able to locate a reciprocal
+link on the gallery when it was scanned during submission.
+
+<br />
+<br />
+
+<b>Rejecting A Gallery</b>
+
+<br />
+<br />
+
+If you do not want the gallery to appear on your TGP, you will click on the Reject button (F).  Clicking this button will immediately delete the
+gallery from the database, and send the gallery submitter the selected rejection e-mail (if you have the e-mail feature enabled).
+
+<br />
+<br />
+
+The available rejection e-mails are listed in a drop down box directly left of the Reject button.  If you do not want to send an e-mail, select the None option.
+Otherwise, select the rejection e-mail you would like to send.  To create custom rejection e-mails, see the  <a href="rejects.html" class="link">Rejection E-mails</a>
+section of this manual.
+
+<br />
+<br />
+
+<b>Blacklisting A Gallery</b>
+
+<br />
+<br />
+
+If you would like to delete the gallery and not allow further submissions from this webmaster or website, you will click on the Blacklist button (G).  Clicking this
+button will immediately delete the gallery from the database, and add the selected items to AutoGallery SQL's blacklist.  Each of the items that can be blacklisted has a
+checkbox next to it.  Place a check in the box for each item that you want added to the blacklist from this gallery.
+
+<ul>
+<b>IP Address</b> - This will blacklist the IP address of the gallery submitter<br />
+<b>Gallery IP</b> - This will blacklist the IP address of the gallery<br />
+<b>Hostname</b> - This will blacklist the hostname of the gallery.  Example:  www.site.com for a gallery with URL http://www.site.com/gallery/page.html<br />
+<b>DNS Server</b> - This will blacklist the DNS server of the gallery<br />
+<b>E-mail</b> - This will blacklist the full e-mail address of the gallery submitter<br />
+<b>E-mail Host</b> - This will blacklist the hostname of the gallery submitter's e-mail.  Example: site.com for e-mail address fred@site.com<br />
+</ul>
+
+</div>
+
+</body>
+</html>

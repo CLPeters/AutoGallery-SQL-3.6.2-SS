@@ -1,0 +1,142 @@
+Overview
+--------
+This template will display only text links.  The links will be separated out
+by category, so if you plan on using this template you will need to set the
+CATEGORY options to the names of categories you have defined in your software
+installation.
+
+Each section will display 20 galleries.  This is designed to have only one
+"Build With New" executed each day.  Every time a "Build With New" is executed
+new galleries will be added to the page.
+
+
+Template Code
+-------------
+<%DEFINE
+GLOBALDUPES True
+PAGEDUPES False
+%>
+
+<%TEMPLATE
+NAME Text
+HTML ##Date## <a href="##Gallery_URL##" target="_blank">##Thumbnails## ##Category##</a><br />
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>TGP</title>
+<style type="text/css">
+body { font-size: 12px; font-family: Verdana; }
+td { font-size: 12px; font-family: Verdana; }
+.jmbfoot { font-size: 11px; font-family: Verdana; }
+.jmblink { font-size: 11px; font-family: Verdana; }
+</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+
+<div align="center">
+<span style="font-size: 20pt; font-weight: bold;">TGP</span><br />
+Links to ##Thumbnails## free pictures and movies!<br />
+Updated ##Updated_Date##
+</div>
+
+<br />
+
+
+<table align="center" width="800">
+<tr>
+<td valign="top">
+<b>Babe Galleries</b><br />
+<%GALLERIES
+TYPE Submitted
+CATEGORY Babe
+AMOUNT 20
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+%>
+</td>
+<td valign="top">
+<b>Hardcore Galleries</b><br />
+<%GALLERIES
+TYPE Submitted
+CATEGORY Hardcore
+AMOUNT 20
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+%>
+</td>
+<td valign="top">
+<b>Amateur Galleries</b><br />
+<%GALLERIES
+TYPE Submitted
+CATEGORY Amateur
+AMOUNT 20
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+%>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td valign="top">
+<b>Asian Galleries</b><br />
+<%GALLERIES
+TYPE Submitted
+CATEGORY Asian
+AMOUNT 20
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+%>
+</td>
+<td valign="top">
+<b>BBW Galleries</b><br />
+<%GALLERIES
+TYPE Submitted
+CATEGORY BBW
+AMOUNT 20
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+%>
+</td>
+<td valign="top">
+<b>Fetish Galleries</b><br />
+<%GALLERIES
+TYPE Submitted
+CATEGORY Fetish
+AMOUNT 20
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+%>
+</td>
+</tr>
+</table>
+
+
+<br />
+
+<div align="center">
+<b><a href="##Script_URL##/submit.cgi">Submit A Gallery</a></b>
+</div>
+
+<br />
+
+</body>
+</html>
+

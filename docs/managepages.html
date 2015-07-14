@@ -1,0 +1,222 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Managing TGP Pages</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+Generating TGP pages is one of the basic functions of AutoGallery SQL.  The Manage Pages interface is where you will tell the software which pages it
+should be creating for you.  Your pages can be located in any directory of your website, and can be configured to display multiple categories or only
+a specific category.  You can add or delete pages at any time through the Manage Pages interface.
+
+<br />
+<br />
+
+<b>Adding a Page</b>
+
+<br />
+<br />
+
+To add a new TGP page locate and click on the Manage Pages link in the TGP Pages section of the control panel menu.  On the page that loads you will
+find at the top a box entitled "Add New TGP Page".  You will need to fill in this form to add a new TGP page.  Each of the fields is described below.
+
+<ul>
+<b>Filename</b> - Enter the filename that you want to use for the TGP page.  More on this later...<br />
+<b>Category</b> - Select the category for this page.  If you want to allow all categories, select Mixed.<br />
+<b>Build Order</b> - Enter the build order for this page.  More on this later...<br />
+</ul>
+
+Once you have filled in the fields how you want them, press the Add Page button.  The software will check to make sure that the directory exists
+and has correct permissions.  If there are no problems, the page will be added and you will be returned to the same page.
+
+<br />
+<br />
+
+<b>The Filename Setting</b>
+
+<br />
+<br />
+
+The filename setting allows you to specify the directory path and filename you want to use for your TGP page.  This will always be prefixed by your 
+document root, which means that the TGP pages must be generated inside the web-accessable folder of your site.  So, for example, if you wanted to have
+a file named tgp.html and have it placed inside your galleries directory you would enter this:
+
+<br />
+<br />
+
+galleries/tgp.html
+
+<br />
+<br />
+
+This would require that you have a directory named galleries inside your document root.  You would also need to make sure that directory has 777 permissions.
+If the tgp.html file already exists, you should delete or rename it so the software can create it's own copy of that file.
+
+<br />
+<br />
+
+<b>The Build Order Setting</b>
+
+<br />
+<br />
+
+The build order setting tells the software which order the pages should be built in.  The page with build order 1 is built first, 2 is built second, 3 is build 3rd, and so on.
+The build order is important especially if you are going to have archive type pages where your older galleries are displayed.  Any page where you want older galleries displayed
+should be built after your main page(s) that show the newest galleries.  For example, if you have a main page named index.html that shows the 100 most recent galleries and a page
+named archive.html that displays the old galleries that are no longer on the index.html page you will want the index.html page built first (build order 1) and the archive.html page
+built second (build order 2).
+
+<br />
+<br />
+
+<b>Editing a Page</b>
+
+<br />
+<br />
+
+If you want to change the filename, build order, or category for a page you can click on it's [Edit] link.  This will open a popup window where you can see the current settings
+and edit them how you like.  Once you have made the changes you want, press the Update This Page button.
+
+<br />
+<br />
+
+<b>Deleting a Page</b>
+
+<br />
+<br />
+
+If you want to completely remove a page click on the [Delete] link.  You will be asked to confirm the deletion, and if you press the Ok button the page will be deleted.  This will
+remove it's template but will not remove the actual generated TGP page.  It will not be possible to recover the template for this page once you delete it, so if you want to save
+the template make sure you do that before you delete the page.
+
+<br />
+<br />
+
+<a name="auto"></a>
+<b>Category Page Creation</b>
+
+<br />
+<br />
+
+If you have a large number of categories and want to generate pages for one or all of them, it would be very time consuming to add one page at a time
+through the standard page creation interface.  Instead the software has a utility which will add multiple categories for you at once.  From the
+Manage Pages interface you can click on the Automatic Category Page Creation link.  This will bring you to a page where you can configure how and
+what pages should be created.
+
+<ul>
+<b>Directory</b> - Enter the full directory path where you want the pages to be created when they are built (leave blank to have them in your document root)<br />
+<b>File Extension</b> - Enter the file extension to use for all of the created pages<br />
+<b>Category</b> - Select the category you want to create the pages for or All Categories to create pages for all of your categories<br />
+<b>Pages</b> - Select the number of pages per category (more on this later)<br />
+<b>Conversions</b> - Select the type of conversions that should be applied to the category name (more on this later)
+</ul>
+
+Once you have filled out all of the fields with the values you want, press the Create Category Pages button.  The software will automatically add the new
+pages to the database and you will be returned to the category page creation form.
+
+<ul>
+<b>Pages</b><br />
+The Pages value allows you to specify the number of pages that should be created for each category.  If you select to create more than one page, the 
+page creation feature will automatically number each subsequent page that is added.  For example, if you enter 3 in that field and select the category
+named Hardcore, the following 3 pages will be added:
+
+<br />
+<br />
+
+<ul>
+hardcore.html<br />
+hardcore2.html<br />
+hardcore3.html
+</ul>
+
+<br />
+
+<b>Conversions</b><br />
+Using your category names without applying any conversions to them would result in some unusual page names and possibly even some that conflict
+with the server's operating system.  Some servers do not allow spaces or other special characters in the filenames that are stored on the system.
+For that reason, conversions must be applied to the category names.
+
+<br />
+<br />
+
+<ul>
+<b>Remove all non-alphanumeric characters</b><br />
+This will remove all characters in the category name that are not letters (a-z) or numbers (0-9).  Examples:
+
+<br />
+<br />
+
+<ul>
+Hardcore -> Hardcore<br />
+Porn Stars -> PornStars<br />
+Adrianna's Pics -> AdriannasPics
+</ul>
+
+<br />
+
+<b>Replace all non-alphanumeric characters with a dash</b><br />
+This will replace all characters in the category name that are not letters (a-z) or numbers (0-9) with a dash (-).  Examples:
+
+<br />
+<br />
+
+<ul>
+Hardcore -> Hardcore<br />
+Porn Stars -> Porn-Stars<br />
+Adrianna's Pics -> Adrianna-s-Pics
+</ul>
+
+<br />
+
+<b>Replace all non-alphanumeric characters with an underscore</b><br />
+This will replace all characters in the category name that are not letters (a-z) or numbers (0-9) with an underscore (_).  Examples:
+
+<br />
+<br />
+
+<ul>
+Hardcore -> Hardcore<br />
+Porn Stars -> Porn_Stars<br />
+Adrianna's Pics -> Adrianna_s_Pics
+</ul>
+
+<br />
+
+<b>All letters lower case</b><br />
+This will replace a letters (a-z) in the category name with their lowercase equivalent.  Examples:
+
+<br />
+<br />
+
+<ul>
+Hardcore -> hardcore<br />
+PornStars -> pornstars
+</ul>
+
+<br />
+
+<b>No change in text case</b><br />
+This will not make any changes to the letters that appear in the category name.
+</ul>
+</ul>
+
+</div>
+
+<br />
+<br />
+
+</body>
+</html>

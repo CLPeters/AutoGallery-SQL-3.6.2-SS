@@ -1,0 +1,155 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Thumbnail Cropping Interface</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL includes a built-in web-based thumbnail cropping interface for you to use.  This feature requires that your server have
+ImageMagick 6.0.0+ and the ImageMagick Perl module installed on your server.  This document will cover the basic usage of the thumbnail
+cropping interface.
+
+<br />
+<br />
+
+<b>Accessing the Cropping Interface</b>
+
+<br />
+<br />
+
+From within the Display Galleries interface click on the [No Thumb] or [Edit] link for the gallery that you want to create a new preview
+thumbnail for.  A pop-up window will appear and the software will begin loading all of the available images from the gallery.
+
+<br />
+<br />
+
+<b>Selecting an Image</b>
+
+<br />
+<br />
+
+When the pop-up window appears for the cropping interface, the software will begin loading all of the available images from the gallery.
+You will be able to monitor the process by viewing the progress bar at the top of the page.  Once all of the images have loaded, they will
+be displayed in a scrollable area at the top of the page.  Once you find an image that you want to create the thumbnail from, use your mouse
+to click on that image.  The software will then load the full sized version of that image (if it is a picture gallery) or the thumbnail 
+itself (for movie galleries) directly below the scrollable image selection area.
+
+<br />
+<br />
+
+<b>Selecting the Crop Region</b>
+
+<br />
+<br />
+
+Once the image has loaded you can select the region that you want to save by clicking your mouse on the image and then dragging to create
+an appropriately sized selection box.  The selection box has a red border so that you can easily see the area that you have selected.  There
+is also a preview box to the left of the image which shows a quick preview of what the thumbnail will look like.
+
+<br />
+<br />
+
+If you would like to create a different sized thumbnail than the default, you can fill in the height and width fields and then press the Set
+Size button.  This will adjust the size of the cropping region, so you may need to select a new region.
+
+<br />
+<br />
+
+You also have the option of checking the Custom Filters box.  If you do check that box, the software will allow you to manually apply filters
+to the thumbnail once it has been cropped and resized.  If you do not check that box, the software will apply the default sharpening and annotation
+to the created thumbnail.
+
+<br />
+<br />
+
+<b>Cropping the Image</b>
+
+<br />
+<br />
+
+To crop the selected area simply double click your mouse button inside the red-bordered selection box.  The software will crop and resize the selected
+region to the correct size that you have specified and will show you what the thumbnail looks like on the next page when it loads.
+
+<br />
+<br />
+
+<b>Applying Filters</b>
+
+<br />
+<br />
+
+If you checked the Custom Filters box you will have the opportunity to apply filters to the thumbnail that has been created.  The software will only
+have cropped and resized the image, but no sharpening or annotations will have been applied.  On the page that loads after you have double clicked
+inside the cropping selection region will allow you to apply different filters to the image.  Each of the filters is described below.
+
+<br />
+<br />
+
+<span class="important">Important Note</span> When you are done applying filters and are satisfied with the final result, be sure that you press the
+Done button.  This will tell the software that the image you are currently viewing is the one you want to permanently save for this gallery.  You should
+also press the Done button even if you do not apply any filters to the image.
+
+
+<ul>
+<b>Sharpen</b><br />
+This filter allows you to sharpen the thumbnail.  You can enter any number value in this field; the larger the number you enter, the greater the sharpening effect.
+The default value is generally suitable for images of 120x120 or smaller dimensions.  For larger images you should use a smaller sharpening value.
+
+<br />
+<br />
+
+<b>Brightness</b><br />
+This filter allows you to adjust the brightness of the thumbnail.  Valid values range from 0.0 on up.  Anything less than 1.0 will darken the image and anything greater
+than 1.0 will lighten the image.
+
+<br />
+<br />
+
+<b>Contrast</b><br />
+This filter allows you to adjust the contrast of the thumbnail.  To increase the contrast, press the Increase button.  To decrease the contrast, press the Decrease button.
+You can press each button multiple times (make sure that the updated image has loaded before pressing a button again) to repeat the filter and increase the strength of the effect.
+
+<br />
+<br />
+
+<b>Normalize</b><br />
+This filter allows you to apply a normalization filter to the thumbnail.  This is similar to the Auto Levels feature in Adobe Photoshop which automatically adjusts the black point
+and white point in an image.  Note that this will not always produce a better looking image, so it is up to your judgement to determine when to use this filter.
+
+<br />
+<br />
+
+<b>Annotation</b><br />
+This filter allows you to apply one of your pre-defined annotations to the thumbnail.  All of the annotations you have defined are listed in the drop down menu.  Select the one
+you want to apply and press the Apply button to add that annotation to the image.
+
+<br />
+<br />
+
+<b>Undo</b><br />
+The undo section allows you to undo the last command or reset the image to it's default state before you began editing it.  Pressing the Undo button will undo the last filter that
+you applied to the image.  If you have made multiple changes you can step backwards through them by pressing the Undo button several times.  The Reset button will reset the image
+to it's state before you began applying any filters.  This is a quick way to get back to the beginning of your changes instead of pressing the Undo button several times.
+
+</ul>
+
+When working with the filtering options, make sure that the new version of the image loads completely before you begin executing the next command.  It may take a few seconds for
+each filter to be applied, so please be aware of that when working with the filter interface.
+
+</div>
+
+</body>
+</html>

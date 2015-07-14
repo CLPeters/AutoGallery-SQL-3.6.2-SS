@@ -1,0 +1,191 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Annotations</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+The annotations feature of AutoGallery SQL allows you to display a text string or an image overlayed onto the preview thumbnail.  So, for example, you could have
+the word "Babes" written on all of the thumbnails in the Babes category that are picture galleries and a small movie icon displayed on thumbnails from galleries
+that are movie galleries.
+
+<br />
+<br />
+
+<b><a name="add">Adding</a></b>
+
+<br />
+<br />
+
+To add a new annotation, you will need to fill in the values in the Manage Annotations interface.  Each of the available fields are described below.
+
+<ul>
+<b>Identifier</b> - This is a short text string that you can use to identify each annotation<br />
+<b>Location</b> - This is the location on the thumbnail where the annotation should appear
+
+<br />
+<br />
+
+You now have two choices on the type of annotation you want to use:
+
+<br />
+<br />
+
+<ul>
+<b>Text String</b><br />
+This will use a font file that you provide to render a text string on the thumbnail
+
+<br />
+<br />
+
+<ul>
+<b>String</b> - The string that should be written on the thumbnail<br />
+<b>Font File</b> - The true type font file that should be used to render the string (must be uploaded to the data/annotations directory)<br />
+<b>Font Size</b> - The font size, in points, that should be used when rendering the string on the thumbnail<br />
+<b>Text Color</b> - The color of the text that is rendered on the thumbnail<br />
+<b>Shadow Color</b> - The color of the drop shadow that is rendered underneath the text on the thumbnail<br />
+</ul>
+
+<br />
+<br />
+
+<b>Image Overlay</b><br />
+This will take a small image and overlay it on the thumbnail
+
+<br />
+<br />
+
+<ul>
+<b>Image File</b> - The filename of the image that you want to overlay (must be uploaded to the data/annotations directory)<br />
+<b>Transparency</b> - The color in the image that should be transparent when overlayed on the thumbnail (more info below)
+</ul>
+
+</ul>
+</ul>
+
+Once you have all of the fields filled in how you want them, press the Add Annotation button.  The software will check to make sure
+that the font or image file exists and then save your settings for the new annotation.  You will now be able to select this annotation
+when you are editing categories and when you are using the thumbnail filters.
+
+<br />
+<br />
+
+<b><a name="update">Updating</a></b>
+
+<br />
+<br />
+
+To update an annotation select it from the drop down list at the top of the page and press the load button.  The page will reload and you
+will be able to make changes to the settings.  Once you have made the changes you want, press the Update Annotation button.  This will
+save the changes you have made and bring you back to the annotations interface.
+
+<br />
+<br />
+
+<b><a name="delete">Deleting</a></b>
+
+<br />
+<br />
+
+To update an annotation select it from the drop down list at the top of the page and press the delete button.  Note that this will not affect
+thumbnails that have already been annotated, it will only affect newly created thumbnails after the annotation has been deleted.
+
+<br />
+<br />
+
+<b>Transparency</b>
+
+<br />
+<br />
+
+When working with image overlays it may be necessary to have part of the overlayed image be transparent.  For example, since all images are represented
+by rectangles, if you wanted to display a circular icon on your thumbnails, part of the overlayed image would need to be transparent.  This allows sections
+of the underneath image to show through even if they are covered by pixels of the overlayed image.  There are a couple of different ways you can do this:
+
+<br />
+<br />
+
+<ol>
+<li> The image that you are overlaying can be created with transparency information built in.  This requires that the image be saved in a format
+that supports transparency, such as GIF.  Most image creation programs allow you to specify transparent sections in the image, so if you are creating
+your own images you will need to work with the product you are using to create a suitable image with built in transparency.
+
+<br />
+<br />
+
+<span class="important">Important Note</span> If your server does not have the ImageMagick Perl module installed and only provides access to the command
+line tools, this is the only method you can use.
+
+<br />
+<br />
+
+
+<li> Create an image and use an unusual color to represent areas of the image that should be transparent.  You will need to keep track of the color that
+you use to represent transparent regions, as that is the color value you will need to enter in the Transparency field.  One of the most commonly used colors
+for this purpose is Fuchsia (a bright pink), which in RGB is 255,0,255 or in hex #FF00FF.  You will need to know the hex value of the color you use, as that is what must
+be entered in the Transparency field.  So, for example, if you do use Fuchsia you would enter #FF00FF in the Transparency field.
+
+</ol>
+
+
+Here is an example of a possible overlay image that you might use.  It is saved in GIF format with no transparency information built into the image.  In this
+case the color Fuchsia has been used to represent transparent regions of the image, so the value #FF00FF was entered in the Transparency field:
+
+<br />
+<br />
+
+<img src="images/overlay.gif">
+
+<br />
+<br />
+
+It may help to take a look at a zoomed in version of this image:
+
+<br />
+<br />
+
+<img src="images/overlay_large.gif">
+
+<br />
+<br />
+
+Note that all of the pixels that are Fuchsia in color are the ones we want to be transparent.  This will allow thumbnail area that is underneath the overlayed image
+to show through.  Here we can see what a thumbnail looks like that has had this movie icon overlayed on it:
+
+<br />
+<br />
+
+<img src="images/thumb_overlay_trans.jpg">
+
+<br />
+<br />
+
+Notice how the Fuchsia pixels are no longer visible and the thumbnail area underneath the overlayed image shows through.  This is the type of effect you want when
+overlaying non-rectangular images on your thumbnails.  Just as an example, this is how the thumbnail would have looked with no transparency defined for the overlay image:
+
+<br />
+<br />
+
+<img src="images/thumb_overlay_notrans.jpg">
+
+<br />
+<br />
+
+
+</div>
+
+</body>
+</html>

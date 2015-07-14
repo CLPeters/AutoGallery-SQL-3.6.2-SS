@@ -1,0 +1,21 @@
+# Any lines that begin with a # character are considered comments
+# and will be ignored by the cron and crontab system.  You can use
+# comments to help you remember what the commands do and when they run
+
+
+# At the top of the file, place any existing crontab commands
+
+
+# Now you can list your AutoGallery SQL crontab entries
+
+
+# Run a "Build With New" at 5 after midnight daily
+5 0 * * * /home/username/public_html/cgi-bin/tgp/cron.cgi --build-with-new
+
+
+# Run a "Build" at 30 past the hour every hour
+30 * * * * /home/username/public_html/cgi-bin/tgp/cron.cgi --build
+
+
+# Run the gallery scanner twice per day at 6am and 6pm
+0 6,18 * * * /home/username/public_html/cgi-bin/tgp/scanner.cgi configuration &

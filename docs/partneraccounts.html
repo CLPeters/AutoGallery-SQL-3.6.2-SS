@@ -1,0 +1,141 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Partner Accounts</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL allows you to create any number of partner accounts, each with it's own options.  With the partner accounts you can restrict who submits
+galleries or have the galleries submitted through these accounts appear above the standard gallery submissions.
+
+<br />
+<br />
+
+<b><a name="add">Adding</a></b>
+
+<br />
+<br />
+
+To add a partner account click on the Add Account link in the Partner Accounts section of the control panel menu.  AutoGallery SQL will load a page
+where you will be able to enter the necessary information to create an account.  Each of the fields on that page is described below.
+
+<br />
+
+<ul>
+
+<b>Account ID</b> - This is the account identifier that will be used when submitting galleries.<br />
+<b>Password</b> - This is the password that will be used when submitting galleries.<br />
+<b>E-mail</b> - This is the partner's e-mail address.<br />
+<b>No E-mail/Send E-mail</b> - Select Send E-mail from the drop down box to send a welcome e-mail to the new account.<br />
+<b>Weight</b> - This is the weight that will be assigned to galleries submitted through this account.<br />
+<b>Galleries Per Day</b> - This is the maximum number of galleries that this account can submit per day.<br />
+<b>Auto-Approve</b> - If you set this to yes, this account's galleries will be automatically approved by AutoGallery SQL, otherwise
+                      you will have to review them before they are approved.<br />
+<b>Recip Required</b> - If you set this to yes, any galleries submitted from this account must have a reciprocal link.
+                        This value overrides the global options setting.<br />
+<b>Check Blacklist</b> - If this is set to yes, galleries submitted through this account will be checked against the blacklist.  Set this to No if you do not want 
+galleries submitted through this account to be checked against the blacklist.<br />
+<b>Check Banned HTML</b> - If this is set to yes, galleries submitted through this account will be checked against the banned HTML list.  Set this to No if you do not want 
+galleries submitted through this account to be checked against the banned HTML list.<br />
+<b>Confirm By E-mail</b> - If this option is set to yes, this partner will need to confirm all of their submissions by e-mail.  If it is set to no, they will not have
+to confirm their submissions by e-mail.
+</ul>
+
+Once all of the options have been filled in how you want them, press the Add Account button.  The new account will be created and you will
+be returned to the Add Account page where you can create more accounts if you wish.  Immediately after addition the new partner account will
+be active and the user can begin submitting galleries.
+
+<br />
+<br />
+
+<b><a name="manage">Managing</a></b>
+
+<br />
+<br />
+
+To manage your partner accounts click on the Manage Accounts link in the Partner Accounts section of the control panel menu.  AutoGallery SQL will load
+a page where you will be able to view, search, edit, and delete your partner accounts.  This image shows what you will see when managing your partner
+accounts:
+
+<br />
+<br />
+
+<div align="center">
+<img src="images/accounts.gif" width="796" height="143" border="1" alt="">
+</div>
+
+<br />
+
+Here are the descriptions for each column in the screenshot above:
+<br />
+
+<ul>
+<b>ID</b> - This is the account username.  Click on the username to send an e-mail to this partner using your normal e-mail program<br />
+<b>Sub/Rem</b> - This shows the number of galleries submitted followed by the number of galleries removed<br />
+<b>Allowed</b> - This shows the number of galleries the account is allowed to submit per day, or NL for no limit<br />
+<b>Weight</b> - This shows the weight that will be assigned to all galeries submitted by this account<br />
+<b>Dates</b> - This shows the date range that this account is allowed to submit galleries during<br />
+<b>Actions</b> - Click on [Edit] to edit the account information or [X] to delete the account
+</ul>
+
+If you would like to e-mail one or more of the partner accounts, put a check in the box next to the Account ID.  You can then press the
+E-mail Selected button to bring up AutoGallery SQL's e-mail interface.  To e-mail all of the partner accounts, press the E-mail All button.
+
+<br />
+<br />
+
+<b><a name="update">Updating</a></b>
+
+<br />
+<br />
+
+To edit a partner account click on it's [Edit] link.  A window will pop-up with the account editing interface.  You can make any changes to the
+acount that you wish.  Once you are completed making the changes you want, press the Update Account button.  AutoGallery SQL will update the account with the
+new information and display a confirmation message in the pop-up window.  You can close the pop-up window and continue with your next task.
+
+<br />
+<br />
+
+<b><a name="delete">Deleting</a></b>
+
+<br />
+<br />
+
+To delete a partner account click on it's [X] link.  AutoGallery SQL will ask for confirmation that you want to delete the account.  Pressing Ok will
+delete the partner account, and the username and password for that account will no longer be active.  Deleting a partner account will also delete 
+all of the galleries in the database that were submitted by the account.
+
+
+<br />
+<br />
+
+<b>Partner End-User Interface</b>
+
+<br />
+<br />
+
+The partner account end-user interface allows your partners to login and view the galleries they currently have in your database, the number of clicks each
+gallery has received, disable their galleries if needed, and edit their account.  To allow your partners to view that information and edit their account you
+will need to provide a link to partner.cgi?r=login  From that page partners will be able enter their current username and password and then be presented with
+a page where they can see their galleries and edit their account.
+
+</div>
+
+<br />
+<br />
+
+</body>
+</html>

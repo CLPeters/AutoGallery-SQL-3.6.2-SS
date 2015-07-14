@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Moving AutoGallery SQL</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+As you may know, finding a great host for your website can be very difficult. Because of this, it is
+sometimes required that you move to a new server at a new hosting company. This document will give you
+an overview of what needs to be done in order to transfer AutoGallery SQL and your data to a new server.
+
+<br />
+<br />
+
+<b>Backup Your Data</b>
+
+<br />
+<br />
+
+The first thing you will need to do is backup your MySQL database and AutoGallery SQL datafiles from the old server.
+This is easily done through the control panel using the database backup feature.  Follow the instructions in the
+<a href="backup.html" class="link">Database Backup</a> section of the software manual to backup your data.  The backup
+feature will backup most things for you, however if you have edited any of the .tpl template files you will need to
+transfer those and your preview thumbnails to your new server seperately.
+
+<br />
+<br />
+
+<b>Install on the New Server</b>
+
+<br />
+<br />
+
+Next, you will need to install AutoGallery SQL on your new server. It is very important that you do not copy any files
+over from your old server. You should proceed with the installation as if it is the first time it is being installed.
+Follow the instructions in <a href="install.html" class="link">Installation</a> section of the manual to complete the
+installation. Once you have done that, you can upload any customized .tpl files to your templates directory, if you haven't already.
+
+<br />
+<br />
+
+<b>Restoring Your Data</b>
+
+<br />
+<br />
+
+After you have the new installation done on your new server, follow the instructions in the <a href="backup.html" class="link">Database Backup</a>
+section of the software manual to restore your data.  If you have not already done so, you should transfer your preview thumbnails and edited
+template files from the old server.  Be sure to set the permissions on all of the preview thumbnails to 666.  Once your data has been restored
+you can continue using the software as normal.  The first thing you will want to do is rebuild all of your pages so that they will display 
+the HTML and galleries from your previous installation.
+
+</div>
+
+</body>
+</html>

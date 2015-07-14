@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Rejection E-mails</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+With AutoGallery SQL it is possible to create customized e-mails that represent the most common reasons you reject galleries.  Then, while you are processing newly
+submitted galleries you will be able to select from these customized e-mails and send them out to the galleries that you reject.
+
+<br />
+<br />
+
+<b><a name="add">Adding</a></b>
+
+<br />
+<br />
+
+To add a rejection e-mail, locate and click on the Rejection E-mails link in the Gallery Control section of the control panel menu.  AutoGallery SQL will load a
+page where you can enter all of the settings for your rejection e-mail.
+
+<ul>
+<b>Identifier</b> - This is what will appear when you are processing galleries<br />
+<b>Subject</b> - This will be the subject of the e-mail<br />
+<b>Text</b> - If you want to send e-mails in text format, fill in this field with your message<br /> 
+<b>HTML</b> - If you want to send e-mails in HTML format, fill in this field with your message<br /> 
+<b>Attachments</b> - If you want to attach anything to the e-mail, select each item you want to attach
+</ul>
+
+
+Once you have entered everything how you want it, press the Save E-mail button.  AutoGallery SQL will save this e-mail and allow you to select it
+the next time you are processing galleries.
+<br />
+<br />
+
+<b><a name="update">Updating</a></b>
+
+<br />
+<br />
+
+To update a rejection e-mail, make your way to the Rejection E-mails interface in the control panel.  Select the e-mail that you want to update
+from the drop down menu at the top of the page, and then press the Load E-mail button.  AutoGallery SQL will load the e-mail and fill the form fields for
+you.  You can then make the changes that you wish, and once you are done press the Save E-mail button.  Note that you should not change the identifier
+or AutoGallery SQL will create a new rejection e-mail instead of updating the old one.
+
+<br />
+<br />
+
+<b><a name="delete">Deleting</a></b>
+
+<br />
+<br />
+
+To delete a rejection e-mail, make your way to the Rejection E-mails interface in the control panel.  Select the e-mail that you want to delete
+from the drop down menu at the top of the page, and then press the Delete E-mail button.  The next time you process galleries, you will no longer
+have that e-mail as an option.
+
+<br />
+<br />
+
+<b>Special Identifier Values</b>
+
+<br />
+<br />
+
+If you would like to have a rejection e-mail set as the default, you will need to use a special identifier for that e-mail message.  To set the
+default rejection e-mail for galleries it should use the identifier RejectGallery.  To set the default rejection e-mail for partner account
+requests it should use the identifier RejectPartner.
+
+<br />
+<br />
+
+<b>Template Values</b>
+
+<br />
+<br />
+
+There are several template values you can use in your rejection e-mails.
+
+<br />
+<br />
+
+##Gallery_ID## - The ID number assigned to the gallery<br />
+##Email## - The e-mail address for the gallery<br />
+##Gallery_URL## - The URL for the gallery<br />
+##Description## - The description of the gallery<br />
+##Thumbnails## - The number of thumbnails on the gallery<br />
+##Category## - The category of the gallery<br />
+##Nickname## - The name/nickname of the gallery submitter
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Categories</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL supports unlimited categories for your galleries.  Each category can have it's own settings to determine what type of galleries will be
+accepted into that category.  Your categories are managed through the control panel and can be added, updated, or deleted at any time.  To access
+the category management interface click on the Manage Categories link in the Setup section of the control panel menu.
+
+<br />
+<br />
+
+The first time you visit the category management interface, you will only have the option to add categories.  Once you have added some categories you
+will have further options to update and delete them.  The process of adding, updating and deleting galleries is described below.
+
+
+<br />
+<br />
+
+<b><a name="add">Adding</a></b>
+
+<br />
+<br />
+
+The first time you visit the Manage Categories interface you will be presented with a form where you can add new categories.  If you have already added
+some categories, click on the 'Add New Categories' link at the bottom of the page to access the form where you can add new categories.
+
+<br />
+<br />
+
+On the Add New Categories form there are several fields that you will need to fill in to add new categories.  Each of those fields is described below.
+
+<ul>
+<b>Category Names</b> - Enter the names of the categories, as you want them to appear, in this field.  List one category name per line.<br />
+<b>Make these categories hidden</b> - Check this box if you want the categories you are adding to be hidden.  More on this later.<br />
+<b>File Extensions</b> - Enter the allowed file extensions for both picture and movie galleries in these fields.  More on this later.<br />
+<b>Minimum Amount</b> - Enter the minimum amount of items that must appear on the gallery in order for it to be accepted.<br />
+<b>Maximum Amount</b> - Enter the maximum amount of items that can appear on the gallery in order for it to be accepted.<br />
+<b>Minimum File Size</b> - Enter the minimum allowed file size of the gallery content.<br />
+<b>Annotations</b> - Select which annotations, if any, you want to use for the preview thumbnails in this category.<br />
+<b>Maximum Submissions Allowed Per Day</b> - Enter the maximum number of galleries that can be submitted to this category each day.<br />
+</ul>
+
+Once you have all of the fields filled in how you want them, press the Add Categories button to save your categories.  You will be returned
+to the category management page where you can make any further changes that you want.
+
+<br />
+<br />
+
+<b>File Extensions</b>
+
+<br />
+<br />
+
+The file extensions settings for each category have a couple of different functions.  First, they help the software to determine what format the gallery
+is (either pictures or movies).  For example, if the software finds that a gallery has 5 links to files that have picture extensions and 3 links to files that
+have movie extensions, it will say that the gallery format is pictures since there are more picture than movie links.
+
+<br />
+<br />
+
+Second, they tell the software what gallery formats are allowed in each category.  If you have a category that you only want to allow movie galleries,
+leave the pictures file extensions field empty.  This will tell the software that picture galleries are not allowed in that category.  You can do the same
+thing for categories where you only want picture galleries.
+
+<br />
+<br />
+
+<b>Hidden Categories</b>
+
+<br />
+<br />
+
+For the most part, hidden categories act just like normal categories.  The only difference is that a hidden category will not appear on the gallery submission
+form,.  Even if someone discovers the name of one of your hidden categories they still cannot submit galleries to that category through the submission form.
+With hidden categories, galleries can only be added to that category through the software control panel.
+
+<br />
+<br />
+
+Note that hidden categories do not affect which galleries appear on your TGP pages.  Galleries in hidden categories have the same eligibility for display on
+your TGP pages as galleries in all other categories.  The only difference between hidden and normal categories is the ability to submit galleries to them through
+the gallery submission form.
+
+<br />
+<br />
+
+<b><a name="update">Updating</a></b>
+
+<br />
+<br />
+
+Categories can be edited one at a time or several at a time.  After you have added some categories, you will be shown the 'Manage Existing Categories' interface
+each time that you visit the Manage Categories interface.  To edit a single category, select it from the list of categories in the 'Existing Categories' selection
+field.  AutoGallery SQL will load all of that category's options in the form fields, and you can then make the changes you want.  Once you have made the changes you
+want, press the Update Selected button.  You will be returned to the category management page where you can make any further changes that you want.
+
+<br />
+<br />
+
+To edit several categories you can select each of them in the 'Existing Categories' selection field.  On a Windows based computer this is done by holding down
+the Crtl key on your keyboard as you click on each category name.  For Mac users, hold down the command key on your keyboard as you click each category name.
+Once you have made the changes you want, press the Update Selected button.  You will be returned to the category management page where you can make any further
+changes that you want.
+
+<br />
+<br />
+
+<b><a name="raname">Renaming</a></b>
+
+<br />
+<br />
+
+To rename an existing category you can use the Manage Categories interface.  Below the 'Manage Existing Categories' section you will find a section labeled 
+'Rename a Category'.  In that section select the category you want to rename from the drop down list.  Enter the new name for the category in the New Name
+field and then press the Rename button.  The software will take care of renaming the category and updating all of the galleries in that category with the new
+name.  However, if there are any references to the old category name in your TGP page templates, you will need to update those manually.
+
+<br />
+<br />
+
+<b><a name="delete">Deleting</a></b>
+
+<br />
+<br />
+
+Categories can be deleted one at a time or several at a time.  To delete a single category, select it from the drop down list of categories at the top of the
+page.  Press the Delete Selected button to delete the category.  You will be returned to the category management page where you can make any further changes that you want.
+
+<br />
+<br />
+
+To delete several categories you can select each of them in the 'Existing Categories' selection field.  On a Windows based computer this is done by holding down
+the Crtl key on your keyboard as you click on each category name.  For Mac users, hold down the command key on your keyboard as you click each category name.
+Press the Delete Selected button to delete the categories you have selected.  You will be returned to the category management page where you can make any further
+changes that you want.
+
+<br />
+<br />
+
+Note that deleting a category will also delete all of the galleries in that category.  If you do not want to delete all of the galleries in the category you
+are deleting, you will first need to move them into a category that you will not be deleting.  This can be done through the Display Galleries interface.
+
+</div>
+
+<br />
+<br />
+
+</body>
+</html>

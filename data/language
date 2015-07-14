@@ -1,0 +1,160 @@
+=>[HOST]
+Hosting Company
+=>[SUNDAY]
+Sunday
+=>[E_BROKEN_IMAGE]
+One of the images on your gallery is not accessable 
+=>[E_NO_ACCOUNT]
+No account exists with that e-mail address or username.
+=>[E_BAD_URL]
+You have entered and invalid gallery URL.
+=>[E_TOO_SHORT]
+One of the values you submitted does not have enough characters
+=>[E_EXISTING_REQUEST]
+There is already an existing partner account request from this e-mail address, please do not submit again.
+=>[E_BAD_ID]
+The supplied gallery ID could not be located in the database.
+=>[FRIDAY]
+Friday
+=>[E_NO_PASSWORD]
+We are currently only accepting galleries from webmasters with a password.
+=>[E_INVALID_CONFIRMID]
+The confirmation code you entered is not valid.
+=>[E_MAX_THUMBS]
+Your gallery has too many thumbnails.  We allow a maximum of
+=>[TUESDAY]
+Tuesday
+=>[E_NOT_WRITABLE]
+The filename you have specified cannot be written to
+=>[E_EXISTING_ACCOUNT]
+There is already a partner account using the requested username, please select a different one.
+=>[EMAIL_USER]
+E-mail Address or Username
+=>[JUNE]
+June
+=>[PASSWORD]
+Password
+=>[E_BAD_CODE]
+You have entered an invalid submit code.
+=>[DECEMBER]
+December
+=>[JANUARY]
+January
+=>[SEPTEMBER]
+September
+=>[Pictures]
+Pictures
+=>[E_USER]
+An existing account is already using that account ID.
+=>[NAME]
+Your Name
+=>[E_BAD_HTML]
+Your gallery page contains some HTML or text which we do not allow.
+=>[E_REQUIRED]
+A required form field was left blank
+=>[ARCHIVE]
+Archive
+=>[MONDAY]
+Monday
+=>[E_THUMB_SIZE]
+The thumbnail preview you have provided is too large.
+=>[E_DUPLICATE]
+The gallery URL you have submitted already exists in our database.
+=>[REPORT]
+Cheat/Broken Link Description
+=>[E_NO_SELECTION]
+You must select one of the items in order to perform this action.
+=>[E_NO_RECIP]
+A reciprocal link could not be found on your gallery
+=>[SATURDAY]
+Saturday
+=>[E_SAME_CONTENT]
+The gallery you have submitted has the same HTML as another gallery already in our database.
+=>[E_BAD_IMAGE]
+The file you uploaded is not a valid image.
+=>[E_NO_CATEGORIES]
+There must be at least one category defined before you can submit or import galleries.
+=>[E_COMPILER]
+There was an error encountered in your template near
+=>[E_MIN_THUMBS]
+Your gallery has too few thumbnails.  Make sure that your thumbnails<br />link directly to the full size image or movie.<br /> We require a minimum of
+=>[NOVEMBER]
+November
+=>[E_BAD_EMAIL]
+You have entered an invalid e-mail address.
+=>[E_LIMIT_REACHED]
+You have reached the maximum number of allowed gallery submissions for today.
+=>[E_BAD_PASSWORD]
+You have entered an invalid username/password combination.
+=>[E_BLACKLISTED]
+Some of the information you have submitted is blacklisted from our TGP
+=>[APRIL]
+April
+=>[E_EXCESSIVE_LINKS]
+Your gallery has too many links.  We allow a maximum of
+=>[EMAIL]
+E-mail Address
+=>[E_NO_PREVIEW]
+A preview image could not be downloaded from your gallery.<br />Make sure your thumbnails link directly to the gallery content.
+=>[E_NO_THUMB]
+A thumbnail preview must be provided with your gallery submission.
+=>[DESCRIPTION]
+Description
+=>[E_TOO_SLOW]
+The download speed from your server is too slow.  We require a minimum of
+=>[CONFIRMID]
+Confirmation Code
+=>[E_BAD_DIR]
+The directory corresponding with the following URL either does not exist or has incorrect permissions.  Create the directory and make sure it has 777 permissions
+=>[OCTOBER]
+October
+=>[E_MIN_SIZE]
+Your gallery content is too small in filesize.  We require a minimum of
+=>[E_BAD_CATEGORY]
+You have selected an invalid category.
+=>[PROVIDER]
+Main Content Provider
+=>[WEDNESDAY]
+Wednesday
+=>[MARCH]
+March
+=>[E_TOO_LONG]
+One of the values you submitted has too many characters
+=>[E_NO_2257]
+Your gallery must have 2257 information displayed in order to be accepted
+=>[MAIN]
+Main
+=>[Movies]
+Movies
+=>[USERNAME]
+Username
+=>[AUGUST]
+August
+=>[THURSDAY]
+Thursday
+=>[E_HAS_THUMB]
+This gallery already has a thumbnail preview image.
+=>[MAY]
+May
+=>[E_NO_FILE]
+The file you specified does not exist
+=>[FEBRUARY]
+February
+=>[JULY]
+July
+=>[E_BROKEN_URL]
+The gallery URL you have submitted is not accessable
+=>[NICKNAME]
+Nickname
+=>[E_BAD_CONFIRMID]
+The confirmation code you entered could not be found in the database.
+=>[E_DATE_RANGE]
+Your account is only permitted to submit galleries during this date range
+=>[REASON]
+Reason for disabling
+=>[UNLIMITED]
+Unlimited
+=>[NEVER]
+Never
+=>[ALWAYS]
+Always

@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">.htaccess Error Message</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+If you receive the following message when you try to access the software control panel, it indicates a problem
+with .htaccess on your server:
+
+<br />
+<br />
+
+<i>
+.htaccess password protection is required to access this script.<br />
+See the .htaccess section of the software manual for assistance with this error.
+</i>
+
+<br />
+<br />
+
+99% of the time this means that your server is not properly configured for .htaccess password protection.  It may
+be the case that you can use .htaccess password protection in other directories of your website, but not inside the
+cgi-bin.  There is also the possibility that your entire website is lacking .htaccess password protection support.
+Either way, contact your server administrator and ask them to enable .htaccess password protection for your account.
+You may also wish to indicate which directory needs .htaccess password protection, which in this case is the directory that
+AutoGallery SQL is installed in and all of it's sub-directories.
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>AutoGallery SQL Template Validator</title>
+  <style>
+  body { font-family: Arial; font-size: 13px; }
+  td { font-family: Arial; font-size: 13px; }
+  textarea { font-family: Verdana; font-size: 11px; }
+  .directive { font-size: 13px; color: orange; font-weight: bold; }
+  .subdirective { font-size: 13px; color: green; font-weight: bold; }
+  .notdirective { font-size: 13px; color: #bbbbbb; }
+  .number { font-size: 13px; color: black; }
+  .error { font-family: Arial; font-size: 13px; font-weight: bold; color: red; }
+  .warning { font-family: Arial; font-size: 13px; font-weight: bold; color: blue; }
+  </style>
+</head>
+<body>
+<script language="JavaScript">
+function checkForm(form)
+{
+  if( !form.Template.value )
+  {
+      alert('Please supply your template');
+      return false;
+  }
+
+  return true;
+}
+</script>
+
+<div align="center">
+
+<h2>AutoGallery SQL 3.6.x Template Validator</h2>
+
+<table width="700">
+<tr>
+<td>
+Enter the entire template for one of your TGP pages in the box below.  You can simply copy
+and paste the template from the software's control panel to this box.  Once you have copied
+the template, press the submit button and this program will check your template for errors.
+
+<br />
+<br />
+
+<b>Please note that this is an experimental validator and may not be able to detect all
+errors</b>
+</td>
+</tr>
+</table>
+
+<br />
+
+<form action="../../../../external.html?link=http://www.jmbsoft.com/docs/ags/3.6.x/template.cgi" method="POST" onSubmit="return checkForm(this)">
+<textarea name="Template" rows="30" cols="90"></textarea>
+<br />
+<br />
+<input type="submit" value="Submit">
+</form>
+
+</div>
+</body>
+</html>

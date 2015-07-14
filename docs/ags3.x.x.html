@@ -1,0 +1,443 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Upgrading From Version 3.0.x or 3.1.x</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+The upgrade procedure for going from version 3.0.x or 3.1.x to 3.6.x is more involved than a simple patch.  This new version of the software
+has many new features and updates, so some special instructions are required.  The upgrade procedure is listed below along with information 
+covering the major changes that appear in this new version.
+
+<br />
+<br />
+
+<span class="important">Important Notes</span>
+
+<br />
+<br />
+
+The TGP page template system and page building process has undergone a significant overhaul which will require that you update all of your
+TGP page templates.  Because of this you should allow enough time not only to update the software files, but also to update your TGP page
+templates.  This document discusses some of the <a href="#changes" class="link">major changes</a>, so it is recommended that you read those before you
+upgrade.  You may also want to read over the TGP Page Templates and Page Building Overview sections of the manual before you upgrade.
+
+<br />
+<br />
+
+<b>Upgrading</b>
+
+<br />
+<br />
+
+The first thing you should do is make a backup from your current installation so that you can restore it if necessary.  Use the instructions in the
+software manual for the version you are using to do a database backup before you start the upgrade process.
+
+<br />
+<br />
+
+The next step is to upload the new tables file from the 3.6.x distribution.  This will need to go in the data directory of your installation, replacing
+the current copy of that file.  Once that is done upload the ags3.x.x.cgi file from the utilities directory of the software distribution.  It will need to
+go in the same directory as your ags.pl file and have it's permissions set to 755.  This script will convert your MySQL database to the new format.  You
+will need to access it through your browser, and it will automatically run and update your database.
+
+<br />
+<br />
+
+Once the ags3.x.x.cgi file has been executed successfully you can delete some of the old files that are no longer needed.  In the templates directory
+of your installation you can remove all of the files that start with cpanel.  That would include all of these files:
+
+<br />
+<br />
+
+
+<table width="100%">
+<tr>
+<td>
+cpanel_2257.tpl<br />
+cpanel_addaccount.tpl<br />
+cpanel_addmoderator.tpl<br />
+cpanel_addpermanent.tpl<br />
+cpanel_analyzeperm.tpl<br />
+cpanel_analyze.tpl<br />
+cpanel_backup.tpl<br />
+cpanel_blacklist.tpl<br />
+cpanel_breakdowncat.tpl<br />
+cpanel_breakdown.tpl<br />
+cpanel_categoryedit.tpl<br />
+cpanel_cheats.tpl<br />
+cpanel_cropcomplete.tpl<br />
+cpanel_crop.tpl<br />
+cpanel_deletegallery.tpl<br />
+cpanel_deletethumb.tpl<br />
+cpanel_duplicates.tpl<br />
+cpanel_editaccount.tpl<br />
+cpanel_editmoderator.tpl<br />
+</td>
+<td>
+
+cpanel_editpermanent.tpl<br />
+cpanel_emaileditor.tpl<br />
+cpanel_email.tpl<br />
+cpanel_error.tpl<br />
+cpanel_frameset.tpl<br />
+cpanel_galleries.tpl<br />
+cpanel_html.tpl<br />
+cpanel_icons.tpl<br />
+cpanel_importperm.tpl<br />
+cpanel_import.tpl<br />
+cpanel_info.tpl<br />
+cpanel_ipresolve.tpl<br />
+cpanel.js<br />
+cpanel_langeditor.tpl<br />
+cpanel_main.tpl<br />
+cpanel_menu.tpl<br />
+cpanel_nothumbs.tpl<br />
+cpanel_options.tpl<br />
+cpanel_quickban.tpl<br />
+</td>
+<td>
+
+cpanel_quickgalleries.tpl<br />
+cpanel_quickperm.tpl<br />
+cpanel_quickscan.tpl<br />
+cpanel_raw.tpl<br />
+cpanel_reciprocals.tpl<br />
+cpanel_rejecteditor.tpl<br />
+cpanel_requests.tpl<br />
+cpanel_reviewdone.tpl<br />
+cpanel_review.tpl<br />
+cpanel_scanner.tpl<br />
+cpanel_showaccounts.tpl<br />
+cpanel_showmoderators.tpl<br />
+cpanel_showpermanents.tpl<br />
+cpanel_skippedcat.tpl<br />
+cpanel_skippeddupe.tpl<br />
+cpanel_status.tpl<br />
+cpanel_submit.tpl<br />
+cpanel_templates.tpl<br />
+cpanel_upload.tpl
+</td>
+</tr>
+</table>
+
+<br />
+
+
+Once these files have been deleted you can begin uploading the new files from the 3.6.x distribution.  Below is a list of the files that you will
+need to upload.  If a file with the same name already exists, it should be overwritten by the new file.  If Perl 5 is not located at /usr/bin/perl
+be sure to update the first line of all .cgi files with the correct path to Perl on your server.  Make sure you upload all of the files in ASCII mode!
+
+<ul>
+<b>/cgi-bin/tgp</b><br />
+ags.pl<br />
+code.cgi<br />
+common.pl<br />
+compiler.pl<br />
+confirm.cgi<br />
+cron.cgi<br />
+http.pl<br />
+image.pl<br />
+init.cgi<br />
+md5.pl<br />
+mysql.pl<br />
+partner.cgi<br />
+remind.cgi<br />
+report.cgi<br />
+scanner.cgi<br />
+size.pl<br />
+submit.cgi<br />
+thumb.cgi
+
+<br /><br />
+
+<b>/cgi-bin/tgp/admin</b><br />
+admin.cgi<br />
+main.cgi<br />
+menu.cgi<br />
+patch.cgi<br />
+review.cgi<br />
+xml.cgi
+
+<br /><br />
+
+<b>/cgi-bin/tgp/data</b><br />
+agents<br />
+default<br />
+language<br />
+referrers<br />
+tables<br />
+words
+
+<br /><br />
+
+<b>/cgi-bin/tgp/templates</b><br />
+All admin_*.tpl files<br />
+All review_*.tpl files<br />
+All partner_*.tpl files<br />
+partner.css<br />
+admin.css<br />
+admin.js<br />
+ajax.js<br />
+crop.js<br />
+cropadmin.js<br />
+submit_crop.tpl
+</ul>
+
+
+The 3.6.x version has several new files so you should check your file permissions.  The recommended file permissions are
+listed below.
+
+
+<ul>
+<table width="400" cellspacing="0" cellpadding="3" border="0" style="border: 1px solid #aaaaaa;">
+<tr>
+<td bgcolor="#cccccc" align="center"><b>File or Directory</b></td>
+<td bgcolor="#cccccc" align="center"><b>Permissions</b></td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All .cgi files <span class="small">(unless otherwise noted)</span></td>
+<td align="center">755</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All .pl files</td>
+<td align="center">644</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>scanner.cgi</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>cron.cgi</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All files in the data directory</td>
+<td align="center">666</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>All files in the templates directory</td>
+<td align="center">666</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>data directory</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>admin directory</td>
+<td align="center">777</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>templates directory</td>
+<td align="center">755</td>
+</tr>
+<tr bgcolor="#ececec">
+<td>Directory where thumbnails will be stored</td>
+<td align="center">777</td>
+</tr>
+</table>
+
+</ul>
+
+Once all of the files have been uploaded, make sure the permissions on the cron.cgi and scanner.cgi files to 777.  You can then
+bring up the patch.cgi script in your browser which will update those two files with the correct settings.  After that has been
+successfully completed, change the permissions back to 755 on the cron.cgi and scanner.cgi files.
+
+<br />
+<br />
+
+Now you can login to the software control panel.  The first thing you should do is visit the Edit Options interface.  There are some
+new options that you may want to configure.  Even if you do not make any changes, be sure to save your settings so that the software
+can verify that all of the files and directories it needs have been created.
+
+<br />
+<br />
+
+There are now several things you will need to check and update before you begin using the software as normal.
+
+<ol>
+<li> Your TGP pages and their templates will have been imported, however the templates from the previous version will not
+work in the 3.6.x version.  You will need to update them with the new template options and directives which are covered
+in the TGP Page Templates section of the software manual.
+
+<br />
+<br />
+
+<li> If you are using cron for any of the software functions you will need to update your crontab entries.  The Cron section
+of the software manual covers the settings you will need to use for the cron based functions.
+
+<br />
+<br />
+
+<li> The xml.cgi file has moved from the base directory into the admin directory.  You should remove the xml.cgi file from
+the base directory, and confirm that the xml.cgi file in the admin directory has 755 permissions.
+
+<br />
+<br />
+
+<li> If you are using the click tracking feature of the software, be sure to update your go.php script with the latest version.
+You will need to configure the go.php script as in the previous versions.  This is described in the Click Tracking section of
+the software manual.
+
+<br />
+<br />
+
+<li> Control panel accounts will need to be updated.  There are some new privileges and some that have been changed, so you will
+need to edit each account to assign the correct privileges to each.
+
+<br />
+<br />
+
+
+<li> Before you can use the gallery scanner you will need to create a new configuration.  The previous configurations will
+have been removed as they will not work with the new version.
+
+<br />
+<br />
+
+<li> Check your category configuration through the Manage Categories interface to make sure your categories are setup how you want
+them.  If you had the software setup to display the category name on the preview thumbnails, you will need to configure some annotations
+and then update your categories to use those annotations.
+
+</ol>
+
+
+<b>Overview of Major Changes<a name="changes"></a></b>
+
+<br />
+<br />
+
+This section will outline the major changes that have been made in going from 3.0.x/3.1.x to the new 3.6.x version.
+
+<ul>
+<b>Permanent and Submitted Gallery Database Merged</b><br />
+Permanent and submitted galleries are now stored in the same database and managed through a single unified interface.
+This should make it much easier to manage your gallery database since everything is done through one interface.  This
+also makes it a snap to change galleries from submitted to permanent and vice versa.  Working with a single interface
+also means that you have the same search options for both types of galleries.
+
+<br />
+<br />
+
+<b>Page Management</b><br />
+Your TGP pages are no longer defined through the Edit Options interface.  Instead there is now a special interface
+just for defining and managing your TGP pages.  This gives you much more flexibility on where your pages are created,
+the filenames of your pages, and in what order your pages are built.
+
+<br />
+<br />
+
+<b>Page Building Process</b><br />
+The page building process has been updated.  This includes how galleries are selected for display.  You no longer have
+to set a specific display date for each gallery.  Instead all galleries that get approved will go into a queue and the
+software will be able to select from those galleries when a page build is executed.  This means that every gallery will
+have a chance to appear on your main page instead of the old style where excess galleries were either deleted or moved
+into the archives and never showed up on the main page.  It is recommended that you read over the Page Building Overview
+section of the software manual for more information on this process.
+
+<br />
+<br />
+
+<b>Archives</b><br />
+The hard-coded archive feature of the software has been removed.  This will give you much more flexibility with your
+TGP pages and how your TGP is setup.  You can still have archive type pages, you are just no longer restricted to having
+to choose what type of archive you want and having the software automatically generate the archive page filenames.  For
+example, you can now have one main page, a second page that shows older galleries, and then one page for each category
+that shows the oldest galleries after they move off the second page.
+
+<br />
+<br />
+
+<b>Click Tracking Code</b><br />
+Because the submitted and permanent galleries are merged in a single database, this simplifies the click tracking code.
+You no longer need to have separate templates for your permanent and submitted galleries.  The click tracking code for the
+go.php script is the same for both permanent and submitted galleries.
+
+<br />
+<br />
+
+<b>TGP Page Templates</b><br />
+The TGP page template system has undergone a major update.  With the merged gallery database there is no longer the need
+to have separate GALLERIES and PERMANENT directives.  You can now display either type of gallery with the GALLERIES directive.
+There have also been many new options added to the GALLERIES directive which give you greater control over which galleries
+get displayed in a specific section.
+
+<br />
+<br />
+
+<b>Productivity Tracking</b><br />
+In previous versions of the software you were only able to track the number of clicks each gallery received and then sort them
+by that value.  New in the 3.6.x version is the ability to track productivity.  That is, the number of clicks that each gallery
+receives relative to the number of times it has been displayed or the number of builds that have taken place since it was selected
+for display.  This should give you a better indication of which galleries are most popular.
+
+<br />
+<br />
+
+<b>Categories and Annotations</b><br />
+The category management interface has been updated slightly and should make it easier for you to manage your existing categories
+and add new categories.  You now also have the ability to easily rename a category and to have hidden categories which do not appear
+on the gallery submission form.
+
+<br />
+<br />
+
+In addition to the category interface being updated, the new Annotations interface has been added.  This allows you much greater
+control over what gets displayed on your preview thumbnails.  In the past you only had the option to display the category name
+on a preview thumbnail.  Now you can specify the exact text you want to appear, or have an icon overlayed on the thumbnail.  Each
+category can have a different annotation, and you can also set specific annotations depending on whether the gallery is a picture
+or movie gallery.
+
+<br />
+<br />
+
+<b>Gallery Format Detection</b><br />
+The gallery scanner has been updated and can detect whether a gallery is a movie or picture gallery.  This information is stored
+in the database so that you can separate galleries no only by their category but also by their format.  So, for example, you could
+have a section that consists only of movie galleries but from a mix of different categories.
+
+<br />
+<br />
+
+<b>Multiple Sized Thumbnails</b><br />
+In previous versions you were restricted to only one size of thumbnail without using some special tricks to get around this
+limitation.  Now the software has built in support for multiple sizes of thumbnails with any dimensions you want.
+
+<br />
+<br />
+
+<b>Gallery Scanner</b><br />
+Many new options have been added to the gallery scanner which give you much greater control over which galleries will
+get scanned.  You also have several new options which control what actions get performed on the galleries when they
+are scanned.
+
+
+<br />
+<br />
+
+<b>Thumbnail Cropping</b><br />
+If you have ImageMagick on your server you will now have several new options when cropping thumbnails.  In addition to being able
+to set the size of thumbnail you want to create, you can also apply filters to the thumbnail such as sharpen, brightness, and contrast.
+Annotations can be applied to a thumbnail after you have created it by using the filters available in the Display Galleries interface
+when you click on a thumbnail.
+</ul>
+
+As you can see there have been many changes to the software in this version.  The list above outlines some of the major changes,
+however there are also many other small changes that should make your experience as the administrator much easier.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Backup and Restore Database</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL's database backup function allows you to quickly make a backup file that contains all of the data you would need in case
+of an emergency such as a server crash, database failure, or in the case when you need to move your site to a new server.  If this were to ever happen
+you can easily restore all of your data and get back up and running quickly.
+
+<br />
+<br />
+
+<b>Backing Up Your Database</b>
+
+<br />
+<br />
+
+To backup your database, locate and click on the Database Tools link in the Setup section of the control panel menu.  AutoGallery SQL will then
+display a page where you will find a few different database functions.  The first box is for the database backup and restore functions.  To backup
+your database all you need to do is fill in a filename, decide on the two checkbox options, and then press the Backup button.  The two checkbox options are:
+
+<ul>
+<b>Include thumbnails</b> - Check this option if you want to include all of the preview thumbnails for your galleries in the database backup
+file.  Note that this option can use large amounts of disk space, depending on how many thumbnails you have, so be sure that your server has
+plenty of disk space available and that the disk quota for your account has enough room available as well.<br /><br />
+<b>Include annotation files</b> - Check this option if you want to include the files from the data/annotations directory in your backup.  These
+are the font files and overlay images for your thumbnail annotations.
+</ul>
+
+If you do not check those options, you will need to manually make backups of your preview thumbnails and annotation files if you want to have them
+stored in a safe place.
+
+<br />
+<br />
+
+The backup process may take a few minutes, so be sure to give it time to complete.  To download the backup file for safe keeping, login to your
+server using FTP and change into the data directory of your AutoGallery SQL installation. Locate the backup file you specified when you ran the
+backup function.  You can download this file to your local computer for safe keeping.  <span class="important">Important Download Instructions</span>
+When transferring the backup file, make sure you transfer it in binary mode, not ASCII.  Downloading the file in ASCII mode will corrupt it and you
+will not be able to restore your data.
+
+<br />
+<br />
+
+Note that the backup process does not backup your script page templates.  To backup your script page templates
+download the following files from the templates directory of your AutoGallery SQL installation:
+
+<ul>
+All templates starting with:<br />
+    confirm_<br />
+    email_<br />
+    partner_<br />
+    remind_<br />
+    report_<br />
+    submit_
+</ul>
+
+<b>Restoring Your Database</b>
+
+<br />
+<br />
+
+The database restore function can be used to restore your data from a backup file that was created by the same version of AutoGallery SQL.  For example,
+if you created the backup file with version 3.6.1, you will need to use exactly that version to restore the backup file.  Using older or newer versions of
+AutoGallery SQL may prevent the data restore process from working correctly.
+
+<br />
+<br />
+
+The first step is to upload the backup file (the one created with the datbase backup function) to the data directory of your AutoGallery SQL installation.
+<span class="important">Important Upload Instructions</span> When transferring the backup file, make sure you transfer it in binary mode, not ASCII.
+
+<br />
+<br />
+
+To restore your database, locate and click on the Database Tools link in the Setup section of the control panel menu.  AutoGallery SQL will then
+display a page where you will find a few different database functions.  The first box is for the database backup and restore functions.  Enter the
+filename of the backup file in the text entry field and then click on the Restore button.  This process may take a few minutes, so be sure to give
+it time to complete. After enough time has elapsed, you can continue using the software as usual.
+
+<br />
+<br />
+
+If you have made backups of your script page templates, you will need to upload those now.  Make sure you upload the template
+files in ASCII mode and the preview thumbnails in binary mode.  Set the permissions on the template files to 666.
+
+<br />
+<br />
+
+If you did not use the options to backup the thumbnail and annotation files, you will also need to upload those at this time.  The thumbnail files
+will need to be uploaded to the directory pointed to by the Thumbnail URL setting and have their permissions set to 666.  Annotation files will need
+to be uploaded to the data/annotations directory and have their permissions set to 666.
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+Overview
+--------
+This is the default template that ships with the software, however it has been
+modified to display permanent galleries mixed in with the submitted galleries.
+
+It will show a top section of 20 thumbnail links and a bottom section of 100 text
+links.  This is designed for a site that will be doing only one "Build With New" per
+day.  Each of the defined GALLERIES sections is configured to pull new galleries from
+the database each time a "Build With New" is done.
+
+The first GALLERIES section will show 10 submitted galleries and 10 permanent galleries.
+After each submitted gallery a permanent gallery will be displayed.  This will be a table
+of 20 thumbnails with 5 per row and 4 columns.
+
+The second GALLERIES section will display 100 text links.  50 of them will be submitted
+galleries and 50 will be permanent galleries.  After each submitted gallery a permanent
+gallery will be displayed.  They will be divided into 2 columns of 50 galleries each.
+
+
+
+
+
+Template Code
+-------------
+<%DEFINE
+GLOBALDUPES True
+PAGEDUPES False
+%>
+
+<%TEMPLATE
+NAME Text
+HTML ##Date## <a href="##Gallery_URL##" target="_blank">##Thumbnails## ##Category##</a><br />
+%>
+
+<%TEMPLATE
+NAME Thumb
+HTML <td><a href="##Gallery_URL##" target="_blank"><img src="##Thumbnail_URL##" border="0" alt="Thumb"></a></td>
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>TGP</title>
+<style type="text/css">
+body { font-size: 12px; font-family: Verdana; }
+td { font-size: 12px; font-family: Verdana; }
+.jmbfoot { font-size: 11px; font-family: Verdana; }
+.jmblink { font-size: 11px; font-family: Verdana; }
+</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+
+<div align="center">
+<span style="font-size: 20pt; font-weight: bold;">TGP</span><br />
+Links to ##Thumbnails## free pictures and movies!<br />
+Updated ##Updated_Date##
+</div>
+
+
+<br />
+
+<table align="center" cellpadding="5" border="0">
+<tr>
+<%GALLERIES
+HASTHUMB 1
+TYPE Submitted
+CATEGORY Mixed
+AMOUNT 10
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Thumb
+
+GALLERIES
+{
+    HASTHUMB 1
+    TYPE Permanent
+    CATEGORY Mixed
+    LOCATION +1
+    GETNEW True
+    ORDER Times_Selected
+    REORDER Build_Counter
+    HTML Thumb
+}
+
+INSERT
+{
+    LOCATION +5
+    HTML </tr><tr>
+}
+%>
+</tr>
+</table>
+
+<br />
+
+<table align="center">
+<tr>
+<td valign="top">
+<%GALLERIES
+TYPE Submitted
+CATEGORY Mixed
+AMOUNT 50
+GETNEW True
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Text
+
+GALLERIES
+{
+    TYPE Permanent
+    CATEGORY Mixed
+    LOCATION +1
+    GETNEW True
+    ORDER Times_Selected
+    REORDER Build_Counter
+    HTML Text
+}
+
+INSERT
+{
+    LOCATION 50
+    HTML </td><td width="100"></td><td valign="top">
+}
+%>
+</td>
+</tr>
+</table>
+
+
+<br />
+
+<div align="center">
+<b><a href="##Script_URL##/submit.cgi">Submit A Gallery</a></b>
+</div>
+
+<br />
+
+</body>
+</html>
+

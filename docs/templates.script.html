@@ -1,0 +1,315 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Script Page Templates</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL's template system allows you to control the HTML that is displayed by your submit form.  Your templates can
+be changed at any time through the control panel.  This makes it quick and easy to integrate the submit form into
+your existing site design.
+
+<br />
+<br />
+
+<b>Control Panel Editing Interface</b>
+
+<br />
+<br />
+
+All changes to your submit form templates will be made through the control panel.  From the control panel menu, locate and click on the
+Script Pages link in the Templates section.  AutoGallery SQL will load a page where you will be able to select which of the template files you want
+to edit.  Select the template you want to edit from the list, and press the Load Template button.
+
+<br />
+<br />
+
+You will be returned to the same page, however now there will be a large text input box where you will edit your HTML code.  The first
+time you do this, the text input box will contain AutoGallery SQL's default HTML.  You can edit that HTML or paste your own HTML code into
+this text input box.  When you are satisfied with the changes you have made, click on the Save button at the top or bottom of the page.
+
+<br />
+<br />
+
+All of the changes you make will be immediate.  The next time you visit the submit form, the updated template will be used.
+
+<br />
+<br />
+
+<b>Control Structures</b>
+
+<br />
+<br />
+
+These templates will use some control structures, however you should not need to edit or add any to your customized templates.  The only thing you may
+need to do is move the control structures to different locations in the template.  For that reason, they will only briefly be covered here.
+
+<ul>
+<b>If</b><br />
+The If control structure is a conditional control structure.  It basically says If something is true, then output the HTML that is enclosed.
+All of the If control structures have been commented so that you know what they do.  You should be able to move them around the template without
+a problem.  In most cases you will not want to remove these from the templates.
+
+<br />
+<br />
+
+<b>Loop</b><br />
+The Loop control structure allows several template values to be printed out without duplicating them.  You should be able to move them around the
+template without a problem.  In most cases you will not want to remove these from the templates.
+
+<br />
+<br />
+
+<b>Include</b><br />
+The Include control structure allows you to include the contents of a file in your page.  The file contents will be placed exactly where the Include
+control structure is located.  Note that the Include control structure is a special case and does not have an End tag.  This has been used to include
+the submit.css file, which contains a style sheet, on each of the submit form templates.
+</ul>
+
+<b>Template Values</b>
+
+<br />
+<br />
+
+Each of the template files has it's own set of valid template values.
+
+<br />
+<br />
+
+<div class="tab">
+remind_main.tpl
+</div>
+<div class="card">
+This is the form partners will see when they need to be reminded of their password.
+<br /><br />
+<i>No template values for this template</i>
+</div>
+
+<br />
+
+<div class="tab">
+remind_sent.tpl
+</div>
+<div class="card">
+This is the form partners will see after they have provided their e-mail address or username.
+<br /><br />
+##Email## - This is the e-mail address the the partner's login information was sent to
+</div>
+
+<br />
+
+<div class="tab">
+report_main.tpl
+</div>
+<div class="card">
+This is the form surfers will see when they are going to report a cheating gallery.
+<br /><br />
+##Gallery_ID## - The ID number of the gallery that is being reported<br />
+##Gallery_URL## - The gallery URL of the gallery that is being reported<br />
+##Description## - The description of the gallery that is being reported<br />
+##Category## - The category of the gallery that is being reported<br />
+##Thumbnails## - The number of thumbnails of the gallery that is being reported
+</div>
+
+<br />
+
+<div class="tab">
+report_sent.tpl
+</div>
+<div class="card">
+This is the form surfers will see after they submit a cheat report.
+<br /><br />
+##Report_ID## - The ID number assigned to their cheat report<br />
+##Report## - The message that was sent with their cheat report<br />
+##TGP_URL## - The URL to get back to the main TGP page
+</div>
+
+<br />
+
+<div class="tab">
+submit_main.tpl
+</div>
+<div class="card">
+This is the actual submit form.
+<br /><br />
+##Category## - This is an individual category option field for the drop down selection box.<br>
+<span style="margin-left: 102px;">
+This value must be inside the the Categories loop control structure.
+</span>
+</div>
+
+<br />
+
+<div class="tab">
+submit_error.tpl
+</div>
+<div class="card">
+This template is used to display error messages to the submitter.
+<br /><br />
+##Error## - A message indicating what the specific error is
+</div>
+
+<br />
+
+<div class="tab">
+submit_crop.tpl
+</div>
+<div class="card">
+This template is displayed when the submitter is cropping a thumbnail.
+<br /><br />
+There are no template values for this template that you will need to edit.<br />
+Be very careful when editing this template, as it makes extensive use of DHTML and Javascript.
+</div>
+
+<br />
+
+<div class="tab">
+submit_globalfull.tpl
+</div>
+<div class="card">
+This template is displayed when your global submission quota has been reached for the day.
+<br /><br />
+<i>No template values for this template</i>
+</div>
+
+<br />
+
+<div class="tab">
+submit_categoryfull.tpl
+</div>
+<div class="card">
+This template is displayed when your submission quota for a specific category has been reached for the day.
+<br /><br />
+##Category## - This is the name of the category that is full
+</div>
+
+<br />
+
+<div class="tab">
+submit_complete.tpl
+</div>
+<div class="card">
+This template is displayed when the submission process has been completed.
+<br /><br />
+##Gallery_ID## - The ID number that has been assigned to this gallery<br />
+##Gallery_URL## - The gallery URL for this gallery<br />
+##Email## - The e-mail address for this gallery<br />
+##Nickname## - The nickname for this gallery<br />
+##Description## - The description for this gallery<br />
+##Category## - The category for this gallery<br />
+##Thumbnails## - The number of thumbnails on this gallery<br />
+##Thumbnail_URL## - The URL to the preview thumbnail<br />
+</div>
+
+<br />
+
+<div class="tab">
+submit_closed.tpl
+</div>
+<div class="card">
+This template is displayed when you are not accepting new gallery submissions.
+<br /><br />
+<i>No template values for this template</i>
+</div>
+
+<br />
+
+<div class="tab">
+confirm_main.tpl
+</div>
+<div class="card">
+This template is displayed when someone is confirming their gallery submission.
+<br /><br />
+<i>No template values for this template</i>
+</div>
+
+<br />
+
+<div class="tab">
+confirm_complete.tpl
+</div>
+<div class="card">
+This template is displayed after someone has confirmed their gallery submission.
+<br /><br />
+##Gallery_ID## - The ID number that has been assigned to this gallery<br />
+##Gallery_URL## - The gallery URL for this gallery<br />
+##Email## - The e-mail address for this gallery<br />
+##Nickname## - The nickname for this gallery<br />
+##Description## - The description for this gallery<br />
+##Category## - The category for this gallery<br />
+##Thumbnails## - The number of thumbnails on this gallery<br />
+##Thumbnail_URL## - The URL to the preview thumbnail<br />
+</div>
+
+<br />
+
+<div class="tab">
+partner_edit.tpl
+</div>
+<div class="card">
+This template will display the partner account editing interface
+<br /><br />
+##Account_ID## - The account ID of the partner that has logged in<br />
+##Password## - The password of the partner that has logged in<br />
+##Email## - The e-mail address of the partner that has logged in
+</div>
+
+<br />
+
+<div class="tab">
+partner_login.tpl
+</div>
+<div class="card">
+This template will display the partner login screen when they want to edit their account
+<br /><br />
+<i>No template values for this template</i>
+</div>
+
+<br />
+
+<div class="tab">
+partner_request.tpl
+</div>
+<div class="card">
+This will display the partner account request screen
+<br /><br />
+<i>No template values for this template</i>
+</div>
+
+<br />
+
+<div class="tab">
+partner_submitted.tpl
+</div>
+<div class="card">
+This will be displayed after a partner account request is submitted
+<br /><br />
+##Email## - The e-mail address that the user submitted<br />
+##Name## - The name that the user submitted<br />
+##Account_ID## - The account ID that the user submitted<br />
+##Gallery_1## - The URL to example gallery 1 that the user submitted<br />
+##Gallery_2## - The URL to example gallery 2 that the user submitted<br />
+##Gallery_3## - The URL to example gallery 3 that the user submitted<br />
+##Host## - The hosting company that the user submitted<br />
+##Provider## - The content provider that the user submitted
+</div>
+
+<br />
+
+</div>
+
+</body>
+</html>

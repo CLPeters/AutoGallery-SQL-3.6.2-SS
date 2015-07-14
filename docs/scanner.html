@@ -1,0 +1,344 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Gallery Scanner</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL includes a gallery scanner which you can run at any time to check up on the galleries in your database.  You can have multiple configurations
+of the gallery scanner, and it can be started through the control panel or by using cron.
+
+<br />
+<br />
+
+<b>Configuration</b>
+
+<br />
+<br />
+
+Before you use the gallery scanner, you will need to configure it through the control panel.  Locate and click on the Gallery Scanner link in the
+Manage Galleries section of the control panel menu.  AutoGallery SQL will load a page where you can configure how you want the gallery scanner to run.
+
+<ul>
+<b>Indentifier</b> - A short identifier for the configuration you are working with<br />
+<b>Limit Gallery Scan to Specific Galleries</b> - This allows you to specify which galleries should be scanned (more information below)<br />
+<b>Options</b> - This gives you some options on what you want the gallery scanner to do (more information below)<br />
+</ul>
+
+Each of the remaining options are used to determine what happens to a gallery when it breaks the specified rule.  You have 4 options of what to
+do with galleries that have broken a rule.
+
+<ul>
+<b>Ignore</b> - The gallery will not be changed and will not appear in the gallery scanner report<br />
+<b>Display In Report Only</b> - The gallery will not be changed, but you will see it in the gallery scanner report<br />
+<b>Place in Disabled Gallery Queue</b> - The gallery will be placed in the disabled gallery queue so you can review it<br />
+<b>Delete Gallery From Database</b> - The gallery will be deleted from the database<br />
+<b>Delete Gallery and Blacklist It</b> - The gallery will be deleted and the URL, e-mail address, and submit IP will be blacklisted
+</ul>
+
+Once you have everything set how you want it, press the Save button.  To load or delete a previously existing configuration, select it from the 
+drop down list and press the appropriate button.
+
+<br />
+<br />
+
+<b>Scanning Permanent Galleries</b>
+
+<br />
+<br />
+
+The scanner gives you the option to scan permanent galleries, however the scanning on permanent galleries is done a little differently than
+with regular submitted galleries.  When scanning permanent galleries you will still have the ability to create thumbnails for them, update the
+TGP pages when the scan is complete, send you an e-mail when the scan is complete, and check for both connection errors and broken URLs.  The
+scanner will not check the following items for permanent galleries:
+
+<ul>
+Forwarding URLs<br />
+Blacklisted data<br />
+Blacklisted HTML<br />
+Reciprocal links<br />
+Change in thumbnail count<br />
+Excessive links<br />
+Page changed since submission
+</ul>
+
+If you select an action other than "Ignore" for one of the above items when scanning permanent galleries, it will simply be ignored.  For the
+other options you can only select "Ignore", "Display in report only" or "Delete gallery from database" options.  The other options will have
+not have the affect that they describe.
+
+<br />
+<br />
+
+<b>Starting and Stopping Through Control Panel</b>
+
+<br />
+<br />
+
+To start the gallery scanner through the control panel, locate and click on the Gallery Scanner link in the Manage Galleries section of the
+control panel menu.  At the bottom of the page you will see the Gallery Scanner Status box.  Each of your configurations will be listed in that
+section, and will have displayed it's status and links to start and stop the scanner.  Simply choose the configuration that you want to run, and
+click the corresponding [Start] link for that configuration.  The status will be updated to indicate that the gallery scanner is being started.
+
+<br />
+<br />
+
+You may start multiple configurations at once, but if you start the same configuration of the gallery scanner that is already running, the old one
+will be stopped and the new one will start from the beginning.
+
+<br />
+<br />
+
+If you want to stop the gallery scanner, simply click on the corresponding [Stop] link.  This will not stop the gallery scanner immediately, but
+will instead flag it to stop after it has completed scanning the current gallery.  If it is in the middle of a long process (trying to make a connection
+to a server that is offline, for example) it may take 30 seconds or more before the gallery scanner stops.  During that time it will be normal for the
+status text to change and display the current gallery it is scanning, but the scanner will eventually stop and display 'Not Running' for it's status.
+
+<br />
+<br />
+
+<b>Checking Status</b>
+
+<br />
+<br />
+
+To check the status of the gallery scanner through the control panel, locate and click on the Gallery Scanner link in the Manage Galleries section of the
+control panel menu.  At the bottom of the page you will see the Gallery Scanner Status box.  Each of your configurations will be listed in that
+section, and will have displayed it's status.  The status will be updated approximately once every 5-10 seconds, and you will be able to see
+when the status is being queried when the Status text turns from black to red.
+
+<br />
+<br />
+
+<b>Starting Through Cron</b>
+
+<br />
+<br />
+
+Please see the <a href="cron.html" class="link">Cron</a> section of the manual.
+
+<br />
+<br />
+
+<b>Description of Options</b>
+
+<br />
+<br />
+
+Each of the options that you have available when you configure the gallery scanner is described in greater detail below.
+
+<ul>
+<b>Limit Gallery Scan to Specific Galleries</b><br />
+These options allow you to limit the scan to only specific galleries.  You can combine several of these options together
+to refine which galleries are scanned.
+
+<br />
+<br />
+
+<ul>
+<b>Only galleries that have a zero thumbnail count</b><br />
+With this option enabled, only galleries that have a 0 for their thumbnail count in the database will be scanned.
+This is useful for galleries that you have recently imported without a thumbnail count.  If you use this option
+along with the 'Update the thumbnail count for scanned galleries' option, the gallery scanner will automatically
+count the thumbnails on the gallery and update the database with the new count.
+
+<br />
+<br />
+
+<b>Only galleries that do not have a preview thumbnail</b><br />
+With this option enabled, only galleries that do already have a preview thumbnail will be scanned.  This is
+useful if you want to automatically create preview thumbnails for recently imported galleries.  Make sure
+that you also have the 'Create a preview thumbnail for galleries that do not have one' option enabled.
+
+<br />
+<br />
+
+<b>Galleries of type</b><br />
+If you only want to scan galleries of a certain type, select that type from the drop down list
+and check this box.
+
+<br />
+<br />
+
+<b>Galleries of format</b><br />
+If you only want to scan galleries of a certain format, select that format from the drop down list
+and check this box.
+
+<br />
+<br />
+
+<b>Galleries with status</b><br />
+If you only want to scan galleries with a specific status, select that status from the drop down list
+and check this box.
+
+<br />
+<br />
+
+<b>Galleries in category</b><br />
+If you only want to scan galleries from a specific category, select that category from the drop down list
+and check this box.
+
+<br />
+<br />
+
+<b>Galleries with ID number between</b><br />
+To scan galleries within a specified ID number range, fill in the two text boxes with the number range
+that you want to scan.  The first box should contain a smaller number than the second box.  For example,
+you could enter 1000 in the first box and 2000 in the second box, and the scanner would then scan galleries
+with ID numbers within that range.
+</ul>
+
+<br />
+<br />
+
+<b>Options</b><br />
+These settings allow you to specify actions that should be taken during and after the gallery scan.
+
+<br />
+<br />
+
+<ul>
+<b>Create a preview thumbnail for galleries that do not have one</b><br />
+If you check this box, the gallery scanner will automatically create a thumbnail for each gallery that it scans which
+does not already have a thumbnail.  You should also fill in the thumb height and width fields to specify the size of
+thumbnails that you want the gallery scanner to create.
+
+<br />
+<br />
+
+<b>Create new preview thumbnails for all galleries that already have one</b><br />
+If you check this box, the gallery scanner will automatically create a thumbnail for each gallery it scans which already
+has a preview thumbnail created.  The scanner will use the dimensions of the current thumbnail when creating the new thumbnail.
+
+<br />
+<br />
+
+<b>Use height and width above for galleries that already have a thumbnail</b><br />
+If this option is checked, thumbnails that are created for galleries that already have a thumbnail will be created using
+the dimensions entered in the Thumb Height and Thumb Width boxes.  If this option is not checked, the new thumbnail will
+be created with the same dimensions as the old thumbnail.
+
+<br />
+<br />
+
+<b>Download thumbnails located on remote servers</b><br />
+If this option is checked, any galleries in the database that have their thumbnail URL setting pointing to a thumbnail on a remote
+server will have that thumbnail downloaded, stored on the local server, and have the thumbnail URL updated to point to the thumbnail
+that was downloaded to the local server.
+
+<br />
+<br />
+
+<b>Resize downloaded thumbnails to dimensions entered above</b><br />
+If you selected to download thumbnails from remote servers and have this option checked, the thumbnails that are downloaded will be resized
+to the dimensions specified in the Thumb Width and Thumb Height boxes.
+
+<br />
+<br />
+
+<b>Update the thumbnail count for scanned galleries</b><br />
+With this option checked, the gallery scanner will count the number of thumbnails that it finds on the gallery and update
+the value in the database if it is different.  The only exception is if the gallery scanner is not able to find any thumbnails
+on the gallery, and in that case the thumbnail count will not be changed.
+
+<br />
+<br />
+
+<b>Update the gallery format for scanned galleries</b><br />
+With this option enabled, the gallery scanner will attempt to determine if the gallery is a picture or movie gallery.  If it is
+able to determine the format, it will update the database with the correct gallery format for each gallery that it scans.
+
+<br />
+<br />
+
+<b>Rebuild the TGP pages when the scanner is completed</b><br />
+This option tells the gallery scanner that it should rebuild all of your TGP pages once the gallery scan has been completed.
+A "Build" type of build will be done if this option is enabled.
+
+<br />
+<br />
+
+<b>Send an e-mail to the administrator when the scanner is completed</b><br />
+This option tells the gallery scanner that it should send an e-mail to the address specified in the Edit Options interface
+when the gallery scan has been completed.
+</ul>
+
+
+</ul>
+
+<b>Using Proxy Servers</b> <span class="important">(Highly Experimental)</span>
+
+<br />
+<br />
+
+In the 3.1.0 version of AutoGallery SQL the ability to scan galleries through proxy servers was added.  This feature is considered highly experimental and
+is not recommended for average users.  It is also highly recommended that you do not set the gallery scanner to automatically delete galleries when using
+this feature, as it may cause mass deletions of galleries from your database.  Only limited technical support is available for this feature at this time.
+
+<br />
+<br />
+
+Proxy servers allow you to route the connection from your server to the gallery through an intermediate server, which in turn blocks the IP address of your
+server from being recognized by the remote server that is hosting the gallery.  This can be very useful, as some cheaters have now setup systems that will
+automatically direct specific IP addresses to a working gallery, while all others are directed to pages that break your rules.  Using proxy servers should
+assist you in locating these types of cheaters.
+
+<br />
+<br />
+
+If you plan on using this feature, you will first need to locate one or more working proxy servers that you are allowed to use.  While there are many sites
+on the internet that offer lists of open proxy servers, we recommend against using those because they are generally very unstable and can go offline at any
+moment.  It is highly recommended that you only use proxy servers that you know will be online 24 hours a day and are very stable.
+
+<br />
+<br />
+
+Once you have located one or more proxy servers that you can use, you will need to create a text file named proxies.txt.  This file should contain one proxy
+per line, with the format IP_ADDRESS:PORT.  IP_ADDRESS is the IP address of the proxy server, and PORT is the port number of the proxy server.  For example,
+your proxies.txt file might look like this:
+
+<ul>
+201.48.218.178:80<br />
+26.160.211.14:8080<br />
+214.169.156.4:8000<br />
+128.45.89.15:3128
+</ul>
+
+After you have entered all of your proxy servers in this file, upload it to the data directory of your AutoGallery SQL installation in ASCII mode and set it's
+permissions to 644.  You now need to edit the scanner configuration file for the gallery scanner configuration that you want to use proxies.  Login to your server
+through FTP and change into the data/scanner directory of your AutoGallery SQL installation.  Locate the file that has the same name as the gallery scanner
+configuration that you want to use proxies.  Download that file in ASCII mode and open it in a text editor.  At the top of that file add the following line:
+
+<ul>
+$use_proxy = 1;
+</ul>
+
+You can then save the scanner configuration file and upload it back to your server in ASCII mode, replacing the existing copy.  If you want to stop using the proxy
+feature, simply load the gallery scanner configuration through the control panel and save it without making any changes.  Note that if you make changes to the gallery
+scanner configuration through the control panel, you will need to modify the configuration file again if you want it to use proxies.
+
+<br />
+<br />
+
+Once the scanner configuration file has been updated, you are ready to go.  Any time that you run the gallery scanner with that configuration it will now use
+the proxies in the proxies.txt file.  For each gallery that is scanned a random proxy will be selected from those available in the proxies.txt file.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

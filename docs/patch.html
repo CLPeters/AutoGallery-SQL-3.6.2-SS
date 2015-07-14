@@ -1,0 +1,127 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Patching AutoGallery SQL</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+We will be updating AutoGallery SQL when necessary to fix any bugs and add small features.  These releases can be recognized by a change 
+in the third digit of the software version number.  For example a change from version 3.6.2 to 3.6.3 is a patch release.  When these patches
+are released you should upgrade your installation with the new version.  This document contains instructions for doing just that.
+
+<br />
+<br />
+
+<b>Patching</b>
+
+<br />
+<br />
+
+Patching your installation is very simple.  All you need to do is upload the new files from the new version to your server.  All of the files that 
+need to be uploaded are listed below. You should not run any upgrade scripts when patching your installation, those are only used when upgrading
+from a previous major release.
+
+<br />
+
+<ul>
+<b>/cgi-bin/tgp</b><br />
+ags.pl<br />
+code.cgi<br />
+common.pl<br />
+compiler.pl<br />
+confirm.cgi<br />
+cron.cgi<br />
+http.pl<br />
+image.pl<br />
+md5.pl<br />
+mysql.pl<br />
+partner.cgi<br />
+remind.cgi<br />
+report.cgi<br />
+scanner.cgi<br />
+size.pl<br />
+submit.cgi<br />
+thumb.cgi
+
+<br /><br />
+
+<b>/cgi-bin/tgp/admin</b><br />
+admin.cgi<br />
+main.cgi<br />
+menu.cgi<br />
+patch.cgi<br />
+review.cgi<br />
+xml.cgi
+
+<br /><br />
+
+<b>/cgi-bin/tgp/data</b><br />
+language<br />
+tables
+
+<br /><br />
+
+<b>/cgi-bin/tgp/templates</b><br />
+All admin_*.tpl, review_*.tpl and .js files<br />
+submit_crop.tpl
+</ul>
+
+Once all of the files have been uploaded, change the permissions on the cron.cgi and scanner.cgi files to 777.  You can then
+bring up the patch.cgi script in your browser which will update those two files with the correct settings.  After that has been
+successfully completed, change the permissions back to 755 on the cron.cgi and scanner.cgi files.  
+
+<br />
+<br />
+
+The final step is to login to the control panel and visit the Edit Options interface.  You do not need to change any of the settings, 
+simply press the button to save your current settings which will force the software to run through a check to ensure all of the files
+and directories it needs have been created.  You are now complete with the patching process.
+
+<br />
+<br />
+
+If you are using the click tracking feature of the software you will also need to configure the new version of the go.php file
+as described in the Click Tracking section of the software manual.  Replace the old copy with the new copy.
+
+<br />
+<br />
+
+<b>Important Notes</b>
+
+<br />
+<br />
+
+If Perl 5 is not located at /usr/bin/perl be sure to update the first line of all .cgi files with the correct path to Perl on your server.
+
+<br />
+<br />
+
+Make sure you upload all of the files in ASCII mode!
+
+<br />
+<br />
+
+It is not necessary to delete any files from your server before you upload the updated scripts. If you do delete any files, make sure you
+reset all permissions on the files you upload.  All file permissions are covered in the <a href="install.html" class="link">Installation</a>
+section of the manual.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

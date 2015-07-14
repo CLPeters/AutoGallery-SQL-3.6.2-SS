@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Optimize and Repair Database</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL's database optimize function allows you to "cleanup" the MySQL database tables that it uses so they are optimized for both
+speed and disk usage.  In general, you will not need to run this command more than once every few weeks, as MySQL is quite efficient in
+maintaining it's datafiles.  The only time you may need to run it more often is if you delete a large number of galleries from your database.
+
+<br />
+<br />
+
+In some cases, usually after your server recovers from a serious error, your MySQL database may become corrupted.  When this happens you will
+get error messages from AutoGallery SQL indicating that there is a problem with one or more of your database tables.  In most circumstances MySQL
+is able to repair damaged tables with it's built in functions.  AutoGallery SQL allows you to run these built in functions through the Database Tools
+interface.  If you ever get these types of error messages, simply login to the control panel and use the Optimize/Repair function.
+
+<br />
+<br />
+
+<b>Optimizing and Repairing Your Database</b>
+
+<br />
+<br />
+
+To optimize and repair your database, click on the Database Tools link in the Setup section of the control panel menu.  AutoGallery SQL will load a page
+that will have a few database function.  One of the last functions on that page is the Optimize/Repair Database function.  Simply click on the button in that section
+to run the database optimize and repair functions.  When complete, a small window will appear to let you know that the functions have run completely.  
+There is nothing further that you need to do, your MySQL database optimization is complete.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

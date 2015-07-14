@@ -1,0 +1,117 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Random Galleries From Text Files</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+<b>Introduction</b>
+
+<br />
+<br />
+
+In addition to the submitted and permanent galleries that are stored in your MySQL database, you also have the option to display galleries on 
+your TGP pages that are randomly selected from text files.  This makes it quick and easy to update a large number of galleries that you want
+to randomly appear on your TGP pages.  If you are using random galleries from text files, they will be randomized and selected each time your
+TGP pages are rebuilt.
+
+<br />
+<br />
+
+<b>Creating a File With Galleries</b>
+
+<br />
+<br />
+
+To use this feature you first need to create one or more plain text files that contain your galleries.  The text files should contain one gallery
+per line, with all of the information for the gallery on that line.  Each line of the file must follow a specific format so that AutoGallery SQL can determine
+what information it is getting.  The following line is an example of how each line of the file will need to look:
+
+<br />
+<br />
+
+http://www.yoursite.com/gallery.html|http://www.yoursite.com/thumb.jpg|A Description of the gallery|15|Teens|Fred|hot|MegaBux|Pictures|keywords
+
+<br />
+<br />
+
+As you can see, each piece of information about the gallery is separated from the other information by a pipe (|) character.  The order in which the
+information is provided is also important.  The fields will need to be in the following order:
+
+<br />
+
+<ol>
+<li> Gallery URL
+<li> Thumbnail URL 
+<li> Description
+<li> Thumbnails
+<li> Category
+<li> Submitter Name/Nickname
+<li> Icons
+<li> Sponsor
+<li> Format
+<li> Keywords
+</ol>
+
+If you do not want to provide some information, such as a Description, you can leave that field blank.  When you do this, you will have two pipe characters
+next to each other to indicate the empty field:
+
+<br />
+<br />
+
+http://www.yoursite.com/gallery.html|http://www.yoursite.com/thumb.jpg||15|Teens|Fred|hot|MegaBux|Pictures|keywords
+
+<br />
+<br />
+
+Once you have entered all the galleries you want in your text file, you can save it to your hard drive.  You can use any filename and any file extension, but
+we recommend using the .txt file extension so it is recognized more easily as a plain text file.
+
+<br />
+<br />
+
+<b>Uploading The Files</b>
+
+<br />
+<br />
+
+After you have created a text file and saved it to your hard drive, you will need to upload it to your server so AutoGallery SQL can access it.  These files should be
+uploaded to the data/random directory of your AutoGallery SQL installation.  Upload the files with your FTP client in ASCII mode.  You should not need to change the
+permissions on the file, but if you get an error when rebuilding your pages you may need to change the permissions to 644.
+
+<br />
+<br />
+
+<b>Setting Up Your Template</b>
+
+<br />
+<br />
+
+The final thing you need to do is setup your template so that AutoGallery SQL knows to display galleries from your text files.  You will use the RANDOM directive and
+sub-directive to display the galleries from these files.  More details on these directives can be found in the 
+<a href="templates.tgp.html" class="link">TGP Page Template</a> section of this manual.
+
+<br />
+<br />
+
+<b>Truly Random Galleries</b>
+
+<br />
+<br />
+
+Note that by using this feature the galleries in your text files will be selected completely at random.  There is no way to specify that one gallery should be
+selected more often, no way to specify that a certain gallery should appear in a certain position, and no way to guarantee that all of the galleries will be used
+once before they start repeating.  Every time your TGP page is rebuilt AutoGallery SQL will completely randomly select the galleries from the files you specify.  
+If you need greater control over how the galleries are displayed, use the normal galleries feature of the software.
+
+</div>
+
+</body>
+</html>

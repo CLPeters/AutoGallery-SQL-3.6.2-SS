@@ -1,0 +1,144 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Importing Galleries</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+With AutoGallery SQL it is possible to import a large number of galleries into your database in two quick steps.  This is a nice feature if you
+are just starting your TGP and need some galleries to get going, or if you want to add a bunch of your own galleries.
+
+<br />
+<br />
+
+<b>Formatting Galleries</b>
+
+<br />
+<br />
+
+To import galleries you will need to either place them in a text file or paste them into a text box in the gallery importing interface.
+In either case, the format needs to be the same.  There should be only one gallery per line.  Each line should have pipe (|) delimited data,
+with each field representing one piece of information about the gallery.  The pieces may be in any order, but that order must remain the
+same throughout all of the galleries.  For example:
+
+<ul>
+<pre>
+user1@email.com|http://www.galleryurl.com/pages/gallery1.html|Hardcore|15
+user2@email.com|http://www.galleryurl.com/pages/gallery2.html|Teen|12
+user3@email.com|http://www.galleryurl.com/pages/gallery3.html|Amateur|16
+</pre>
+</ul>
+
+The above example has three galleries each with an e-mail address, gallery URL, category, and number of thumbnails.  Once you have your
+galleries in the proper format, you can begin the importing process.
+
+<br />
+<br />
+
+<b>Control Panel Interface</b>
+
+<br />
+<br />
+
+Locate and click on the Import Galleries link in the Manage Galleries section of the control panel menu to access the gallery importing interface.
+AutoGallery SQL will load a page where you will be able to tell the software if you want to import from a file that you uploaded or if you want to
+paste your galleries into the supplied text box.  Each option is explained on the gallery importing interface.  You will need to press the Analyze
+Input button if you have pasted data into the text box or the Analyze File button if you are importing from an uploaded text file.
+
+<br />
+<br />
+
+After you press the correct Analyze button you will be taken to a page where you will see the first gallery split out into it's individual fields.
+On the right hand site of the Import Galleries box you will see drop down menus.  From these menus you will need to select what each field represents.  
+If one of the pieces of data for the gallery does not fit into any of the drop down menu options, select the SKIP option.  AutoGallery SQL will
+ignore all SKIP fields when importing the galleries.
+
+<br />
+<br />
+
+In addition to assigning each of the fields from the data you are importing, there are three additional items that you will need to setup.  Each of
+those items is described below.
+
+<ul>
+<b>Gallery Status</b> - Select the status that should be assigned to each of the imported galleries.  Pending means that you will have to approve
+the galleries before they will become eligible for display.  Approved means that the galleries will be immediately eligible for display.<br />
+<b>Gallery Type</b> - Select the gallery type, either Submitted or Permanent, that should be assigned to each of the imported galleries.  If you have
+specified the gallery type in the import data, select the 'From File' option.  More information on the difference between submitted and permanent
+galleries can be found in the <a href="galleries.html" class="link">Galleries</a> section of the software manual.<br />
+<b>Gallery Format</b> - Select the gallery format, either Pictures or Movies, that should be assigned to each of the imported galleries.  If you have
+specified the gallery format in the import data, select the 'From File' option.  It is not possible to have the software automatically detect the 
+gallery format during the import process, but you can run the gallery scanner to automatically set that after they have been imported.
+</ul>
+
+You now have the ability to configure some options that will affect how the galleries are imported.  In the Options section of the import screen 
+you can check boxes next to each option to indicate if you want it to be applied during the import process.  Each item is self-explanitory.
+
+<br />
+<br />
+
+Once you have each of the fields setup how you want it, press the Import Galleries button.  AutoGallery SQL will begin importing the galleries from the
+data you have provided.  Once it is complete, it will return you to the same page with information on how many galleries were imported.
+
+<br />
+<br />
+
+<b>Important Notes</b>
+
+<br />
+<br />
+
+Only galleries which fit into one of your categories will be imported.  Any galleries that do not match one of your existing categories will be skipped
+over and not imported into the database.  You can prevent this from happening by using the "If a gallery does not match an existing category put it in ..."
+option.
+
+<br />
+<br />
+
+The galleries that you import are not scanned during the import process.  That could potentially take several hours to complete, so it is something that
+is better accomplished later by using the software's Gallery Scanner feature.  The point of the import function is to quickly get the galleries into your
+database so they can be used right away.  If you want to do things like automatically create thumbnails, set the gallery format, or count the thumbnails
+on the gallery, run the gallery scanner after you have imported the galleries.
+
+<br />
+<br />
+
+If you are importing icons with your galleries, you will need to enter the icon identifier in the import data, and it will need to match exactly with 
+the identifier name that has been configured in the Manage Icons control panel interface.  For example, if you have an icon named Hot that displays a
+hot icon next to the gallery, you would need to use the identifier Hot exactly.  If you want to assign multiple icons, they should be in a comma separated
+list like so: Hot,New
+
+<br />
+<br />
+
+<b>Field Formats</b>
+
+<br />
+<br />
+
+Some of the items that you may want to import have specific formats that must be met in order for the galleries to be imported correctly.  Each of those
+is discussed below.
+
+<ul>
+<b>Type</b> - This must be one of Submitted or Permanent. This item is case sensitive.<br />
+<b>Format</b> - This must be one of Pictures or Movies. This item is case sensitive.<br />
+<b>Scheduled Date</b> - This field must be in YYYY-MM-DD format.<br />
+<b>Delete Date</b> - This field must be in YYYY-MM-DD format.
+</ul>
+
+</div>
+
+</body>
+</html>

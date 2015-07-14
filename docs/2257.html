@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">2257 Code Checking</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+With the new 2257 regulations in effect you may want to check each gallery that is submitted to make sure they have the
+proper 2257 information displayed on the gallery page.  With AutoGallery SQL versions 3.1.3 or newer, this can be done
+automatically by the software when a gallery is submitted or when the gallery scanner is run.  Remember, this will not 
+protect you from 2257 issues, but it will help to ensure that all of the galleries you are linking do comply with the
+2257 regulations.  As always, if you have questions about the 2257 regulations you should contact a lawyer who is familiar
+with that law.
+
+<br />
+<br />
+
+<b>Setting Up 2257 Code</b>
+
+<br />
+<br />
+
+Before you can start using this feature you need to tell the software what it should look for on the gallery page.  This
+is done through the software control panel by using the 2257 Search Code link in the Gallery Control section of the control panel
+menu.  Click on that link to see the current configured code.  A page will display with a text input box where you can 
+change the current code and add any new code you want.  Each line in the text input box is one item that the gallery scanner
+will search for.  When you have made the changes you want click on the "Save 2257 Code" button.
+
+<br />
+<br />
+
+<b>Wildcards</b>
+
+<br />
+<br />
+
+Within the 2257 code you can use wildcards.  Wildcards are specified by a * character, and tell AutoGallery SQL that anything can
+appear where the * is located.  This can be very useful so that you do not have to specify every possible combination of code that
+might appear on a gallery page.  Here are a few examples to get you pointed in the right direction.
+
+<br />
+
+<ul>
+http://*/2257.htm
+<br />
+This would search for a URL which points to 2257.htm.  It does not matter what hostname or directory path is used, it will locate
+any URL of that format.
+
+<br />
+<br />
+
+2257.*
+<br />
+To check for a filename with 2257 and any file extension you can use this format.  This would match 2257.html, 2257.php, 2257.shtml, etc.
+</ul>
+
+<b>How the Code Checking Works</b>
+
+<br />
+<br />
+
+When the gallery is scanned, each of the links on the gallery page will be checked for 2257 code.  Both the URL that is being linked to
+and the item that is linked will be checked for 2257 link code.  For example, assume the gallery scanner found this link
+on a gallery page:
+
+<xmp><a href="../../../../external.html?link=http://www.gallerysite.com/gallery/2257.html">18 U.S.C. 2257 Compliancy</a></xmp>
+
+It would check both "http://www.gallerysite.com/gallery/2257.html" and "18 U.S.C. 2257 Compliancy" for the 2257 code.  If your 2257 code
+is not found in any of the links on the gallery page, that will trigger an action depending on how you have the software configured.  In
+the Edit Options interface there is a checkbox to require 2257 code on all submitted galleries.  You can also configure 2257 code checking
+for each gallery scanner configuration that you are using.  The gallery scanner will check both permanent and submitted galleries for 2257 code.
+
+</ul>
+
+</div>
+
+</body>
+</html>

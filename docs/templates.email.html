@@ -1,0 +1,159 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">E-mail Templates</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+With AutoGallery SQL's e-mail templates you can specify what information you want in an e-mail, what type of e-mail to send (text or HTML), and you can even
+include attachments with your e-mail.
+
+<br />
+<br />
+
+<b>Control Panel Editing Interface</b>
+
+<br />
+<br />
+
+All changes to your e-mail templates will be made through the control panel.  From the control panel menu, locate and click on the E-mail Messages
+link in the Templates section.  AutoGallery SQL will load a page where you will be able to select which of the template files you want to edit.  Select the
+template you want to edit from the list, and press the Load E-mail button.
+
+<br />
+<br />
+
+You will be returned to the same page, however now there will be several text input fields where you will enter the information to be used for the
+e-mail.  The first time you load a template, the default values will be loaded and displayed in these fields.  You can edit them how you like.
+
+<br />
+<br />
+
+<ul>
+<b>Subject</b> - This will be the subject of the e-mail<br />
+<b>Text</b> - If you want to send e-mails in text format, fill in this field with your message<br /> 
+<b>HTML</b> - If you want to send e-mails in HTML format, fill in this field with your message<br /> 
+<b>Attachments</b> - If you want to attach anything to the e-mail, select each item you want to attach
+</ul>
+
+<br />
+
+When you are satisfied with the changes you have made, click on the Save button at the top or bottom of the page.  All of the changes you make will
+be immediate.  The next time that e-mail is sent, the updated template will be used.
+
+<br />
+<br />
+
+<b>Attachments</b>
+
+<br />
+<br />
+
+If you want to attach any files to your e-mail messages you will first need to upload those files to the server.  They should be uploaded to the data/attachments
+directory of your AutoGallery SQL installation.  Once you have one or more files in that directory, the attachments selection field will be displayed when you edit your
+e-mail templates.  Only the attachments that you select will be sent, and you can select as many as you want.
+
+<br />
+<br />
+
+
+<b>Template Values</b>
+
+<br />
+<br />
+
+Each of the template files has it's own set of valid template values.
+
+<br />
+<br />
+
+<div class="tab">
+email_account.tpl
+</div>
+<div class="card">
+This is the e-mail that will be sent, if you choose to, when you create a new partner account
+<br /><br />
+##Account_ID## - This is the ID for the account<br />
+##Email## - This is the e-mail address for the account<br />
+##Password## - This is the password for the account<br />
+##Submit_URL## - This is the URL to the submit.cgi script on your server
+</div>
+
+<br />
+
+
+<div class="tab">
+email_approved.tpl
+</div>
+<div class="card">
+If you have the option enabled to contact submitters, this e-mail will be sent when a gallery is approved
+<br /><br />
+##Gallery_ID## - The ID number assigned to the gallery<br />
+##Email## - The e-mail address for the gallery<br />
+##Gallery_URL## - The URL for the gallery<br />
+##Description## - The description of the gallery<br />
+##Thumbnails## - The number of thumbnails on the gallery<br />
+##Category## - The category of the gallery<br />
+##Nickname## - The name/nickname of the gallery submitter
+</div>
+
+<br />
+
+
+<div class="tab">
+email_confirm.tpl
+</div>
+<div class="card">
+If you are using the e-mail confirmation option, this e-mail will be sent when a gallery is submitted
+<br /><br />
+##Confirm_ID## - The ID number needed to confirm the gallery submission<br />
+##Confirm_URL## - The URL where they will confirm the gallery submission
+</div>
+
+<br />
+
+
+<div class="tab">
+email_cpanel.tpl
+</div>
+<div class="card">
+This is the e-mail that will be sent, if you choose to, when you create a new control panel account
+<br /><br />
+##Username## - This is the username for the account<br />
+##Password## - This is the password for the account<br />
+##Email## - This is the e-mail address for the account<br />
+##Admin_URL## - This is the URL to the AutoGallery SQL control panel on your server
+</div>
+
+<br />
+
+<div class="tab">
+email_remind.tpl
+</div>
+<div class="card">
+This is the e-mail that will be sent when a partner requests their password
+<br /><br />
+##Username## - This is the username for the account<br />
+##Password## - This is the password for the account<br />
+##Submit_URL## - The full URL to the submission form
+</div>
+
+<br />
+
+</div>
+
+</body>
+</html>

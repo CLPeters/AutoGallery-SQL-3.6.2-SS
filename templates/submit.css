@@ -1,0 +1,70 @@
+<style>
+body
+{
+    font-weight:      Normal;
+    font-family:      Arial;
+    font-size:        13px;
+    color:            #000000;
+}
+
+
+select
+{
+    font-weight:      Normal;
+    font-family:      Arial;
+    font-size:        13px;
+}
+
+
+input
+{
+    font-weight:      Normal;
+    font-family:      Arial;
+    font-size:        13px;
+}
+
+
+td
+{
+    font-weight:      Bold;
+    font-family:      Arial;
+    font-size:        13px;
+}
+
+
+.link
+{
+    text-decoration:  None;
+    font-weight:      Bold;
+    font-family:      Arial;
+    font-size:        13px;
+}
+
+
+.small
+{
+    font-weight:      Normal;
+    font-family:      Verdana;
+    font-size:        11px;
+}
+
+
+.smalllink
+{
+    font-weight:      Normal;
+    font-family:      Verdana;
+    font-size:        11px;
+    text-decoration: none;
+    color:           DarkBlue;
+}
+
+.normal
+{
+    font-weight: normal;
+}
+
+.line-bottom
+{
+    border-bottom: 1px solid #afafaf;
+}
+</style>

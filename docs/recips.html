@@ -1,0 +1,124 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Reciprocal Links</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+With AutoGallery SQL it is possible to setup the HTML that you want submitters to use when they link back to you.  Once you have setup one or more reciprocal 
+links, AutoGallery SQL will check all submitted galleries to see if they have one.  You can optionally set AutoGallery SQL to reject galleries that do not have a link
+back to you, or you can give a rating boost to galleries that do.
+
+<br />
+<br />
+
+<b><a name="add">Adding</a></b>
+
+<br />
+<br />
+
+To add a reciprocal link, locate and click on the Reciprocal Links link in the Gallery Control section of the control panel menu.  AutoGallery SQL will load 
+a page where you can enter all of the information needed to setup a reciprocal link.
+
+<ul>
+<b>Identifier</b>
+<br />
+This is a short identifier which you can use to identify what reciprocal link you are working with.
+
+<br />
+<br />
+
+<b>Type</b>
+<br />
+This identifies who can use this reciprocal link.
+
+<br />
+<br />
+
+<ul>
+<b>General</b> - This reciprocal link can only be used by general submitters<br />
+<b>Partner</b> - This reciprocal link can only be used by those with a partner account<br />
+<b>Both</b> - This reciprocal link can be used by anyone
+</ul>
+
+<br />
+
+<b>HTML</b>
+<br />
+This is the HTML code that AutoGallery SQL should look for when searching a gallery for the reciprocal link
+
+</ul>
+
+Once you have entered everything how you want it, click on the Add/Update button to add the reciprocal link.  You can add as many reciprocal links
+as you want, and as long as a gallery has one of them it will be accepted.
+
+<br />
+<br />
+
+Note that AutoGallery SQL does not automatically add this HTML to your submit form.  You will either need to create a separate page with all of your valid
+reciprocal links and banners, or edit the submit_main.tpl template to add them there.
+
+<br />
+<br />
+
+<b>Wildcards</b>
+
+<br />
+<br />
+
+With any reciprocal link you can use wildcards.  Wildcards are specified by a * character, and tell AutoGallery SQL that anything can appear where the * is located.
+This is useful if your reciprocal link contains a banner, but you do not know the specific URL that will be used in the &lt;img&gt; tag.  For example:
+
+<ul>
+<xmp><a href="../../../../external.html?link=http://www.yoursite.com/"><img src="../../../images/banner.html"></a>
+</xmp>
+</ul>
+
+When you use this type of link, the submitting webmaster may want to put the banner.gif in a different location on his site.  In order for AutoGallery SQL to recognize
+any changes to the banner.gif location, you can use a wildcard:
+
+<ul>
+<xmp><a href="../../../../external.html?link=http://www.yoursite.com/"><img src="_/banner.html"></a>
+</xmp>
+</ul>
+
+<b><a name="update">Updating</a></b>
+
+<br />
+<br />
+
+To update an existing reciprocal link, make your way to the Reciprocal Links interface in the control panel.  Select the reciprocal link you want to edit from
+the drop down boxes at the top of the page.  AutoGallery SQL will load the settings for that reciprocal link, and you can edit it how you wish.  Make sure you leave the
+identifier the same or AutoGallery SQL will create a new reciprocal link.  Once you have made the changes you want, click on the Add/Update button.
+
+<br />
+<br />
+
+<b><a name="delete">Deleting</a></b>
+
+<br />
+<br />
+
+To delete an existing reciprocal link, make your way to the Reciprocal Links interface in the control panel.  Select the reciprocal link you want to delete from
+the drop down boxes at the top of the page.  AutoGallery SQL will load the settings for that reciprocal link.  Once the settings have been loaded, click on the Delete button.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

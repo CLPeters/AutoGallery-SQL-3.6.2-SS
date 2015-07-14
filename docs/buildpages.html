@@ -1,0 +1,279 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Page Building Overview</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+It is important to understand how the page building process works so that you know what to expect when you build your pages.  There are two different
+types of page builds and different ways to execute those page building functions, all of which will be covered in this document.  This will also
+cover some basic information about the galleries in your database and how they are handled and how the holding period works.
+
+<br />
+<br />
+
+<b>Overview of the Gallery Database</b>
+
+<br />
+<br />
+
+The gallery database stores all of the information about the galleries you have added to the database.  There are several ways to add galleries
+to the database including importing them, submitting them through the control panel, or using the submit.cgi script.  All of the galleries in
+your database have a status associated with them to let the software know which galleries can be selected from, which are currently being used, etc.
+Galleries with Unconfirmed or Pending status are not eligible for display on your TGP pages.  They must be approved before they can be shown on your
+TGP pages.  When you approve a gallery it will be placed in a queue which the software can then select from each time the page building process is
+executed.  These galleries have their status set to Approved.
+
+<br />
+<br />
+
+When an Approved gallery is selected for display, it's status changes to Used.  This means that the gallery has been selected for display and is currently
+being used on one or more of your TGP pages.  When this happens the display date is assigned to the gallery (more information on this later) so that the software
+can keep track of how "old" the gallery is.  The length of time that a gallery stays Used depends on the template configuration you are using and how often your
+pages are being updated with new galleries.  The gallery will remain Used until it is no longer displayed on at least one of your TGP pages.
+
+<br />
+<br />
+
+Once a gallery is no longer displayed on one of your TGP pages, it's status changes to Holding.  This means that the gallery is in a queue waiting to either be 
+deleted (for submitted galleries) or moved back to Approved status (for permanent galleries).  The holding period value (more on this below) determines when the
+gallery will be deleted or moved back to Approved.
+
+<br />
+<br />
+
+When the holding period elapses for permanent galleries, the gallery will be moved back to Approved status so that it can be selected for display again at some
+point in the future.  The click counter, build counter, and used counter will all be reset to 0 so that the gallery will start on an even
+playing field with other permanent galleries when it is once again selected for display. This entire process will repeat itself until the
+gallery is deleted from the database, which can either be done manually or by setting it's delete date.
+
+<br />
+<br />
+
+When the holding period elapses for submitted galleries, the gallery will be deleted from the database.  Submitted galleries do not get reused like permanent
+galleries do.  Once they are deleted it is not possible to restore them other than re-submitting the gallery.  If you want a submitted gallery to remain in the
+database, be sure to change it to a permanent gallery.
+
+<br />
+<br />
+
+<b>The Holding Period</b>
+
+<br />
+<br />
+
+AutoGallery SQL has two holding period settings, one for permanent galleries and one for submitted galleries.  This setting tells the software how long to
+keep a gallery in the holding queue after it is no longer being used on one of your TGP pages.  What happens to a gallery after the holding period elapses
+depends on the type of gallery.  Permanent galleries will be moved back to approved status and submitted galleries will be deleted from the database.
+
+<br />
+<br />
+
+For both holding period settings, the value represents the number of days since the gallery was first selected for display.  So, for example, if an Approved
+gallery is selected for display on 2005-02-01 (February 1st) and your holding period is set to 10, the soonest the gallery will move out of the holding queue
+is on 2005-02-11 (February 11th).  If for some reason you do not run the rebuild function on February 11th, the gallery will remain in the holding queue until you do.
+
+<br />
+<br />
+
+It is possible for a gallery in the holding queue to be selected for display on your TGP pages.  Each time a build is executed, the galleries in the holding queue will
+be treated as Used galleries so that they can be used on your TGP pages if needed.  For example, if some of your galleries were deleted by the gallery scanner you might
+end up with too few Used galleries to fill all of your pages.  In that case it is possible that a gallery in the holding queue will be selected for display.  Note that
+in some cases it is not possible for a holding gallery to be selected.  If you are using the MAXAGE option and there are no galleries in the holding queue that meet that
+criteria, they cannot be used in that section.
+
+<br />
+<br />
+
+Note that the holding period for permanent galleries is a very important setting and some consideration needs to be taken when determining what value you should
+use for that setting.  For example, say you have cron setup to automatically do a "Build With New" every 20 minutes and the page that you are building selects one new permanent
+gallery from the database each time it is updated.  This means that every day 72 new permanent galleries will be used on that page alone.  If you have your holding period set to 30, you will 
+need a bare minimum of 2160 permanent galleries in your database to support the number of new galleries you are displaying each day.  This does not take into account the other
+permanent galleries displayed on the same page, or other pages that you have that may also be selecting new permanent galleries.
+
+<br />
+<br />
+
+<b>Build Order</b>
+
+<br />
+<br />
+
+When you create or edit a TGP page you can set it's build order.  This tells the software what order the pages should be built in.  The page with the lowest number
+will be built first and the page with the highest number will be built last.  Depending on how you have decided to handle duplicate galleries (if you are allowing
+them or not) and how you are sorting your galleries, the build order may be of importance.  For example, say you have two pages that you want to be archive type
+pages, and on those pages you are displaying the galleries chronologically.  The first of the two pages that gets built will have the newer galleries, while the
+second page will have the older galleries.  If you did not have the build order set properly, the two might be flip-flopped and would be confusing to surfers 
+viewing your site who are expecting the oldest galleries to be on the second page.
+
+<br />
+<br />
+
+<b>Build Types</b>
+
+<br />
+<br />
+
+There are two different types of builds that you can do.  You will notice these referred to as "Build With New" and "Build" in the other sections of the
+software manual.  The two different build types will produce different results, so it is important to understand what each one does.
+
+<ul>
+<b>Build With New</b><br />
+When this type of build is done, new galleries can be selected from the database.  Any GALLERIES sections where the GETNEW option is set to True
+will cause new galleries to be selected from the Approved queue and displayed in those sections.  For GALLERIES sections where the GETNEW option is set
+to False, only galleries that have been used previously will be displayed in those sections (unless you are using filler galleries).  You can think of
+this as an update that adds new galleries and also re-orders the existing galleries.
+
+<br />
+<br />
+
+For this build type the ORDER option of the GALLERIES directive is used when sorting the galleries.  You can specify both the ORDER and REORDER options,
+however with this build type only the ORDER option will be used.  This is the case for all GALLERIES sections, no matter if the GETNEW option is True
+or False.
+
+<br />
+<br />
+
+Note that it is still possible for new permanent galleries to be selected from the database when the GETNEW option is set to False in one or more
+of your GALLERIES directives.  This is because of the filler galleries feature of the software.  If you have set the FILL option to True, the software will
+attempt to fill all of the GALLERIES sections by using extra permanent galleries where needed.  More information on filler galleries is available in the
+next section.
+
+<br />
+<br />
+
+<b>Build</b><br />
+When this type of build is done, new galleries will not be selected from the database.  Any GALLERIES sections where the GETNEW option is set to True
+will automatically be converted to False so that only previously used galleries will be displayed in that section. For GALLERIES sections where the GETNEW
+option is set to False, the value is unchanged and they work as normal.  You can think of this as an update that only re-orders the existing galleries
+instead of adding new galleries to your pages.
+
+<br />
+<br />
+
+For this build type the REORDER option of the GALLERIES directive is used when sorting the galleries.  You can specify both the ORDER and REORDER options,
+however with this build type only the REORDER option will be used.  This is the case for all GALLERIES sections, no matter if the GETNEW option is True
+or False.
+</ul>
+
+Every time a build is done, no matter what type, the TGP pages that you are building will be updated with any HTML code you have added to or removed from
+the template.  Any galleries that have been deleted from the database since the last build will also no longer appear on the page(s) that are being built.
+
+<br />
+<br />
+
+<b>Filler Galleries</b>
+
+<br />
+<br />
+
+In your GALLERIES sections you will have the option to specify if filler galleries should be used.  By default they are not used, but you can enable them
+by setting the FILL option to True.  If you have done this, the software will attempt to fill your GALLERIES sections with permanent galleries if there
+are not enough submitted galleries to fill it completely.  Because permanent galleries are used as the filler galleries, the FILL option should only be
+enabled for GALLERIES sections where the TYPE is set to Submitted.
+
+<br />
+<br />
+
+When filler galleries are enabled and you do a "Build With New" type of build, the software will select from the permanent galleries in your database
+that have Approved status.  For example, if you have a GALLERIES section that is setup to display 10 submitted galleries, but you only have 8 in the database
+the software will pull 2 Approved permanent galleries to fill in the extra 2 slots.  If you do not have any available Approved permanent galleries, you
+would still end up with empty spaces on your page.  If a gallery is selected from the pool of Approved galleries to be used as a filler gallery, it will go
+to Used status and have a display date assigned to it (more on this later).  It will then be eligible for display as a permanent Used gallery when you do a "Build"
+type of build.
+
+<br />
+<br />
+
+When filler galleries are enabled and you do a "Build" type of build, the software will first select from the permanent galleries in your database
+that have Used status.  If you do not have any Used permanent galleries in your database, the software will attempt to get some Approved permanent 
+galleries from your database.  If there still are not enough galleries available, you would end up with empty spaces on your page.
+
+<br />
+<br />
+
+<b>How the Display Date is Selected</b>
+
+<br />
+<br />
+
+When a gallery is selected from the Approved queue, a display date will be assigned to it.  This display date can then be used to track how old
+the gallery is, and allows you to have sections of galleries from yesterday, 2 days ago, etc.  In most cases, the display date is simply set to the date when the
+gallery was selected for display, however there are some special cases.  These special cases only occur when filler galleries are used in conjunction with the AGE,
+MAXAGE and/or MINAGE options of the GALLERIES directive.  Here are a few examples:
+
+<ul>
+<li> In all cases the software will attempt to use the date from the gallery displayed directly before the one it is working on.  If there was no previous gallery
+     it will use the rules listed below.
+
+     <br />
+     <br />
+
+<li> Filler galleries are selected from the Approved queue and the AGE option is set to 1<br />
+     In this case the display date will be set to yesterday's date.  The AGE option restricts that section to galleries that are 1 day old, so the display date
+     for the selected filler gallery has to be set to yesterday's date.
+
+     <br />
+     <br />
+
+<li> Filler galleries are selected from the Approved queue and the MAXAGE option is set to 5<br />
+     In this case the display date will be set to the current day's date.
+
+     <br />
+     <br />
+
+<li> Filler galleries are selected from the Approved queue and the MINAGE option is set to 2<br />
+     In this case the display date will be set to the date 2 days ago.  The value specified for the MINAGE option will
+     be used to determine the display date that will be assigned.
+
+     <br />
+     <br />
+
+<li> Filler galleries are selected from Approved queue, the MINAGE option is set to 2 and the MAXAGE option is set to 7<br />
+     In this case the display date will be set to the date 2 days ago.  This works the same as having only the MINAGE option specified.
+</ul>
+
+Because of these special cases you may sometimes notice that galleries have display dates in the past, which are even before the date that the gallery was
+added to the database.  This is completely normal, and is simply the result of how the filler galleries are selected.
+
+<br />
+<br />
+
+<b>Building From the Control Panel Interface</b>
+
+<br />
+<br />
+
+In the control panel menu there are two links for page building: Build Pages With New and Build Pages.  Build Pages With New will 
+execute a "Build With New" type of build and Build Pages will excute a "Build" type of build.  In both cases, all of your TGP pages
+will be built.
+
+<br />
+<br />
+
+<b>Building Through Cron</b>
+
+<br />
+<br />
+
+By using your server's cron system, you can have AutoGallery SQL run page building functions automatically at the times you specify.  This can be
+used to have AutoGallery SQL update your pages automatically once per day, once every hour, or however often you want.  For complete details on using
+cron with AutoGallery SQL, please see the <a href="cron.html" class="link">Cron</a> section of the manual.
+
+</div>
+
+</body>
+</html>

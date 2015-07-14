@@ -1,0 +1,239 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Blacklist/Whitelist</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+The blacklist feature of AutoGallery SQL can be used to block certain galleries from being submitted to your TGP.  AutoGallery SQL offers many different ways to blacklist
+galleries, and allows you to blacklist and delete a gallery at any time.  If you need assistance getting started with your blacklist, it may be benificial to look at
+the owner's forums.  Many times there are discussions about blacklists, and you can also post a message requesting other users blacklists.
+
+<br />
+<br />
+
+<b><a name="types">Types</a></b>
+
+<br />
+<br />
+
+AutoGallery SQL offers a total of seven different types of blacklists and the whitelist.  Each of the different types is very useful and will help you to keep your TGP clean.
+
+<ul>
+<b>HTML</b>
+<br />
+
+The HTML blacklist allows you to block any HTML or text from appearing on the submitted gallery.  You can use full HTML code, partial code, or plain
+text for your HTML blacklist.  If you want to blacklist a large, multi-line piece of HTML code, you will need to condense it into a single line.  Don't worry
+about this, as AutoGallery SQL will still be able to detect the blacklisted HTML even if it is spread across multiple lines on the gallery.  For example, say you want
+to blacklist the following HTML snippet:
+
+<ul>
+<xmp><a href="../../../../external.html?link=http://www.sponsor.com/ref.cgi?id=junk">
+<img src="banner.html" width="468" height="60">
+</a>
+</xmp>
+</ul>
+
+You will need to enter it in the blacklist as:
+
+<ul>
+<xmp><a href="../../../../external.html?link=http://www.sponsor.com/ref.cgi?id=junk"><img src="banner.html" width="468" height="60"></a>
+</xmp>
+</ul>
+
+<b>URL</b>
+<br />
+
+The URL blacklist allows you to block Full URLs, Partial URLs, domains, and directories from appearing in the Gallery URL field.  For example, if you got
+a submission from http://www.galleries.com/jimmy/girls/bianca.html and you wanted to block it from being submitted again, you could use any of the following:
+
+<br />
+<br />
+
+<ul>
+http://www.galleries.com/jimmy/girls/bianca.html<br />
+galleries.com/jimmy/girls/bianca.html<br />
+www.galleries.com<br />
+galleries.com<br />
+/jimmy/girls/<br />
+</ul>
+
+<br />
+
+<b>Domain IP</b>
+<br />
+
+The domain IP blacklist allows you to block the IP address of the webserver for a Gallery URL.  For example, if you wanted to block all galleries
+from www.galleries.com, you would enter the IP address of www.galleries.com in the Domain IP blacklist.  You need to be a bit careful with this
+blacklist, because you can potentially end up blocking hundreds of sites by blocking only one IP address.  Many servers today share IP addresses
+between multiple sites, so blocking one IP will block all of the sites which share that IP.
+
+<br />
+<br />
+
+On the other hand, blocking hundreds of sites by using only one IP address can also be a blessing.  Many times the bogus gallery submitters will have
+several domains all working from the same IP address.  You will be able to block these types of individuals by using only the one shared IP address, instead
+of entering all the domains.
+
+<br />
+<br />
+
+<b>DNS Server</b>
+<br />
+
+The DNS server IP blacklist allows you to block galleries using the specified DNS servers from your TGP.  This is a good way to block galleries from a large
+number of sites if you are having problems with them.  For example, if you are having problems with galleries that are hosted on RackShack's network, you could
+enter ns1.rackshack.net in the DNS blacklist.  Any domain that is using ns1.rackshack.net as it's DNS server will not be able to submit a gallery.
+<br />
+<br />
+
+
+<b>E-mail</b>
+<br />
+
+The e-mail blacklist allows you to block full e-mail addresses, e-mail usernames, or e-mail hostnames from submitting to your TGP.  For example, if you wanted
+to block jim755@hotmail.com from submitting to your TGP you could use any of the following:
+
+<br />
+<br />
+
+<ul>
+jim755@hotmail.com<br />
+jim755<br />
+hotmail.com<br />
+</ul>
+
+<br />
+
+Note that using only the e-mail hostname (ie hotmail.com) will block everyone with that hostname from submitting.
+
+<br />
+<br />
+
+<b>Submitter IP</b>
+<br />
+
+The submitter IP blacklist will allow you to block galleries being submitted from specified IP addresses.  When someone comes to your site and submits a gallery,
+their IP address can be checked against the submitter IP blacklist.  If you are having problems with a specific IP address, or range of IP addresses, you can use
+this blacklist to prevent them from submitting.
+
+<br />
+<br />
+
+<b>Word</b>
+<br />
+
+The Word blacklist allows you to block specified words from appearing in the Description or Name fields.  For example, if you don't want the word 'lolita' appearing
+in the gallery description, you can enter it in the word blacklist.
+
+<br />
+<br />
+
+<b>HTTP Headers</b>
+<br />
+
+The HTTP headers blacklist allows you to block specified strings from appearing in the HTTP headers returned from the server hosting the gallery.  For example, if you
+don't want to allow galleries that set cookies, you would add 'set-cookie' to the HTTP headers blacklist.
+
+<br />
+<br />
+
+<b>Whitelist</b>
+<br />
+
+The whitelist allows you to specify full URLs, partial URLs, domains, and directories that should be accepted into your gallery database even if they break some
+of your rules.  If a gallery URL matches any of the items in the whitelist, that gallery will be allowed to forward surfers to a different URL, and will not be
+checked against the blacklist.
+</ul>
+
+<b><a name="wildcards">Wildcards</a></b>
+
+<br />
+<br />
+
+With all of the blacklists you can use wildcards.  Wildcards are specified by a * character, and tell AutoGallery SQL that anything can appear where the * is located.
+This can be very useful for all of the blacklists.  Here are a few examples to get you pointed in the right direction.
+
+<br />
+
+<ul>
+192.168.1.*
+<br />
+To blacklist an entire range of IPs, use this format.  For this example, 192.168.1.0 through 192.168.1.255 would be blocked.  This can be used in
+both the Domain IP and Submitter IP blacklists.
+
+<br />
+<br />
+
+ns*.rackshack.net
+<br />
+To blacklist several DNS servers, use this format.  For this example, all of RackShack's DNS servers would be blocked.
+
+<br />
+<br />
+
+hotmail.*
+<br />
+To block someone that owns domain names with multple extensions (ie com, org, net, us), use this format.  This will work for the URL, DNS server, and
+E-mail blacklists
+</ul>
+
+<b><a name="add">Adding</a></b>
+
+<br />
+<br />
+
+To access the blacklist interface, locate and click on the Blacklist/Whitelist link the Gallery Control section of the control panel menu.  AutoGallery SQL will load a page
+where you can add, view, and delete your blacklisted items.
+
+<br />
+<br />
+
+To add to a blacklist, first select the type of item you want to blacklist from the drop down menu.  Once you have selected the type, enter each of the items
+you want to blacklist in the large text input field.  Make sure you place one item per line.  If there is an item that spans muliple lines, you need to condense
+it down so it is only one line.  Click on the Add button to add these items to the blacklist.
+
+<br />
+<br />
+
+You can click on any of the links in the Current Blacklist box to see your currently blacklisted items.
+
+<br />
+<br />
+
+<b><a name="delete">Deleting</a></b>
+
+<br />
+<br />
+
+To access the blacklist interface, locate and click on the Blacklist/Whitelist link the Gallery Control section of the control panel menu.  AutoGallery SQL will load a page
+where you can add, view, and delete your blacklisted items.
+
+<br />
+<br />
+
+To delete an already blacklisted item, first select the type of the item you want to remove from the drop down menu.  Once you have selected the type, enter
+each of the items you want to remove in the large text input field.  Make sure you place one item per line, and that the items match exactly with the item
+that you want to remove.  Click on the Remove button to remove these items from the blacklist.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Date and Time Formats</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL allows you to set the format that you want dates and times displayed in.  Many countries use differing formats to display
+their dates and times, so this feature will allow you to have your dates and times in a format that the majority of your visitors
+will understand.  The date and time format system used by AutoGallery SQL is based on the date and time format feature of MySQL.  If you have
+experience working with MySQL date and time formats, you'll have no problem with these.  Even if you don't, these formats are very 
+straightforward and easy to understand.
+
+<br />
+<br />
+
+<b>Changing Formats</b>
+
+<br />
+<br />
+
+The date and time formats you want to use are configured through AutoGallery SQL's Options interface.  In the control panel, click on the
+Edit Options link in the Setup section of the menu.  The options page will load, and you can scroll down to the Other
+Options section of the page.  In that section you will find the Date Format and Time Format fields. This is where you
+will make the changes to your date and time formats.  Once you have made the changes you want, press the Save Options button to
+save your new settings.
+
+<br />
+<br />
+
+Date and time format specifiers consist of a percent character followed by an alphabetic character.  You can find a complete list of these
+specifiers below for both dates and times.  Using a combination of these specifiers you can create complete date and time formats.  Note that
+AutoGallery SQL will only pay attention to the percent-alphabetic character combinations, all other characters in your date or time format will be left
+alone.  This allows you to use separators such as forward-slashes, dashes, and colons as you like.
+
+
+<br />
+<br />
+
+<b>Date Formats</b>
+
+<br />
+<br />
+
+<table cellspacing="5">
+<tr>
+<td>
+%M
+</td>
+<td>
+Month name (January..December)
+</td>
+</tr>
+<tr>
+<td>
+%W
+</td>
+<td>
+Weekday name (Sunday..Saturday)
+</td>
+</tr>
+<tr>
+<td>
+%Y
+</td>
+<td>
+Year, numeric, 4 digits
+</td>
+</tr>
+<tr>
+<td>
+%y
+</td>
+<td>
+Year, numeric, 2 digits
+</td>
+</tr>
+<tr>
+<td>
+%a
+</td>
+<td>
+Abbreviated weekday name (Sun..Sat)
+</td>
+</tr>
+<tr>
+<td>
+%d
+</td>
+<td>
+Day of the month, numeric (00..31)
+</td>
+</tr>
+<tr>
+<td>
+%e
+</td>
+<td>
+Day of the month, numeric (0..31)
+</td>
+</tr>
+<tr>
+<td>
+%m
+</td>
+<td>
+Month, numeric (00..12)
+</td>
+</tr>
+<tr>
+<td>
+%c
+</td>
+<td>
+Month, numeric (0..12)
+</td>
+</tr>
+<tr>
+<td>
+%b
+</td>
+<td>
+Abbreviated month name (Jan..Dec)
+</td>
+</tr>
+</table>
+
+<br />
+
+<b>Time Formats</b>
+
+<br />
+<br />
+
+<table cellspacing="5">
+<tr>
+<td>
+%H
+</td>
+<td>
+Hour (00..23)
+</td>
+</tr>
+<tr>
+<td>
+%k
+</td>
+<td>
+Hour (0..23)
+</td>
+</tr>
+<tr>
+<td>
+%h
+</td>
+<td>
+Hour (01..12)
+</td>
+</tr>
+<tr>
+<td>
+%l
+</td>
+<td>
+Hour (1..12)
+</td>
+</tr>
+<tr>
+<td>
+%i
+</td>
+<td>
+Minutes (00..59)
+</td>
+</tr>
+<tr>
+<td>
+%s
+</td>
+<td>
+Seconds (00..59)
+</td>
+</tr>
+<tr>
+<td>
+%p
+</td>
+<td>
+AM or PM
+</td>
+</tr>
+</table>
+
+</div>
+
+</body>
+</html>

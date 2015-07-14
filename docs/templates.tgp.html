@@ -1,0 +1,1002 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<style>
+.small
+{
+    color:       #afafaf;
+    font-family: Verdana;
+    font-size:   11px;
+}
+
+.blue
+{
+    color:       blue;
+}
+
+.directive
+{
+    font-family: Courier New;
+    font-size: 9pt;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+</style>
+<body>
+
+<div align="center">
+<span class="large">TGP Page Templates</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL has a powerful template system for setting up your TGP pages.  Not only do the templates allow you to specify the design you want
+for your TGP pages, they also determine how many galleries are displayed on a given page and how the galleries are sorted.  Once you have
+read this document and understand the template system for TGP pages, you should be able to create any type of page layout imaginable.
+
+<br />
+<br />
+
+<i>If you are having problems with your template or are getting a blank page when you rebuild, use our 
+<a href="template.html" class="link">template validator</a> to check your templates for errors</i>
+
+<br />
+<br />
+
+<b>Control Panel Editing Interface</b>
+
+<br />
+<br />
+
+All changes to your TGP page HTML will be made through the control panel.  From the control panel menu, locate and click on the
+Edit Templates link in the TGP Pages section.  AutoGallery SQL will load a page where you will be able to select which of your TGP pages you want
+to edit.  Select the page you want to edit from the list, and press the Load HTML button.
+
+<br />
+<br />
+
+You will be returned to the same page, however now there will be a large text input box where you will edit your HTML code.  The first
+time you do this, the text input box will contain AutoGallery SQL's default HTML.  You can edit that HTML or paste your own HTML code into
+this text input box.  When you are satisfied with the changes you have made, select the page that you want to save this HTML for and press
+the Save HTML button.  You can save the HTML for multiple pages by selecting all of the pages you want to save it for from the list.
+
+<br />
+<br />
+
+To update your actual TGP pages with the new HTML, you will need to run one of the page building functions.  See the 
+<a href="buildpages.html" class="link">Page Building Overview</a> section of the manual for more information on that.
+
+<br />
+<br />
+
+<b>Find and Replace</b>
+
+<br />
+<br />
+
+The built in Find and Replace function allows you to quickly and easily make changes to many of your pages at once.  You can access this function by clicking on the
+Find and Replace link in the TGP page template editing interface.  On the Find and Replace interface you will be able to select the pages you want to update, the item
+you want to search for, and the replacement for that item.
+
+<br />
+<br />
+
+<b>Before Making Changes</b>
+
+<br />
+<br />
+
+Before you start making changes to the default HTML, it is recommended that you look it over and try to understand it.  Seeing an example of how the template
+system works should make it easier for you to create your own templates.  It is also recommended that you add a few test galleries to see how they are
+displayed with the default template.
+
+<br />
+<br />
+
+The software distribution also contains serveral example templates that you can view.  They are all located in the examples directory of the software distribution.
+Each one has a short description telling you how the template works and then will show you the complete template code.  You may want to look at some of these examples
+before you start making changes so you can get some ideas on the template code you might need to use.
+
+<br />
+<br />
+
+<b>Directives</b>
+
+<br />
+<br />
+
+Your TGP page templates have several valid directives that you can use.  These are very important, as they determine where your galleries
+are placed on the page, how they are sorted, and how many are displayed.  Each of the directives is described below.
+
+<br />
+<br />
+
+<ul>
+<b class="blue">DEFINE</b>
+
+<div class="directive">
+&lt;%DEFINE<br />
+GLOBALDUPES True<br />
+PAGEDUPES False<br />
+DATEFORMAT %c-%e-%y<br />
+TIMEFORMAT %l:%i%p<br />
+%&gt;
+</div>
+
+The DEFINE directive allows you to set a value that will affect how the script builds your pages.  If you are going to use this directive
+it must appear at the very top of your template before any HTML code or other template commands.  There is currently only one option
+for the DEFINE directive, however more may be added in the future.
+
+<br />
+<br />
+
+<ul>
+<b>GLOBALDUPES</b> <span class="small">(required)</span><br />
+This value specifies if you want to allow galleries that have already been displayed on another page to be displayed on this page.
+Set this value to True if you want to allow repeats from other pages or False if you do not.  If you do not include the DEFINE directive
+this value will automatically be set to False.<br /><br />
+
+<b>PAGEDUPES</b> <span class="small">(required)</span><br />
+This value specifies if you want to allow galleries that have already been displayed on the current page to be displayed again on the same page.
+Set this value to True if you want to allow repeats on this page or False if you do not.  If you do not include the DEFINE directive
+this value will automatically be set to False.<br /><br />
+
+<b>DATEFORMAT</b> <span class="small">(optional)</span><br />
+Use this setting to override the global Date Format setting in the Edit Options interface.  If you want the date to appear using a different format
+on this page than on your other pages, you can configure the date format here.  The format is exactly the same as you would use in the Edit Options
+interface.<br /><br />
+
+<b>TIMEFORMAT</b> <span class="small">(optional)</span><br />
+Use this setting to override the global Time Format setting in the Edit Options interface.  If you want the time to appear using a different format
+on this page than on your other pages, you can configure the date format here.  The format is exactly the same as you would use in the Edit Options
+interface.
+</ul>
+
+<br />
+
+
+<b class="blue">TEMPLATE</b>
+
+<div class="directive">
+&lt;%TEMPLATE<br />
+NAME Text<br />
+HTML ##Date## &lt;a href="##Gallery_URL##" target="_blank"&gt;##Thumbnails## ##Category##&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+</div>
+
+TEMPLATE directives are basically macros that you can use to pre-define one or more HTML templates to use when displaying galleries.  Using the TEMPLATE
+directive is optional, but recommended.  When you use the TEMPLATE directive you won't have to specify the HTML for every GALLERIES directive you use.  
+If you are using one or more TEMPLATE directives, they should be the first things in your template, even before the opening &lt;html&gt; tag of your page.
+You can have as many TEMPLATE directives as you like, but each must have a unique value for the NAME option. Each of the available TEMPLATE options are
+described below.
+
+<br />
+<br />
+
+<ul>
+<b>NAME</b> <span class="small">(required)</span><br />
+An identifier for this template. You will use this identifier later with the HTML option of other directives.<br /><br />
+
+<b>HTML</b> <span class="small">(required)</span><br />
+The HTML code, including template values, that you want to use for this pre-defined template.  All of the HTML 
+code should be on one line.
+</ul>
+
+<br />
+
+<b class="blue">INCLUDE</b>
+
+<div class="directive">
+&lt;%INCLUDE<br />
+FILE /full/path/to/file.html<br />
+%&gt;
+</div>
+
+The INCLUDE directive allows you to have the entire contents of a file included on your TGP page each time the TGP pages are built.  This can be
+useful, for example, if you have a toplist program on your site and wanted to include a list of the top referring sites on your TGP page.
+
+<br />
+<br />
+
+<ul>
+<b>FILE</b> <span class="small">(required)</span><br />
+Use this option to specify the full directory path and filename of the file that should be included in your TGP page.  The software will read the
+entire contents of this file and insert them exactly where the INCLUDE directive appears in your template.  This will be done each time the TGP page
+is built.
+</ul>
+
+<br />
+
+
+<b class="blue">PERL</b>
+
+<div class="directive">
+&lt;%PERL<br />
+require '/full/path/to/functions.pl';<br />
+$data .= BannerAdvertisement();<br />
+%&gt;
+</div>
+
+The PERL directive is intended for advanced users who have a solid understanding of Perl code.  This directive allows you to insert raw Perl code
+directly into your TGP page template.  The Perl code will be executed each time your TGP pages are built.  This directive does not have any directive
+options, you simply place the Perl code you want to use inside the directive tags.  One important item to note is that there is a global variable
+named $data that you may need to use. The $data variable simply acts as a buffer that accumulates all of the HTML code for the TGP page as the galleries
+are pulled from the database.  Once the entire template has been processed the contents of the $data value are written to the actual TGP page.  If you
+want output to appear on the TGP page, you need to append information to the $data variable using the .= operator.  It is very important that you do
+not use the = operator to assign information to the $data variable, as that will wipe out any of the previous information stored in that value.  Here
+are a couple of examples:
+
+<ul>
+<div class="directive">
+&lt;%PERL<br />
+$data .= "Hello World";<br />
+%&gt;
+</div>
+
+This is a very simple example that demonstrates the use of the $data variable.  In this example, the text Hello World is simply added to the output.
+On your TGP page that text will appear exactly where the PERL directive was in your template.
+
+
+<div class="directive">
+&lt;%PERL<br />
+require '/full/path/to/functions.pl';<br />
+$data .= GetHTML();<br />
+%&gt;
+</div>
+
+This example shows how to require an external Perl script so that you can call a function in that script and append it's output to the $data variable.
+</ul>
+
+<br />
+<br />
+
+
+
+<b class="blue">CATEGORIES</b>
+
+<div class="directive">
+&lt;%CATEGORIES<br />
+AMOUNT All<br />
+HTML &lt;a href="##Page##"&gt;##Name##&lt;/a&gt;&lt;br /&gt;<br />
+ORDER Name<br />
+EXCLUDE Fetish,Hardcore<br />
+LETTERHTML &lt;br /&gt;&lt;b&gt;##First_Letter##&lt;/b&gt;&lt;br /&gt;<br />
+%&gt;
+</div>
+
+The CATEGORIES directive allows you to display your categories automatically on your TGP pages.  You can specify the HTML to use for each category and
+how the categories are sorted when they are displayed.
+
+<br />
+<br />
+
+<ul>
+<b>AMOUNT</b> <span class="small">(optional, defaults to All)</span><br />
+Use this option to specify how many categories should be displayed.  The default value, All, will display them all.  If you want to display fewer than that,
+specify the exact number you want to display.<br /><br />
+
+<b>HTML</b> <span class="small">(required)</span><br />
+Use this option to specify the HTML that should be used in this section.  You may either use HTML code, or put the name of
+one of your pre-defined templates here.  If you use HTML code, it must all be on one line.<br /><br />
+
+<b>ORDER</b> <span class="small">(optional, defaults to Name)</span><br />
+Use this option to specify how you want the categories sorted in this section.  All of the available sorting options are described
+in the Sorting section of this document.<br /><br />
+
+<b>EXCLUDE</b> <span class="small">(optional)</span><br />
+Use this option to specify a comma separated list of category names that should be excluded from the listing.  Your hidden categories are automatically
+excluded so you do not need to include them in this list.<br /><br />
+
+<b>LETTERHTML</b> <span class="small">(optional)</span><br />
+Use this option to specify the HTML code that should be inserted each time the first letter of the category name changes.  This can be used to separate
+categories into sections where the first letter of each category name is the same.<br /><br />
+
+<b>WHERE</b> <span class="small">(optional)</span><br />
+Use this option to specify the exact SQL WHERE clause that should be used to select the categories from the database.  You will need to have a solid
+understanding of SQL syntax to use this option.  The database fields you can use in the WHERE clause are listed below.
+
+<br /><br />
+
+<ul>
+<b>Name</b> - The category name<br />
+<b>Galleries</b> - The total number of approved and used galleries in this category as of the last build<br />
+<b>Used</b> - The total number of used galleries in this category as of the last build<br />
+<b>Clicks</b> - The total number of clicks that the galleries in this category have received
+</ul>
+</ul>
+
+<br />
+
+<b class="blue">GALLERIES</b>
+
+<div class="directive">
+&lt;%GALLERIES<br />
+HASTHUMB 1<br />
+TYPE Permanent<br />
+FORMAT Pictures<br />
+CATEGORY Mixed<br />
+AMOUNT 10<br />
+SPONSOR Any<br />
+HTML Thumb<br />
+WEIGHT >1.000<br />
+HEIGHT =100<br />
+WIDTH =100<br />
+GLOBALDUPES False<br />
+PAGEDUPES False<br />
+ORDER Build_Counter DESC<br />
+REORDER Build_Counter DESC<br />
+GETNEW False<br />
+FILL False<br />
+DESCREQ False<br />
+%&gt;
+</div>
+
+GALLERIES directives are the most important and will be used most often.  They control where your galleries are displayed, how many are displayed, and in
+what order they are displayed.  This directive may also contain sub-directives, which are described in the next section of this document.  Each of the
+available GALLERIES options are described below.
+
+<br />
+<br />
+
+<ul>
+<b>HASTHUMB</b> <span class="small">(optional, defaults to Any)</span><br />
+0, 1 or Any.  Setting this to 0 will only allow galleries that do not have a preview thumbnail.  Setting this to 1 will only allow
+galleries that have a preview thumbnail.  Setting this to Any will allow any gallery no matter if it has a preview thumbnail.<br /><br />
+
+<b>TYPE</b> <span class="small">(optional, defaults to Submitted)</span><br />
+Submitted, Permanent or Any.  Setting this to Submitted will allow only galleries of type Submitted to be displayed in this section.
+Setting this to Permanent will allow only galleries of type Permanent to be displayed in this section.  To display both permanent
+and submitted galleries mixed together use Any.<br /><br />
+
+<b>FORMAT</b> <span class="small">(optional, defaults to Any)</span><br />
+Pictures, Movies or Any.  Setting this to Pictures will allow only Picture galleries to be displayed in this section.
+Setting this to Movies will allow only Movies galleries to be displayed in this section.  Setting this to Any will allow both
+Pictures and Movies galleries to be displayed in this section.<br /><br />
+
+<b>CATEGORY</b> <span class="small">(optional, defaults to Mixed)</span><br />
+Use this option to restrict which categories can appear in this section of galleries.  If you want any category to be displayed, used the
+keyword Mixed.  If you want a specific category to be displayed, list the category name exactly as it appears in the control
+panel.  You may also use a list of several categories by separating each category by a comma.<br /><br />
+
+<b>EXCLUDE</b> <span class="small">(optional)</span><br />
+Use this option to exclude a category, or list of categories, that you do not want to appear in this section of galleries.  This should
+only be used when the CATEGORY option is set to Mixed.  If you want a specific category to be excluded, list the category name exactly as
+it appears in the control panel.  You may also use a list of several categories by separating each category by a comma.<br /><br />
+
+<b>AMOUNT</b> <span class="small">(required)</span><br />
+Use this option to specify how many galleries to display in this section.  Note that this is the amount of galleries that will be
+displayed by the top-level directive.  If you are using a GALLERIES sub-directive, this amount does not include those galleries.<br /><br />
+
+<b>SPONSOR</b> <span class="small">(optional, defaults to Any)</span><br />
+Any or a specific sponsor name.  Use this option to restrict which sponsors can appear in this section of galleries.  If you want any
+sponsor to be displayed, you can either leave this option out or set it to Any.  If you want a specific sponsor to be displayed, list
+the sponsor name exactly as it appears when you assigned it to one or more galleries.  You may also use a list of several sponsors by
+separating each sponsor by a comma.<br /><br />
+
+<b>HTML</b> <span class="small">(required)</span><br />
+Use this option to specify the HTML that should be used in this section.  You may either use HTML code, or put the name of
+one of your pre-defined templates here.  If you use HTML code, it must all be on one line.<br /><br />
+
+<b>WEIGHT</b> <span class="small">(optional, defaults to Any)</span><br />
+Use this option to specify what gallery weights can be displayed in this section.  You can use any type of comparison operator here, followed
+by the weight value that you want to restrict.  Below are all of the comparison options you can use.  Note that you are not restricted to
+using 1.000, that is only there as an example.  You can use any valid weight value in it's place.
+
+<br />
+<br />
+
+<ul>
+<b>= 1.000</b> - This will restrict the display to galleries that have a weight of exactly 1.000<br />
+<b>!= 1.000</b> - This will restrict the display to galleries that have a weight which is not exactly 1.000<br />
+<b>&gt; 1.000</b> - This will restrict the display to galleries that have a weight greater than 1.000<br />
+<b>&lt; 1.000</b> - This will restrict the display to galleries that have a weight less than 1.000<br />
+<b>&gt;= 1.000</b> - This will restrict the display to galleries that have a weight greater than or equal to 1.000<br />
+<b>&lt;= 1.000</b> - This will restrict the display to galleries that have a weight less than  or equal to 1.000<br />
+</ul>
+
+<br /><br />
+
+<b>HEIGHT</b> <span class="small">(optional, defaults to Any)</span><br />
+Use this option to restrict the thumbnail preview heights that can be displayed in this section.  You can use any type of comparison operator here,
+followed by the height value that you want to restrict.  This option uses the same comparison operators as the WEIGHT feild, the only difference
+is that this restricts the thumbnail height instead of the gallery's weight.  You can also use the keyword Any here to specify that thumbnails of
+all heights are allowed.<br /><br />
+
+<b>WIDTH</b> <span class="small">(optional, defaults to Any)</span><br />
+Use this option to restrict the thumbnail preview widths that can be displayed in this section.  You can use any type of comparison operator here,
+followed by the width value that you want to restrict.  This option uses the same comparison operators as the WEIGHT feild, the only difference
+is that this restricts the thumbnail width instead of the gallery's weight.  You can also use the keyword Any here to specify that thumbnails of
+all widths are allowed.<br /><br />
+
+<b>GLOBALDUPES</b> <span class="small">(optional, defaults to the GLOBALDUPES setting of the DEFINE directive)</span><br />
+Use this option to specify whether or not galleries which have already been displayed on other pages can be displayed in this section.
+This setting will override the GLOBALDUPES setting of the DEFINE directive.  If you set this to True, repeats will be allowed.  Setting
+this to False means that no repeats will be allowed.<br /><br />
+
+<b>PAGEDUPES</b> <span class="small">(optional, defaults to the PAGEDUPES setting of the DEFINE directive)</span><br />
+Use this option to specify whether or not galleries which have already been displayed on this page can be displayed in this section.  
+This setting will override the PAGEDUPES setting of the DEFINE directive.  If you set this to True, repeats will be allowed.  Setting
+this to False means that no repeats will be allowed.<br /><br />
+
+<b>ORDER</b> <span class="small">(optional, defaults to Build_Counter)</span><br />
+Use this option to specify how you want the galleries sorted in this section.  This sorting method will be used when a "Build With New" is
+done (see the <a href="buildpages.html" class="link">Page Building Overview</a>).  All of the available sorting options are described
+in the Sorting section of this document.<br /><br />
+
+<b>REORDER</b> <span class="small">(optional, defaults to Build_Counter)</span><br />
+Use this option to specify how you want the galleries sorted in this section.  This sorting method will be used when a "Build" is
+done (see the <a href="buildpages.html" class="link">Page Building Overview</a>).  All of the available sorting options are described
+in the Sorting section of this document.<br /><br />
+
+<b>MINAGE</b> <span class="small">(optional)</span><br />
+Use this to specify the minimum age of galleries that can appear in this section.  If you are using this value, it should be a non-negative integer.  For example, setting
+this to 1 means that the gallery must be at least one day old to be displayed in this section.  Valid values start from 0 (for today) and continue upwards (1,2,3,etc).<br /><br />
+
+<b>MAXAGE</b> <span class="small">(optional)</span><br />
+Use this to specify the maximum age of galleries that can appear in this section.  If you are using this value, it should be a non-negative integer.  For example, setting
+this to 5 means that the gallery must be at most 5 days old to be displayed in this section.  Valid values start from 0 (for today) and continue upwards (1,2,3,etc).<br /><br />
+
+<b>AGE</b> <span class="small">(optional)</span><br />
+Use this value to specify an exact age of galleries that can appear in this section.  If you are using this value, it should be a non-negative integer.  For example, setting
+this to 2 means that the gallery must be exactly 2 days old.  Valid values start from 0 (for today) and continue upwards (1,2,3,etc).
+<span style="color: #cc0000">This option cannot be used if you are using the MAXAGE or MINAGE options</span><br /><br />
+
+<b>GETNEW</b> <span class="small">(optional, defaults to False)</span><br />
+Use this value to specify if new galleries should be selected from the database.  This can either be True or False.  When this value is set to True, galleries with
+Approved status will be selected for display when a "Build With New" type of build is done.  When this value is set to False, galleries that have previously been
+selected for display from Approved status will be used.  More information on this can be found in the <a href="buildpages.html" class="link">Page Building Overview</a>.<br /><br />
+
+<b>ALLOWUSED</b> <span class="small">(optional, defaults to False)</span><br />
+Use this value to specify if previously used galleries should be allowed in this section even when the GETNEW option is set to True and a "Build With New" type of build
+is being executed.  This can either be True or False.  When this value is set to True, previously used galleries will be used in this GALLERIES section if there are not
+enough Approved galleries available to fill the entire section when a "Build With New" type of build is done.<br /><br />
+
+<b>WHERE</b> <span class="small">(optional)</span><br />
+This is an advanced option that allows you to specify the exact WHERE clause that will be sent to MySQL to select galleries from 
+the database.  This will be used when doing a "Build With New".  More information on this can be found in the 
+<a href="where.html" class="link">Using the WHERE Option</a> section of the software manual.<br /><br />
+
+<b>REWHERE</b> <span class="small">(optional, defaults to WHERE value that was defined)</span><br />
+This is an advanced option that allows you to specify the exact WHERE clause that will be sent to MySQL to select galleries from 
+the database.  This will be used when doing a "Build".  More information on this can be found in the 
+<a href="where.html" class="link">Using the WHERE Option</a> section of the software manual.<br /><br />
+
+<b>FILL</b> <span class="small">(optional, defaults to False)</span><br />
+Use this option to specify if this section should be filled with permanent galleries if there are not enough submitted galleries to
+fill the entire section.  Setting this value to True will cause filler galleries to be used.  Setting this to False will
+prevent filler galleries from being used.  This should only be enabled in GALLERIES sections where the TYPE is set to Submitted.<br /><br />
+
+<b>FILLORDER</b> <span class="small">(optional, Times_Selected, Approve_Stamp)</span><br />
+Use this option to specify how you want the filler galleries sorted in this section.  This sorting method will be used when a "Build With New" is
+done (see the <a href="buildpages.html" class="link">Page Building Overview</a>).  All of the available sorting options are described
+in the Sorting section of this document.<br /><br />
+
+<b>FILLREORDER</b> <span class="small">(optional, defaults to Build_Counter)</span><br />
+Use this option to specify how you want the filler galleries sorted in this section.  This sorting method will be used when a "Build" is
+done (see the <a href="buildpages.html" class="link">Page Building Overview</a>).  All of the available sorting options are described
+in the Sorting section of this document.<br /><br />
+
+<b>DESCREQ</b> <span class="small">(optional, defaults to False)</span><br />
+Use this value to specify if galleries must have a description to appear in this section.  Set this value to True to require that any
+gallery displayed in this section have a defined description, or False if a description is not required.<br /><br />
+
+<b>TRIMDESC</b> <span class="small">(optional)</span><br />
+Use this value to specify if long gallery descriptions should be shortened.  This option should be set to the maximum description length
+that you want to allow.  Longer descriptions will be truncated to that length and then have ... appended to them.  For example, if you set
+this to 15, any description that has more than 15 characters will be truncated to that length.<br /><br />
+
+<b>DATEHTML</b> <span class="small">(optional)</span><br />
+Use this option to specify the HTML that should be used when the display date changes from one submitted gallery to the next.  This can
+be used to insert HTML code each time the display date changes, thus producing an affect where your galleries are separated out
+by their display date.<br /><br />
+
+<b>KEYWORDS</b> <span class="small">(optional)</span><br />
+Use this option to specify a comma separated list of words that appears in a gallery's keywords list.  For example if you wanted
+to show galleries that had the words 'bikini' or 'swimsuit' in the keywords list you can use bikini,swimsuit for this setting<br /><br />
+
+<b>DATEFORMAT</b> <span class="small">(optional)</span><br />
+Use this setting to override the global Date Format setting in the Edit Options interface and the DATEFORMAT option of the DEFINE directive.  If you
+want the date to appear using a different format in this GALLERIES section than on your other sections, you can configure the date format here.  The
+format is exactly the same as you would use in the Edit Options interface.
+</ul>
+
+<br />
+
+<b class="blue">RANDOM</b>
+
+<div class="directive">
+&lt;%RANDOM<br />
+FILE random.txt<br />
+AMOUNT 30<br />
+HTML Text<br />
+%&gt;
+</div>
+
+The RANDOM directive is used to display one or more random galleries taken from text files.  Each of the available RANDOM options are described below.
+
+<br />
+<br />
+
+<ul>
+<b>FILE</b> <span class="small">(required)</span><br />
+This is the file that the random galleries should be taken from.  More details on this file can be found in the
+<a href="randomgalleries.html" class="link">Random Galleries</a> section of the documentation.<br /><br />
+
+<b>AMOUNT</b> <span class="small">(required)</span><br />
+Use this option to specify how many random galleries should be displayed in this section.<br /><br />
+
+<b>HTML</b> <span class="small">(required)</span><br />
+Use this option to specify the HTML that should be used in this position.  You may either use HTML code, or put the name of
+one of your pre-defined templates here.  If you use HTML code, it must all be on one line.
+</ul>
+
+</ul>
+
+<b>GALLERIES Sub-Directives</b>
+
+<br />
+<br />
+
+The GALLERIES directive allows you to include sub-directives so that you can insert galleries and other HTML in the middle
+of the section of galleries.  An example of a GALLERIES directive that contains sub-directive is:
+
+<div class="directive">
+&lt;%GALLERIES<br />
+TYPE Submitted<br />
+CATEGORY Mixed<br />
+AMOUNT 100<br />
+ORDER Build_Counter<br />
+HTML Text<br />
+<br />
+SWITCH<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOCATION 50<br />
+&nbsp;&nbsp;&nbsp;&nbsp;HTML New Text<br />
+}<br />
+<br />
+GALLERIES<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOCATION +5<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPE Permanent<br />
+&nbsp;&nbsp;&nbsp;&nbsp;HTML Text<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CATEGORY Mixed<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ORDER RAND() * Weight DESC<br />
+}<br />
+<br />
+RANDOM<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOCATION +10<br />
+&nbsp;&nbsp;&nbsp;&nbsp;HTML Text<br />
+&nbsp;&nbsp;&nbsp;&nbsp;FILE random.txt<br />
+}<br />
+<br />
+INSERT<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOCATION 3,6,12<br />
+&nbsp;&nbsp;&nbsp;&nbsp;HTML &lt;/td&gt;&lt;td&gt;<br />
+}<br />
+%&gt;
+</div>
+
+The SWITCH, INSERT, RANDOM and GALLERIES values are the sub-directives.  Note that the options for the sub-directives are enclosed in curly braces; this must
+always be done.  In this example, the options for the sub-directives have been indented.  This is not required, but does make them easier to
+locate and read.
+
+<ul>
+<b class="blue">GALLERIES</b>
+
+<br />
+<br />
+
+This sub-directive is basically the same as the GALLERIES base-level directive.  The only difference is that in the sub-directive you need
+to specify the LOCATION option instead of the AMOUNT option.  The LOCATION option tells the software where to place the galleries within
+this section.  In most cases you will use this sub-directive to insert permanent galleries at locations within a list of submitted galleries
+or vice versa.  All of the options from the base-level directive will work here except FILL, FILLORDER and FILLREORDER.
+
+<br />
+<br />
+
+<ul>
+<b>LOCATION</b> <span class="small">(required)</span><br />
+This option tells AutoGallery SQL where to insert the galleries.  There are three ways you can specify a location: a single
+insertion, multiple insertions, or multiple insertions at regular intervals.  To specify a single insertion, enter the location
+as a number by itself.  To specify multiple insertions, enter a comma separated list of locations.  To specify multiple insertions
+at regular intervals, enter the interval with a + sign in front of it.  The location numbers you use are relative to the section
+you are working with.  For each new section, the count starts over, so no matter what section you are in if you want a gallery
+inserted after the 5th gallery in the section you would use a 5.  Here are a few examples:
+
+<br />
+<br />
+
+<ul>
+3,7,10 - This will insert galleries after the 3rd, 7th, and 10th normal galleries.<br />
++5 - This will insert a gallery after each 5th gallery.<br />
+25 - This will insert a gallery only after the 25th gallery.
+</ul>
+</ul>
+
+<br />
+
+<b class="blue">RANDOM</b>
+
+<br />
+<br />
+
+This sub-directive is basically the same as the RANDOM base-level directive.  The only difference is that in the sub-directive you need
+to specify the LOCATION option so that AutoGallery SQL knows where to place the random galleries within this section.
+
+<br />
+<br />
+
+<ul>
+<b>LOCATION</b> <span class="small">(required)</span><br />
+This is exactly the same as the LOCATION option for the GALLERIES sub-directive.<br /><br />
+
+<b>FILE</b> <span class="small">(required)</span><br />
+This is the file that the random galleries should be taken from.  More details on this file can be found in the
+<a href="randomgalleries.html" class="link">Random Galleries</a> section of the documentation.<br /><br />
+
+<b>HTML</b> <span class="small">(optional, defaults to the HTML of the GALLERIES directive)</span><br />
+Use this option to specify the HTML that should be used in this position.  You may either use HTML code, or put the name of
+one of your pre-defined templates here.  If you use HTML code, it must all be on one line.
+</ul>
+
+<br />
+
+<b class="blue">INSERT</b>
+
+<br />
+<br />
+
+This sub-directive is used to insert specified HTML code at the positions that you want.  This should be used when you want to insert
+HTML that does not relate to a gallery.  Generally this will be used for formatting or displaying hard-coded links and advertisements
+within your list of galleries.
+
+<br />
+<br />
+
+The INSERT sub-directive can also be used in your CATEGORIES directives to insert HTML code after each category listing.
+
+<br />
+<br />
+
+<ul>
+<b>LOCATION</b> <span class="small">(required)</span><br />
+This is exactly the same as the LOCATION option for the GALLERIES sub-directive.<br /><br />
+
+<b>HTML</b> <span class="small">(required)</span><br />
+Use this option to specify the HTML that should be used for the insertion.
+</ul>
+
+<br />
+
+<b class="blue">SWITCH</b>
+
+<br />
+<br />
+
+This sub-directive allows you to change the template that is being used for the galleries.
+
+<br />
+<br />
+
+<ul>
+<b>LOCATION</b> <span class="small">(required)</span><br />
+This option tells AutoGallery SQL what gallery positions should use the different template.  There are three ways you can specify a location:
+a single changeover point, multiple locations, or multiple locations at regular intervals.  To specify a single changeover point, enter the location
+as a number by itself.  To specify multiple locations, enter a comma separated list of locations.  To specify multiple locations
+at regular intervals, enter the interval with a + sign in front of it.  The location numbers you use are relative to the section
+you are working with.  For each new section, the count starts over, so no matter what section you are in if you want a template
+change for the 5th gallery in the section you would use a 5.  The new template will only be used for the parent GALLERIES directive
+it will not be used in the GALLERIES sub-directive.  Here are a few examples:
+
+<br />
+<br />
+
+<ul>
+3,7,10 - This will use the new template for the 3rd, 7th, and 10th galleries.<br />
++5 - This will use the new template for every 5th gallery.<br />
+25 - This will use the new template for the 25th gallery and every one thereafter.
+</ul>
+
+<br />
+<b>HTML</b> <span class="small">(required)</span><br />
+Use this option to specify the HTML that should be used in this position.  You may either use HTML code, or put the name of
+one of your pre-defined templates here.  If you use HTML code, it must all be on one line.
+</ul>
+
+</ul>
+
+<br />
+<br />
+
+<b>Sorting in GALLERIES sections</b>
+
+<br />
+<br />
+
+The GALLERIES directive allows you to specify how you want the galleries sorted when they are displayed by using the ORDER and REORDER options.
+AutoGallery SQL offers you several options for sorting your galleries.  Each of the options is listed below.
+
+<ul>
+<li> Display_Date<br />
+     The date that the gallery was selected for display from Approved status.<br />
+     This should only be used when the GETNEW option is set to False.<br />
+     Galleries with Approved status do not yet have a Display_Date Defined.
+     <br />
+     <br />
+
+<li> Approve_Stamp<br />
+     This is a timestamp of when the gallery was approved.
+     <br />
+     <br />
+
+<li> Times_Selected<br />
+     The number of times the gallery has been selected for display from Approved status.
+     <br />
+     <br />
+
+<li> Clicks<br />
+     The number of visitors that have clicked on the gallery link.<br />
+     You must be using the <a href="clicktracking.html" class="link">click tracking</a> feature of the software for this to work.
+     <br />
+     <br />
+
+<li> Build_Counter<br />
+     A counter that increments for all Used and Holding galleries each time a page build is done.
+     <br />
+     <br />
+
+<li> Used_Counter<br />
+     A counter that increments for all galleries that are used during a page build.
+     <br />
+     <br />
+
+<li> Weight<br />
+     The gallery's weight, as it was assigned through the control panel.
+     <br />
+     <br />
+
+<li> RAND()<br />
+     This will generate a random number, which will cause the galleries to be sorted randomly.
+     <br />
+     <br />
+
+<li> Thumbnails<br />
+     The number of thumbnails on the gallery.
+</ul>
+
+All of these values can be modified with DESC to sort in descending order instead of ascending order.  Additionally, these values may be combined together to
+generate sub-sorting options.  We'll give a few examples of what will probably be commonly used sorting options.
+
+<ul>
+<li> Build_Counter<br />
+     This is the default value that is used if one is not provided.  This will sort galleries based on how many builds have been done since they were 
+     selected for display, effectively giving you the galleries in order from newest to oldest.
+     <br />
+     <br />
+
+<li> Clicks DESC<br />
+     This will sort galleries by the number of visitors that have clicked on the gallery link, with the most clicked galleries coming first.
+     <br />
+     <br />
+
+<li> (Clicks/Build_Counter) DESC<br />
+     This will generate a "productivity" value for each gallery and sort the galleries by their productivity.  Galleries with the highest
+     productivity will be displayed first.
+     <br />
+     <br />
+
+<li> Weight DESC<br />
+     This will sort galleries by the gallery's assigned weight, with the highest weighted galleries coming first.
+     <br />
+     <br />
+
+<li> Weight * RAND() DESC<br />
+     This will sort galleries by the gallery's assigned weight multiplied by a random number.  Galleries with a larger weight will have a better chance
+     of being displayed before galleries that have a lower weight.
+     <br />
+     <br />
+
+<li> RAND()<br />
+     This will cause galleries to be displayed completely random.
+     <br />
+     <br />
+</ul>
+
+
+<b>Sorting in CATEGORIES sections</b>
+
+<br />
+<br />
+
+The CATEGORIES directive allows you to specify how you want the galleries sorted when they are displayed by using the ORDER option.
+Each of the options is listed below.
+
+<ul>
+<li> Name<br />
+     The category name as it appears in the Manage Categories interface
+     <br />
+     <br />
+
+<li> Used<br />
+     The total number used galleries in this category
+     <br />
+     <br />
+
+<li> Galleries<br />
+     The total number used and approved galleries in this category
+     <br />
+     <br />
+
+<li> Clicks<br />
+     The total number of clicks that the used galleries in this category have received
+     <br />
+     <br />
+
+<li> Build_Counter<br />
+     The total number of builds that the used galleries in this category have gone through
+</ul>
+
+All of these values can be modified with DESC to sort in descending order instead of ascending order.  Additionally, these values may be combined together to
+generate sub-sorting options.  We'll give a few examples of what will probably be commonly used sorting options.
+
+<ul>
+<li> Name<br />
+     Use this to sort the categories alphabetically.  Categories starting with a number will come first, followed by the letter A on down through the alphabet.
+     <br />
+     <br />
+
+<li> Clicks/Build_Counter DESC<br />
+     This will generate an average productivity value for the galleries in this category and then sort the categories based on which has the highest average productivity.
+     The highest will come first and the lowest will come last.
+     <br />
+     <br />
+
+<li> Galleries DESC<br />
+     This will sort the categories based on the number of used and approved galleries currently in the database in each category.  The category with the most used and approved
+     galleries will be displayed first.
+</ul>
+
+
+<b>Template Values</b>
+
+<br />
+<br />
+
+Your TGP pages have many template values available.  Some can be used anywhere on the page, and some can only be used in the HTML option
+of certain directives.  All of the available template values and the locations where they can be used are described below.
+
+<ul>
+<b>Anywhere, except inside directives</b>
+
+<br />
+<br />
+
+##Thumbnails## - The number of thumbnails linked to from the current page<br />
+##Galleries## - The number of gallery links on the current page<br />
+##Total_Thumbs## - The total number of thumbnails in the database<br />
+##Total_Galleries## - The total number of galleries in the database<br />
+##Script_URL## - The base installation URL of AutoGallery SQL<br />
+##Category## - The category of the current page<br />
+##CATEGORY## - The same as ##Category## but in all uppercase letters<br />
+##category## - The same as ##Category## but in all lowercase letters<br />
+##FixedCategory## - The category of the current page (all non-alphanumeric characters removed, no change to text case)<br />
+##Fixed-Category## - The category of the current page (all non-alphanumeric characters replaced with dash, no change to text case)<br />
+##Fixed_Category## - The category of the current page (all non-alphanumeric characters replaced with underscore, no change to text case)<br />
+##fixedcategory## - The category of the current page (all non-alphanumeric characters removed, all letters lowercase)<br />
+##fixed-category## - The category of the current page (all non-alphanumeric characters replaced with dash, all letters lowercase)<br />
+##fixed_category## - The category of the current page (all non-alphanumeric characters replaced with underscore, all letters lowercase)<br />
+##Updated## - The date and time the current page was last updated<br />
+##Updated_Date## - The date the current page was last updated<br />
+##Updated_Time## - The time the current page was last updated<br />
+##Weekday## - The current day's name (ie Wednesday)<br />
+##Weekday-1## - Yesterday's name (ie Tuesday).  You can continue up to -9 to get previous days' names<br />
+##Today## - The current day's date<br />
+##Today-1## - Yesterday's date.  You can continue up to -9 to get previous days' dates
+
+<br />
+<br />
+
+<b>HTML option of TEMPLATE and GALLERIES directives</b>
+
+<br />
+<br />
+
+##Gallery_ID## - The ID number of the gallery<br />
+##Gallery_URL## - The gallery URL<br />
+##Encoded_URL## - The gallery URL that has been encoded for use in a query string<br />
+##Rss_URL## - The gallery URL that has been encoded for use in a RSS feed<br />
+##Description## - The full gallery description<br />
+##Trimmed_Description## - The gallery description trimmed down to the length specified in the TRIMDESC option<br />
+##Rss_Description## - The gallery description that has been encoded for use in a RSS feed<br />
+##Thumbnails## - The number of thumbnails on the gallery<br />
+##Category## - The category of the gallery<br />
+##Sponsor## - The sponsor value assigned to the gallery<br />
+##Thumbnail_URL## - The URL to the gallery's preview thumbnail<br />
+##Thumb_Width## - The width of the preview thumbnail<br />
+##Thumb_Height## - The height of the preview thumbnail<br />
+##Weight## - The weight assigned to the gallery<br />
+##Nickname## - The name of the gallery submitter<br />
+##Clicks## - The number of clicks the gallery has received<br />
+##Productivity## - The result of dividing Clicks by Build_Counter<br />
+##Format## - The gallery format, either Pictures or Movies<br />
+##Icons## - The HTML code for any icons assigned to this gallery<br />
+##Times_Selected## - The number of times the gallery has been selected for display from Approved status<br />
+##Used_Counter## - The number of times the gallery has been used during a build<br />
+##Build_Counter## - The number of builds that have occurred since the gallery was selected for display<br />
+##Keywords## - The keywords value assigned to the gallery<br />
+##Date## - The gallery's display date that was assigned when it was selected for display<br />
+##Last_Date## - The date from the previous submitted gallery that was displayed<br />
+##Today## - The current day's date<br />
+##Cheat_URL## - The full URL that surfers should visit to report this gallery as a cheater
+
+<br />
+<br />
+
+<b>DATEHTML option of GALLERIES directives</b>
+
+<br />
+<br />
+
+##Date## - The display date of the next gallery to be displayed
+
+<br />
+<br />
+
+<b>HTML option of RANDOM directives</b>
+
+<br />
+<br />
+
+##Gallery_URL## - The gallery URL<br />
+##Thumbnail_URL## - The URL to the gallery's preview thumbnail<br />
+##Description## - The gallery description<br />
+##Thumbnails## - The number of thumbnails on the gallery<br />
+##Category## - The category of the gallery<br />
+##Nickname## - The name assigned to this permanent gallery<br />
+##Date## - The display date from the gallery displayed directly before this one<br />
+##Today## - The current day's date
+
+<br />
+<br />
+
+<b>HTML option of CATEGORIES directives</b>
+
+<br />
+<br />
+
+##Name## - The category name<br />
+##Page## - The first category page (based on build order) for this category.  If you do not have category pages, this will be empty<br />
+##Galleries## - The total number of approved and used galleries in this category as of the last build<br />
+##Used## - The total number of used galleries in this category as of the last build<br />
+##Clicks## - The total number of clicks that the galleries in this category have received
+
+<br />
+<br />
+
+<b>LETTERHTML option of CATEGORIES directives</b>
+
+<br />
+<br />
+
+##First_Letter## - The first letter of the next category name to be displayed
+
+</ul>
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

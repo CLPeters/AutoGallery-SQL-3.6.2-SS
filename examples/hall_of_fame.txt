@@ -1,0 +1,174 @@
+Overview
+--------
+This template is an all thumbnail template that will display a top section
+that is a "Hall of Fame".  Galleries in this section are sorted by their 
+productivity, with the most productive at the top.  There are two other sections
+which display new galleries and galleries from yesterday.  This is designed
+to have a "Build With New" run once per day and several "Build" type builds
+run to re-order the hall of fame.
+
+The first GALLERIES section is the hall of fame.  It will display galleries that
+are between 1 and 7 days old and will sort them by their productivity.  Once a gallery
+is older than 7 days it will no longer be eligible for display in this section.
+No new galleries will ever show up in this section, it will only display previously
+used galleries that have had a chance to accumulate clicks.
+
+The second GALLERIES section is where the new galleries will be added.  20 new thumbnails
+will be added in this section each time a "Build With New" is executed.  When a "Build"
+type of build is executed, the galleries will be displayed in the same order.
+
+The final GALLERIES section is where the galleries from yesterday will be displayed.
+20 thumbnails that were dislayed in the new galleries section yesterday will appear
+here.  Notice that the PAGEDUPES option is set to True so that even if a gallery
+from yesterday appears in the hall of fame it can also appear in this section.  You
+can change that to meet your needs, however if you do disable it you will probably
+want to enable the FILL option so that this section will not have empty spots from
+the galleries that show in the hall of fame.
+
+Make sure you configure the go.php click tracking script as described in the software
+manual and place it in the same directory as your TGP pages.
+
+
+
+
+Template Code
+-------------
+<%DEFINE
+GLOBALDUPES True
+PAGEDUPES False
+%>
+
+<%TEMPLATE
+NAME Text
+HTML ##Date## <a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##" target="_blank">##Thumbnails## ##Category##</a><br />
+%>
+
+<%TEMPLATE
+NAME Thumb
+HTML <td><a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##" target="_blank"><img src="##Thumbnail_URL##" border="0" alt="Thumb"></a></td>
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>TGP</title>
+<style type="text/css">
+body { font-size: 12px; font-family: Verdana; }
+td { font-size: 12px; font-family: Verdana; }
+.jmbfoot { font-size: 11px; font-family: Verdana; }
+.jmblink { font-size: 11px; font-family: Verdana; }
+</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+
+<div align="center">
+<span style="font-size: 20pt; font-weight: bold;">TGP</span><br />
+Links to ##Thumbnails## free pictures and movies!<br />
+Updated ##Updated_Date##
+</div>
+
+
+<br />
+
+<table align="center" cellpadding="5" border="0">
+<tr>
+<td colspan="5">
+<span style="font-size: 18pt; font-weight: bold;">Hall Of Fame</span>
+</td>
+</tr>
+<tr>
+<%GALLERIES
+HASTHUMB 1
+TYPE Submitted
+CATEGORY Mixed
+AMOUNT 20
+GETNEW False
+MINAGE 1
+MAXAGE 7
+ORDER (Clicks/Build_Counter) DESC
+HTML Thumb
+
+INSERT
+{
+    LOCATION +5
+    HTML </tr><tr>
+}
+%>
+</tr>
+</table>
+
+<br />
+<br />
+
+<!-- New Galleries Added Here -->
+<table align="center" cellpadding="5" border="0">
+<tr>
+<td colspan="5">
+<span style="font-size: 18pt; font-weight: bold;">Today's Galleries</span>
+</td>
+</tr>
+<tr>
+<%GALLERIES
+HASTHUMB 1
+TYPE Submitted
+CATEGORY Mixed
+AMOUNT 20
+GETNEW True
+AGE 0
+ORDER Approve_Stamp
+REORDER Build_Counter
+HTML Thumb
+
+INSERT
+{
+    LOCATION +5
+    HTML </tr><tr>
+}
+%>
+</tr>
+</table>
+
+<br />
+<br />
+
+<!-- Yesterday's Galleries -->
+<table align="center" cellpadding="5" border="0">
+<tr>
+<td colspan="5">
+<span style="font-size: 18pt; font-weight: bold;">Yesterday's Galleries</span>
+</td>
+</tr>
+<tr>
+<%GALLERIES
+HASTHUMB 1
+TYPE Submitted
+CATEGORY Mixed
+AMOUNT 20
+AGE 1
+GETNEW False
+ORDER (Clicks/Build_Counter) DESC
+PAGEDUPES True
+HTML Thumb
+
+INSERT
+{
+    LOCATION +5
+    HTML </tr><tr>
+}
+%>
+</tr>
+</table>
+
+
+
+<br />
+
+<div align="center">
+<b><a href="##Script_URL##/submit.cgi">Submit A Gallery</a></b>
+</div>
+
+<br />
+
+</body>
+</html>
+

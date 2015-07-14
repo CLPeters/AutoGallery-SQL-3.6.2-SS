@@ -1,0 +1,174 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Upgrading From Version 2.0.x</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+The 3.x.x release is completely new from the ground up.  The code has been completely rewritten, there is a new control panel, and the template
+system has been updated.  Many new features have been added, however some of the legacy features have now been removed.  Please have a look at
+the demo to make sure you want to upgrade before you begin this process.  You should allow at least an hour for this upgrade.  Because of the new
+template system, the old templates cannot be converted and you will need to redo all of your templates.
+
+<br />
+<br />
+
+<span class="important">
+Important notes about the new 3.x.x version
+</span>
+The 3.x.x release is an all new version that has many changes from the 2.0.x version.  One of the main changes is a new template system, which means
+that your old templates will not work.  You should take this into consideration when upgrading, as this will add some time to the upgrade process.
+Because it is such a significant change from the 2.0.x version, we recommend that you install the software in a new directory so that you can test
+it before you go live with it on your site.  The process for installing the 3.x.x version in a new directory is covered below.
+
+<br />
+<br />
+
+<b>Make a Backup</b>
+
+<br />
+<br />
+
+The first thing you should do is a database backup from the control panel of your 2.0.x installation.   In the control panel select the
+Backup/Restore Databases function, then press the execute function button. You will be taken to a page where you can select the backup
+file names for your HTML and MySQL data. Enter the filenames you want your data backed up to, or you can just leave them as the default. 
+
+<br />
+<br />
+
+Once you have decided on filenames, make sure the Backup Data function is selected in the dropdown menu. Press the execute function button,
+and you will then be returned to the main administrative page. The backup function will run in the background, so you should allow at
+least 60 seconds for it to complete before you move on to the next step.
+
+<br />
+<br />
+
+FTP into your server and change into the data directory of your installation. You will find the backup files in this directory and they
+will have the filenames you selected when you did the backup. Download these files to your local computer in ASCII mode for safe keeping.
+
+<br />
+<br />
+
+<b>Export Your Data</b>
+
+<br />
+<br />
+
+Now you need to export your 2.0.x data into a format that the 3.6.x version can understand.  This is simple to do with the export utility included
+with the 3.6.x version.  In the utilities directory of the software distribution you will find a file named ags2.0.x.cgi.  Upload that file to your
+server in ASCII mode to the same directory where your 2.0.x ags.pl file is located.  Set it's permissions to 755 and then bring it up in your browser.
+It may take a few minutes for the data export to complete.  Once it does you will see a message telling you to continue to the next step of the
+upgrade process.
+
+<br />
+<br />
+
+The export script has created one file in the data directory of your 2.0.x installation.  FTP into your server and download the file named upgrade.dat.
+<span class="important">It is very important that you download the upgrade.dat file in binary mode or  it will be corrupted and will not be readable by AutoGallery SQL</span>.
+
+<br />
+<br />
+
+<b>Decision Time</b>
+
+<br />
+<br />
+
+At this point you need to decide if you want to install the new version in a new directory or keep the same directory name.  The benefit of installing 
+in a new directory is that you can keep the old version running while you work with the new version.  The benefit of keeping the same directory name is
+that you will not have to change any links or bookmarks to the script.
+
+<br />
+
+
+<ul>
+<b>Installing in a New Directory</b>
+
+<br />
+<br />
+
+If you have decided to install the new version in a new directory, go ahead and create that directory and do a normal installation of the software as
+described in the <a href="install.html" class="link">Installation</a> section of the software manual.  Do not copy any of the files from your 2.0.x
+installation into the new directory.  Once you have completed the installation, skip ahead to the Importing Your Data section of this page.
+
+<br />
+<br />
+
+<b>Keeping the Same Directory</b>
+
+<br />
+<br />
+
+If you want to keep the same directory name you will need to rename the current directory.  For example, if 2.0.x is installed in a directory named tgp, change
+the name to tgp_old.  Once the directory has been renamed, create a new empty directory with the name of the original directory.  Do a normal installation of
+the software as described in the <a href="install.html" class="link">Installation</a> section of the software manual.  Do not copy any of the files from your 2.0.x
+installation into the new directory.  Once you have completed the installation, skip ahead to the Importing Your Data section of this page.
+</ul>
+
+<b>Importing Your Data</b>
+
+<br />
+<br />
+
+Once you have your 3.6.x installation up and working properly, you can import the 2.0.x data.  FTP into your server and upload the upgrade.dat file
+to the data directory of your 3.6.x installation. <span class="important">It is very important that you upload the upgrade.dat file in binary mode or it will
+be corrupted and will not be readable by the 3.6.x  installation</span>.
+
+
+<br />
+<br />
+
+Next you will need to login to your AutoGallery SQL 3.6.x control panel.  Locate and click on the Database Tools link in the Setup section of the control panel menu.
+AutoGallery SQL will then display a page where you will find a box at the top titled "Database Backup/Restore".  In the "Backup Filename" field enter upgrade.dat.
+Once the field is filled in, click on the Restore button.  AutoGallery SQL will read the data
+files and import the data from your 2.0.x installation.  This may take a few minutes, so allow enough time for it to complete.  After enough time has elapsed,
+you can continue using the software as usual.
+
+<br />
+<br />
+
+<b>Restoring Categories</b>
+
+<br />
+<br />
+
+The data import process does not restore your categories because the 3.x.x version has many additional options that are set on a per-category basis.
+For this reason you will need to manually setup your categories in the 3.x.x version before you continue.  This is done through the administrative control panel,
+and is covered in the <a href="categories.html" class="link">Categories</a> section of the manual.  When you copy the category names from your
+2.0.x installation, make sure you copy them exactly.  The text case should be the same.  For example, if you had a category named 'Hardcore' in your
+2.0.x installation, it needs to be named 'Hardcore' in your 3.x.x installation.  You cannot use 'hardcore', 'HARDCORE', or any other name that has changes
+to the text case.
+
+<br />
+<br />
+
+<b>Removing 2.0.x</b>
+
+<br />
+<br />
+
+Once your data has been imported and you are sure that you no longer need the 2.0.x installation you can delete it from your server.  Simply delete all of the
+2.0.x files and folders.  Once they have been deleted, you can use the cleanup2.0.x.cgi script included with 3.6.x to cleanup the MySQL database.  Upload that
+script to the same directory as the ags.pl file of your 3.6.x installation.  Set it's permissions to 755 and bring it up in your browser.  It will ask you to
+confirm that you want to cleanup the data in the MySQL database from the 2.0.x version.  Click the link to complete the removal process.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

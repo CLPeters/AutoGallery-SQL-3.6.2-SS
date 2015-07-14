@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Setting up an Access List</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+To increase the security level in the AutoGallery SQL control panel, versions 3.6.1 and newer have implemented an access list feature.  This feature
+allows you to specify a list of "safe" IP addresses which will be allowed to access all functions of the control panel.  Anyone who connects to your
+control panel from an IP address other than those in the list will not be able to access those functions.  By default the access list feature is 
+disabled, but it is highly recommended that all users utilize this feature for increased security.
+
+<br />
+<br />
+
+<b>Enabling the Access List Feature</b>
+
+<br />
+<br />
+
+To enable this feature you need to create a plain text file named access_list with one IP address per line.  Each IP address that is listed in this file will be able to
+access all functions of the software control panel (assuming the moderator account privileges are set accordingly).  You should keep this list as small as possible so that
+only the absolutely necessary IP addresses are listed.  Here is an example of how your IP address list might look:
+
+<br />
+<br />
+
+193.194.69.66<br />
+200.126.159.2<br />
+201.235.88.*<br />
+130.194.64.162
+
+<br />
+<br />
+
+Once you have your access list created and saved in a file named access_list, upload that file to the data directory of your AutoGallery SQL installation.  It should
+be uploaded in ASCII mode and have it's permissions set to 644.  Having this file in your data directory will immediately enable the access list feature.
+
+<br />
+<br />
+
+<b>Wildcards</b>
+
+<br />
+<br />
+
+It is possible to use the * character within your IP address list to indicate a wildcard character.  As you may have noticed, the example above includes a wildcard in the
+third IP address in the list.  That * character means any number can appear in that position, which would give access to anyone coming from an IP address in the 
+201.235.88.0 through 201.235.88.255 range.  You can use multiple wildcards, but this is not recommended since it will open up a large range of IP addresses.
+
+<br />
+<br />
+
+<b>Restricted Functions</b>
+
+<br />
+<br />
+
+When you have the access list feature enabled, this will affect several of the control panel functions.  Each of those functions are listed below.
+
+<ul>
+Creating new TGP pages<br />
+Editing TGP page templates<br />
+Editing script page templates<br />
+Creating rejection e-mails<br />
+Editing rejection e-mails<br />
+Creating moderator accounts<br />
+Editing moderator accounts<br />
+Saving settings in the Edit Options interface<br />
+Restoring your database<br />
+Importing data from an export file<br />
+Recompiling all TGP page templates<br />
+Adding reciprocal links
+</ul>
+
+If you try to access any of these functions in the control panel when you are not accessing it from an IP address in the access list, you will be 
+presented with an error message and will not be allowed to run that function.  You will need to add your IP address to the access list before you
+will be able to run these functions.
+
+</div>
+
+</body>
+</html>

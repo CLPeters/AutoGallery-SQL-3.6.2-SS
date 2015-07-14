@@ -1,0 +1,282 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Click Tracking</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL includes a PHP script that you can use to track how many clicks each of the galleries gets.  This can be useful if you want to 
+sort your galleries by their productivity.  This document will explain how to setup AutoGallery SQL to track the clicks sent to the galleries.
+Note that this feature can be used for permanent and submitted galleries, but not random galleries from text files.
+
+<br />
+<br />
+
+<b>The go.php Script</b>
+
+<br />
+<br />
+
+The first thing you need to do is edit the go.php script to setup it's variables.  Open the go.php file in a text editor (we recommend 
+<a href="../../../../external.html?link=http://www.editplus.com/" class="link" target="_blank">EditPlus</a> for Windows users) and locate the $USERNAME variable at the top of the file.
+You will see something similar to the following:
+
+<br />
+<br />
+
+$USERNAME = 'username';<br />
+$PASSWORD = 'password';<br />
+$DATABASE = 'database';<br />
+$HOSTNAME = 'localhost';
+
+<br />
+<br />
+
+<i>If you are not using a traffic trading script, you do not need to change the $TEMPLATE variable.<br />
+See the Traffic Trading Scripts section of this page if you want to use a traffic trading script and go.php at the same time.</i>
+
+<br />
+<br />
+
+Each of the variables has a comment following it that describes what it should be set to.   Once you have set the variables in the go.php
+script, you will need to upload it to a location on your server where it will run.  On most servers you can have PHP scripts anywhere 
+except inside the cgi-bin directory.  Once you have the go.php script in a directory it can run from, you are ready to configure your TGP
+page templates.
+
+<br />
+<br />
+
+<b>The High Traffic Version of go.php</b>
+
+<br />
+<br />
+
+New in the 3.5.0 release is a version of the go.php script that will be useful for high traffic sites where server load is an issue.  With the standard go.php click 
+tracking script a MySQL connection is made each time someone clicks on one of your gallery links.  On high traffic sites this can have an impact on your overall server
+load, so we have added the option to use an alternative method.   Our testing has shown a 50-75% increase in performance over the standard version.
+
+<br />
+<br />
+
+The high traffic go.php script is located in the utilities directory of the software distribution and is a drop in replacement for the standard go.php click
+tracking script.  You configure it exactly the same way you would the standard version, the only differences are that you will not need to setup any MySQL information
+since it does not connect to the database and you will need to set the $DDIR value to point to the data directory of your AutoGallery SQL installation.
+
+<br />
+<br />
+
+Because this version of the script does not connect to MySQL on each click, the click stats are not available to you in real time through the software control panel.  When you run
+the page building functions of the software the click tracking log will be analyzed and the updated click stats will be added to the database.  You can also configure the cron.cgi
+script to update the click stats at a specified interval.  For very high traffic sites, it is recommended that you update the clicks stats through cron at least once every 30 minutes.
+If you are having cron automatically update your pages at an interval smaller than that, you do not need to setup a separate command for processing the click log.
+
+<br />
+<br />
+
+<b>Configuring Your Templates</b>
+
+<br />
+<br />
+
+The basic format that the go.php script expects to be called as is:
+
+<br />
+
+<ul>
+go.php?ID=GALLERY_ID&URL=GALLERY_URL
+</ul>
+
+Where GALLERY_ID is the ID number assigned to the gallery by AutoGallery SQL and GALLERY_URL is the URL to the gallery.  This is fairly simple to setup
+in your template using the HTML option of either the TEMPLATE, GALLERIES, or INSERTGALLERIES directives.  A quick example should get you pointed in the
+right direction.
+
+<br />
+
+<ul>
+&lt;%TEMPLATE<br />
+NAME Text<br />
+HTML &lt;a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##"&gt;##Thumbnails## ##Category##&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+</ul>
+
+Note that the ##Encoded_URL## is a special template value for use with the go.php script.  This template value will insert an encoded version of the
+gallery URL so that the go.php script can handle all possible URLs, including those with query strings and special characters.
+
+<br />
+<br />
+
+<b>Traffic Trading Scripts</b>
+
+<br />
+<br />
+
+If you are using a traffic trading script on your TGP and also want to count the number of clicks on each gallery, you will need to do some
+further editing to the go.php file.  The $TEMPLATE variable is used to setup your traffic trading script URL.  The default value for the $TEMPLATE 
+setting is ##Gallery_URL## which will simply send the surfer directly to the gallery instead of through your traffic trading script.  You will
+need to change the $TEMPLATE value so it points to your traffic trading script, and you will need to include the specific code that your traffic
+trading script needs to determine where it should send the surfer.  For example, your traffic trading script may use a URL like this:
+
+<br />
+
+<ul>
+http://www.yoursite.com/cgi-bin/tradescript/c.cgi?p=80&url=http://www.site.com/gallery001/index.html
+</ul>
+
+In this example, the p= value tells the traffic trading script what percent to skim and the url= tells the script what URL it should send the surfer
+to if it decides not to send the surfer to one of your trades.  You will need to modify this URL to insert template values that the go.php script can
+understand.  There are two template values you can use in the URL:
+
+<br />
+
+<ul>
+##Skim## - This is the skim value that you want your traffic trading script to use<br />
+##Gallery_URL## - This is the URL of the gallery that the surfer clicked on
+</ul>
+
+For the example traffic trading script URL above, your template would look like this:
+
+<br />
+
+<ul>
+http://www.yoursite.com/cgi-bin/tradescript/c.cgi?p=##Skim##&url=##Gallery_URL##
+</ul>
+
+The go.php script will take care of filling in those template values based on the information that you pass to it.  For example, if you call the go.php
+script as the following:
+
+<br />
+
+<ul>
+go.php?ID=1256&URL=http://www.site.com/gallery001/index.html&P=70
+</ul>
+
+The go.php script will call your traffic trading script like this:
+
+<br />
+
+<ul>
+http://www.yoursite.com/cgi-bin/tradescript/c.cgi?p=70&url=http://www.site.com/gallery001/index.html
+</ul>
+
+The P= value that you pass to the go.php script is the value that will be used for the ##Skim## template value.  Make sure when you setup your TEMPLATE directives
+that you pass a P= value to the go.php script if your traffic trading script supports skim values.  Using the example above, your TEMPLATE would become this:
+
+
+<br />
+
+<ul>
+&lt;%TEMPLATE<br />
+NAME Text<br />
+HTML &lt;a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##&P=70"&gt;##Thumbnails## ##Category##&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+</ul>
+
+Note that you can use several different skim values by creating a separate TEMPLATE for each one.  Then in your GALLERIES directives, use the appropriate
+template name for the skim value that you want to use for the galleries in that GALLERIES section.  Example:
+
+<br />
+
+<ul>
+&lt;%TEMPLATE<br />
+NAME Text_80<br />
+HTML &lt;a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##&P=80"&gt;##Thumbnails## ##Category##&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+
+<br />
+<br />
+
+&lt;%TEMPLATE<br />
+NAME Text_70<br />
+HTML &lt;a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##&P=70"&gt;##Thumbnails## ##Category##&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+
+<br />
+<br />
+
+&lt;%GALLERIES<br />
+AMOUNT 10<br />
+HTML Text_80<br />
+CATEGORY Mixed<br />
+TYPE Text
+%&gt;
+
+<br />
+<br />
+
+&lt;%GALLERIES<br />
+AMOUNT 10<br />
+HTML Text_70<br />
+CATEGORY Mixed<br />
+TYPE Text
+%&gt;
+</ul>
+
+In the above example there are two templates, one that passes a skim value of 80 and one that passes a skim value of 70.  There are also
+two GALLERIES section, one that uses the Text_80 template and one that uses the Text_70 template.  The galleries that use the Text_80 template
+will send a skim value of 80 to your traffic trading script.  Likewise, the galleries that use the Text_70 template
+will send a skim value of 70 to your traffic trading script.
+
+<br />
+<br />
+
+<b>Passing Arbitrary Values to Traffic Trading Scripts</b>
+
+<br />
+<br />
+
+If there is additional information that you want to pass on to your traffic trading script through the go.php script, you can configure
+custom template values in the $TEMPLATE setting to support them.  For example, if you wanted to pass the gallery's category on to your
+traffic trading script, you could do this by adding the value to the go.php query string and then configuring the $TEMPLATE value to
+include that information in the traffic trading script URL.
+
+<br />
+<br />
+
+Here is a brief example.  Assume that your traffic trading script supports passing the gallery's category through it's c= option and
+the skim value through it's p= option, like so:
+
+<ul>
+http://www.yoursite.com/cgi-bin/tradescript/c.cgi?p=80&c=CATEGORY&url=http://www.site.com/gallery001/index.html
+</ul>
+
+To pass these values through the go.php script you would configure your TEMPLATE to look like this:
+
+<ul>
+&lt;%TEMPLATE<br />
+NAME Text<br />
+HTML &lt;a href="go.php?ID=##Gallery_ID##&URL=##Encoded_URL##&p=70&c=##Category##"&gt;##Thumbnails## ##Category##&lt;/a&gt;&lt;br /&gt;<br />
+%&gt;
+</ul>
+
+Then you would need to configure the $TEMPLATE setting so the go.php script knows where to insert your arbitrary values.  Each value that
+you pass through the go.php script will be converted into the standard template value format of ##VALUE##.  So, for the category value of
+c=CATEGORY, this will become ##c## in the $TEMPLATE setting.  Here is an example of how your $TEMPLATE setting would look:
+
+<ul>
+http://www.yoursite.com/cgi-bin/tradescript/c.cgi?p=##p##&c=##c##&url=##Gallery_URL##
+</ul>
+
+The go.php script will then replace the ##p## value with the p= value that was passed through it, and the ##c## value with the c= value that
+was passed through it.  So, for example, if the p= value was 75 and the c= value was Hardcore, the converted URL would look like this:
+
+<ul>
+http://www.yoursite.com/cgi-bin/tradescript/c.cgi?p=75&c=Hardcore&url=http://www.site.com/gallery001/index.html
+</ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+=>[ags_Galleries]
+Gallery_ID     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Email          VARCHAR(128) NOT NULL,
+Gallery_URL    VARCHAR(255) NOT NULL,
+Description    TEXT NOT NULL,
+Thumbnails     INT NOT NULL,
+Category       VARCHAR(100) NOT NULL,
+Sponsor        VARCHAR(100) NOT NULL,
+Has_Thumb      TINYINT NOT NULL,
+Thumbnail_URL  VARCHAR(255),
+Thumb_Width    INT,
+Thumb_Height   INT,
+Weight         FLOAT NOT NULL,
+Nickname       VARCHAR(96) NOT NULL,
+Clicks         INT NOT NULL,
+Type           ENUM('Submitted','Permanent') NOT NULL,
+Format         ENUM('Pictures','Movies') NOT NULL,
+Status         ENUM('Submitting','Unconfirmed','Pending','Approved','Used','Holding','Disabled') NOT NULL,
+Confirm_ID     INT,
+Added_Date     DATE NOT NULL,
+Added_Stamp    INT NOT NULL,
+Approve_Date   DATE,
+Approve_Stamp  INT,
+Scheduled_Date DATE,
+Display_Date   DATE,
+Delete_Date    DATE,
+Account_ID     VARCHAR(32) NOT NULL,
+Moderator      VARCHAR(32),
+Submit_IP      VARCHAR(16) NOT NULL,
+Gallery_IP     VARCHAR(16) NOT NULL,
+Scanned        TINYINT NOT NULL,
+Links          INT NOT NULL,
+Has_Recip      TINYINT NOT NULL,
+Page_Bytes     INT NOT NULL,
+Page_ID        VARCHAR(64) NOT NULL,
+Speed          FLOAT NOT NULL,
+Icons          VARCHAR(64),
+Allow_Scan     TINYINT NOT NULL DEFAULT '1',
+Allow_Thumb    TINYINT NOT NULL DEFAULT '1',
+Times_Selected INT NOT NULL,
+Used_Counter   INT NOT NULL,
+Build_Counter  INT NOT NULL,
+Keywords       TEXT,
+Comments       TEXT,
+Tag            VARCHAR(32),
+INDEX(Category),
+INDEX(Page_ID),
+INDEX(Gallery_URL),
+FULLTEXT(Keywords)
+
+
+
+=>[ags_Moderators]
+Username    VARCHAR(32) NOT NULL PRIMARY KEY,
+Password    VARCHAR(32),
+Email       VARCHAR(128),
+Approved    INT,
+Declined    INT,
+Banned      INT,
+Login_Time  INT,
+Login_IP    VARCHAR(16),
+Rights      INT NOT NULL
+
+
+
+=>[ags_Accounts]
+Account_ID    VARCHAR(32) NOT NULL PRIMARY KEY,
+Password      VARCHAR(32),
+Email         VARCHAR(128),
+Weight        FLOAT,
+Allowed       INT,
+Submitted     INT,
+Removed       INT,
+Auto_Approve  TINYINT,
+Check_Recip   TINYINT,
+Check_Black   TINYINT,
+Check_HTML    TINYINT,
+Confirm       TINYINT,
+Icons         VARCHAR(100),
+Start_Date    DATE,
+End_Date      DATE,
+INDEX(Password)
+
+
+
+=>[ags_Requests]
+Unique_ID    INT PRIMARY KEY AUTO_INCREMENT,
+Name         VARCHAR(64),
+Email        VARCHAR(128),
+Account_ID   VARCHAR(32),
+Password     VARCHAR(32),
+Gallery_1    VARCHAR(255),
+Gallery_2    VARCHAR(255),
+Gallery_3    VARCHAR(255),
+Host         VARCHAR(128),
+Provider     VARCHAR(128),
+IP_Address   VARCHAR(20),
+Added        INT,
+INDEX(Email),
+INDEX(Account_ID)
+
+
+
+=>[ags_Categories]
+Name           VARCHAR(100) PRIMARY KEY,
+Ext_Pictures   VARCHAR(128),
+Ext_Movies     VARCHAR(128),
+Min_Pictures   INT,
+Min_Movies     INT,
+Max_Pictures   INT,
+Max_Movies     INT,
+Size_Pictures  INT,
+Size_Movies    INT,
+Per_Day        INT,
+Ann_Pictures   INT NOT NULL DEFAULT 0,
+Ann_Movies     INT NOT NULL DEFAULT 0,
+Hidden         TINYINT NOT NULL
+
+
+
+=>[ags_Codes]
+IP_Address   CHAR(10) NOT NULL PRIMARY KEY,
+Code         CHAR(24),
+Timestamp    INT,
+INDEX(Code),
+INDEX(Timestamp)
+
+
+
+=>[ags_Reports]
+Report_ID    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Gallery_ID   INT,
+Gallery_URL  VARCHAR(255),
+Description  VARCHAR(255),
+Email        VARCHAR(128),
+Submit_IP    VARCHAR(16),
+Report_IP    VARCHAR(16),
+Report       TEXT
+
+
+=>[ags_Addresses]
+Gallery_ID   INT NOT NULL,
+IP_Address   CHAR(16) NOT NULL,
+Click_Time   INT,
+PRIMARY KEY(Gallery_ID, IP_Address),
+INDEX(Click_Time)
+
+
+
+=>[ags_Pages]
+Page_ID     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Filename    VARCHAR(255),
+Category    VARCHAR(100),
+Build_Order INT NOT NULL DEFAULT 1
+
+
+
+=>[ags_Annotations]
+Unique_ID    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Identifier   VARCHAR(32),
+Type         ENUM('None','Text','Image'),
+Font_File    VARCHAR(32),
+Image_File   VARCHAR(32),
+String       VARCHAR(64),
+Size         INT,
+Color        VARCHAR(8),
+Shadow       VARCHAR(8),
+Location     ENUM('NorthWest','North','NorthEast','SouthWest','South','SouthEast'),
+Transparency VARCHAR(8)
+
+
+
+=>[ags_Undos]
+Image_ID   INT NOT NULL,
+Undo_Level INT NOT NULL,
+Image      MEDIUMBLOB,
+INDEX(Image_ID,Undo_Level)
+
+
+
+=>[ags_temp_Categories]
+Name VARCHAR(100),
+Galleries INT,
+Clicks INT,
+Build_Counter INT,
+Used INT

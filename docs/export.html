@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Export and Import Database</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+AutoGallery SQL's database export function allows you to quickly make a copy of your database so that it can be transferred to another AutoGallery SQL
+installation.  The export function will create a file that contains all of your gallery data, categories, annotations, partner accounts, and preview thumbnails.
+Detailed instructions for using these functions are outlined in this document.
+
+<br />
+<br />
+
+<b>Exporting Your Database</b>
+
+<br />
+<br />
+
+To export your database, locate and click on the Database Tools link in the Setup section of the control panel menu.  AutoGallery SQL will then
+display a page where you will find a few different database functions.  The second box is for the database export and import functions.  To export
+your database all you need to do is fill in a filename and then press the Export button.
+
+<br />
+<br />
+
+The export process may take a few minutes, so be sure to give it time to complete.  The export file will be created in the data directory of your
+AutoGallery SQL installation.  To transfer this data into a second AutoGallery SQL installation, follow the instructions in the Importing section below.
+<span class="important">Important Transfer Instructions</span> If you need to transfer the export file using FTP, make sure that you transfer it in
+binary mode and not ASCII mode.
+
+<br />
+<br />
+
+<b>Importing A Database</b>
+
+<br />
+<br />
+
+The database import function can be used to import data from an export file that was created by a different AutoGallery SQL installation, but both must be
+the same version.  For example, if you created the export file with version 3.6.1, you will need to be using exactly that version for your second AutoGallery SQL
+installation in order to import from that file.  Using older or newer versions of AutoGallery SQL may prevent the data import process from working correctly.
+
+<br />
+<br />
+
+The first step is to transfer the export file to the data directory of the AutoGallery SQL installation where you want to import the data.  There are
+many ways to do this, depending on where the two installations are located (same server or different servers) and what type of server access you have.
+The most universal way of doing it is to use your FTP program.  You can use your FTP program to download the export file to your computer, and then upload
+it to the data directory of the second AutoGallery SQL installation.  <span class="important">Important Upload Instructions</span> When transferring the
+export file, make sure you transfer it in binary mode, not ASCII.
+
+<br />
+<br />
+
+<span class="red">VERY IMPORTANT NOTE</span><br />
+Using the database import function will wipe out all of your current galleries, categories, partner accounts, and annotations before importing the data
+from the export file.  This must be done in order for the new database information that is being imported to be properly synchronized.  Other items, such
+as your TGP pages and their templates, reciprocal links, control panel accounts, partner account requests, etc will not be altered.
+
+<br />
+<br />
+
+To import a database, locate and click on the Database Tools link in the Setup section of the control panel menu.  AutoGallery SQL will then
+display a page where you will find a few different database functions.  The second box is for the database export and import functions.  Enter the
+filename of the export file in the text entry field and then click on the Import button.  This process may take a few minutes, so be sure to give
+it time to complete. After enough time has elapsed, you can continue using the software as usual.
+
+<br />
+<br />
+
+</div>
+
+</body>
+</html>

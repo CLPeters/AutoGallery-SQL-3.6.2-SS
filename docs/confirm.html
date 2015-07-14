@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">Confirmation E-mails</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+To help ensure that the e-mail addresses being submitted with galleries are valid, AutoGallery SQL includes a confirmation
+e-mail feature.  If you have this option enabled, an e-mail message will be sent to the gallery submitter immediately after
+their gallery has been submitted.  They will need to visit a link in that e-mail message in order to confirm their submission.
+This document contains additional information about the confirmation e-mail.
+
+<br />
+<br />
+
+<b>Confirmation Options</b>
+
+<br />
+<br />
+
+There are two different ways that the software can handle gallery confirmations.  The first is to require that the submitter
+visit a URL and copy a string of characters into a web-based form field.  The second is to simply have a clickable URL in the
+confirmation e-mail that the submitter can click on to confirm their submission.  There are benifits to both methods, which will
+be explained further.
+
+<ul>
+<li><b>Enter String on Web-Based Form</b><br />
+The default action of the software is to require that submitters enter a string of characters in a web-based form field in order
+to confirm their gallery submission.  This method requires more work from the gallery submitter, but is also more secure from being
+abused by automated gallery submission programs.  The software's e-mail templates are setup by default for this method of
+confirmation e-mails, and to use this method you need to make sure that the 'Allow confirmation e-mail to contain a clickable
+confirmation link?' option is not checked.
+
+<br />
+<br />
+
+<li><b>Clickable Link</b><br />
+If you check the 'Allow confirmation e-mail to contain a clickable confirmation link?' option in the software's Edit Options interface
+you can then modify the confirmation e-mail template so that a clickable link is available to the submitter.  This method is less secure
+against automated gallery submission programs but is less time consuming for the submitter.  To use this option you will need to edit
+the email_confirm.tpl e-mail template.  Instead of having the confirmation URL and ID code separate, you will need to put them together
+into a single URL.  If you were using the default template you would replace ##Confirm_URL## with this:
+
+<br />
+<br />
+
+##Confirm_URL##?ID=##Confirm_ID##
+
+<br />
+<br />
+
+Also be sure to indicate that all they need to do is click on that link; it is not necessary to enter their confirmation code on a web-based
+form when using this confirmation method.
+</ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+<html>
+<head>
+    <title>AutoGallery SQL - Documentation</title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+
+<div align="center">
+<span class="large">localsync.cgi Utility Script</span>
+</div>
+
+<br />
+
+<div style="width: 80%">
+
+<b>Introduction</b>
+
+<br />
+<br />
+
+While the software's built in database import/export function will allow you to easily transfer your database from one installation to another, it is 
+not an automated process.  For those who would like to synchronize your AutoGallery SQL databases automatically, this utility is for you.  It can be setup
+to give you the same type of effect as if you were sharing the same physical database between multiple installations, without the problems associated with
+actually doing that.
+
+<br />
+<br />
+
+<b>How It Works</b>
+
+<br />
+<br />
+
+In one step this script can copy your gallery database from one installation to one or more other installations on the same sever.  The MySQL database from
+the source installation will be copied to each of the destination installations, along with the partner accounts, categories, and preview thumbnails.  You also
+have the option of running the page building functions for each installation after the databases have been synchronized.
+
+<br />
+<br />
+
+<b>Configuring the localsync.cgi Script</b>
+
+<br />
+<br />
+
+You will need to edit the localsync.cgi script before you can use it.  It is located in the utilities directory of the AutoGallery SQL software
+distribution and can be edited in your favorite text editor (we recommend <a href="../../../../external.html?link=http://www.editplus.com/" target="_blank" class="link">EditPlus</a>
+for Windows users).  Once you have that file opened in your text editor, you will find a few variable settings near the top of that file.  
+Each of the variables that needs to be set is described below.
+
+<ul>
+$cdir - this is the full directory path to your source AutoGallery SQL installation<br />
+@dirs - this is a list of AutoGallery SQL installation directories where the database will be copied to<br />
+$cp - this it the name of the copy command on your server (in most cases you do not need to change this<br />
+$chmod -this it the name of the chmod command on your server (in most cases you do not need to change this<br />
+</ul>
+
+The @dirs variable is the most important setting, since it tells the script where the AutoGallery SQL installations are located that will be receiving
+a copy of the source database.  All of the sites that you will be coping the database to must be located on the same server as the source installation.  
+The @dirs value can be set to a single directory or multiple directories if you want to copy the database to several installations.  Each directory should
+be enclosed by single quotes (') and if you have multiple directories they should be separated by a comma.  Here is an example showing a multiple directory setup:
+
+<pre>my @dirs = ('/full/path/to/directory1', '/full/path/to/directory2', '/full/path/to/directory3');</pre>
+
+Once you have those variables set, upload the localsync.cgi script to your server in ASCII mode.  It will need to be placed in the same directory
+where the ags.pl and common.pl files are located, and must be uploaded to the AutoGallery SQL installation where the source database is located.  For example
+if you want to copy the data from site1.com to site2.com and site3.com, the localsync.cgi script should be uploaded to the AutoGallery SQL installation
+directory on site1.com.  Set it's permissions to 700 once it has been uploaded.
+
+<br />
+<br />
+
+It is also highly recommended that you make a backup of your gallery database and preview thumbnails before you run this script.  You can backup your
+gallery database and thumbnails using the software's built in database export or database backup utilities.
+
+<br />
+<br />
+
+<b>Command Line Options</b>
+
+<br />
+<br />
+
+The localsync.cgi script has several command line options which control how it will function.  You can use any combination of these options to
+control the specific functions.
+
+<ul>
+<b>-v</b> - This option allows the script to output any error messages encountered during the process.  It should only be used if
+you are running the script from the command line, and not used when it is running through cron.  Without this option, errors will only
+be added to the error_log file and not displayed.
+<br /><br />
+
+<b>-b</b> - This option tells the script to run the Build function for each installation that the database is copied to
+<br /><br />
+
+<b>-bn</b> - This option tells the script to run the Build With New function for each installation that the database is copied to
+<br /><br />
+
+<b>-bl</b> - This option tells the script to run the Build function for the source installation
+<br /><br />
+
+<b>-bnl</b> - This option tells the script to run the Build With New function for the source installation
+
+<br /><br />
+
+<b>-d=/full/path/to/agsinstallation</b> - This option overrides the @dirs setting and synchronizes only the installation specified in the
+/full/path/to/agsinstallation setting.
+</ul>
+
+
+<b>Running the localsync.cgi Script</b>
+
+<br />
+<br />
+
+The localsync.cgi script must be run from the command line of your server, it cannot be accessed through a browser.  You will need SSH or telnet 
+access to your server in order to use this script, or you will need to run it through cron at specific intervals.
+
+<br />
+<br />
+
+You can now login to the server through telnet or SSH and change into the directory where the localsync.cgi script is located.  It is recommended
+that you run the localsync.cgi script during off-peak hours, since it will increase the server load while it is copying the database and thumbnail
+files.  Execute the following command to begin the thumbnail transfer process:
+
+<br />
+<br />
+
+perl localsync.cgi
+
+<br />
+<br />
+
+On some servers you may need to specify the full path to perl, which might look like this (where /usr/local/bin is the directory where perl is located):
+
+<br />
+<br />
+
+/usr/local/bin/perl localsync.cgi
+
+<br />
+<br />
+
+When you execute this command, there will be no output from the script, but you will not be returned to the command prompt until it has finished executing.
+You should allow several minutes for the transfer process to be completed, depending on how many galleries you have and how many installations are being synchronized.
+When the script is done it simply return you to the command line of your server.  You can now login to the AutoGallery SQL control panel and use the Display Galleries
+interface to view the galleries and make sure they are showing up properly.
+
+<br />
+<br />
+
+If you want to use the command line options, those will come at the end of the command.  For example:
+
+<br />
+<br />
+
+perl localsync.cgi -d=/home/george/mytgp.com/cgi-bin/tgp -b -bl
+
+<br />
+<br />
+
+This command tells the script to only synchronize the database with the installation located at /home/george/mytgp.com/cgi-bin/tgp and to run the Build function for both
+the source and destination installations once the database has been synchronized.
+
+<br />
+<br />
+
+<b>Running the localsync.cgi Script Through Cron</b>
+
+<br />
+<br />
+
+To automate the process of synchronizing your databses, you can setup the localsync.cgi script to run as a cron job at whatever interval
+you specify.  For the basics of setting up a cron job, see the <a href="cron.html" class="link">Cron</a> section of the software manual.  Once you have figured out
+the interval you want to use, you can setup your crontab entry along with any other AutoGallery SQL entries you have.  For example:
+
+<br />
+<br />
+
+0 6,18 * * * /full/directory/path/to/localsync.cgi &amp;
+
+<br />
+<br />
+
+This example would run the localsync.cgi script twice per day; once at 6am and once at 6pm.  Note that the /full/directory/path/to/ portion would be replaced with the
+directory path on your server to the directory where the localsync.cgi script is located.  It is also important to have the &amp; character at the end.  This tells it
+to run in the background so that the server's cron system can go about it's business and not wait for the gallery scanner to finish it's task. 
+
+<br />
+<br />
+
+The command line options can also be used when you are running the script through cron, which gives you a great amount of flexibility.  If you would rather not synchronize
+the databases all at the same time, you can do that with the -d= option.  If you want to do a Build With New sometimes and just do a normal Build other times, that is
+also an option.  Here's an example:
+
+<br />
+<br />
+
+0 2 * * * /full/directory/path/to/localsync.cgi -d=/home/george/mytgp.com/cgi-bin/tgp -b &amp;<br />
+0 4 * * * /full/directory/path/to/localsync.cgi -d=/home/george/othertgp.com/cgi-bin/tgp -bn &amp;
+
+<br />
+<br />
+
+Here there are actually two crontab entries.  The first one will run at 2am every day and will copy the database to the installation located at /home/george/mytgp.com/cgi-bin/tgp.
+Once the database has been copied, the Build function will be run for that installation.  The second one will run at 4am every day and will copy the database to the installation
+located at /home/george/othertgp.com/cgi-bin/tgp.  Once the database has been copied, the Build With New function will be run for that installation.
+
+<br />
+<br />
+
+<b>Tips When Using Database Synchronization</b>
+
+<br />
+<br />
+
+Here are some tips to consider when using the localsync.cgi script:
+
+<ol>
+<li> If you only want to use one gallery submission form, it must be the submission form from the source installation.  You can either link directly to the submission
+form from your other sites, or modify the submit_main.tpl template with a meta refresh that will forward submitters to the source submission form.  It is recommended
+that you use only one gallery submission form, for a couple of reasons.  If you accept gallery submissions at all of your sites, they will get overwritten when you
+synchronize the database from the source installation.  When you synchronize, it makes an exact copy of the source database, so you will only have the galleries that
+are submitted from that installation.  Secondly, this makes it easier to manage your galleries, since you only need to process them in the source installation.
+
+<br />
+<br />
+
+<li> If you are using the click tracking feature, you have a couple of different options.  You can either have the clicks all be accumulated in the source database, or
+have the accumulate separately in each individual database.  To have all of the clicks accumulate in the source database, just set the MySQL database settings in all of
+your go.php scripts to point to that database.  If you do let the clicks accumulate in each individual database, keep in mind that they will be overwritten each time you
+do a new synchronization.  However, it still may be useful to do this especially if you don's sync too often.  This will give the galleries in each installation a chance
+to accumulate clicks based on how popular they are at that specific site.  If a thumb is performing poorly at one site and very well at another, you may not want to have
+the values totaled together so that the gallery stays near the bottom on the site that it is performing poorly.
+
+<br />
+<br />
+
+<li> Your TGP page templates in each installation can be completely different.  This is the benefit of synchronizing the database instead of sharing one database between
+multiple installations.  You are not required to use the same template or even display the same number of galleries.  Once the databases are synchronized, they are no longer
+connected and operate independently of each other.
+</ol>
+
+</div>
+
+<br />
+<br />
+<br />
+
+</body>
+</html>
